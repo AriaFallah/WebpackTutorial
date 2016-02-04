@@ -18,6 +18,10 @@ I will gladly accept any and all contributions/corrections. Before filing an iss
   * [A Minimal Example](#a-minimal-example)
   * [Introducing Plugins](#introducing-plugins)
 * [A More Complete Example](#a-more-complete-example)
+  * [Introducing Loaders](#introducing-loaders)
+  * [Adding More Plugins](#adding-more-plugins)
+  * [The Development Server](#the-development-server)
+  * [Start Coding](#start-coding)
 
 ## Why Webpack?
 
@@ -37,7 +41,7 @@ More realistically here are some reasons you would want to use webpack.
 
 ##### Why do I want these features?
 
-* Bundle js files - Lets you write modular javascript, but not need to include a separate `<script>` tag for each js file. (Configurable in case you do need more than one js file)
+* Bundle js files - Lets you write modular javascript, but you do not need to include a separate `<script>` tag for each js file. (Configurable in case you do need more than one js file)
 
 * Use npm packages in your frontend code - npm is the biggest ecosystem of open source code on the internet. Chances are you can save writing code by taking a look at npm, and including the packages you want in your frontend.
 
@@ -73,7 +77,7 @@ To run webpack:
 
     webpack
 
-If you want webpack to watch build every time you change a file:
+If you want webpack to build every time you change a file:
 
     webpack --watch
 
@@ -85,15 +89,16 @@ If you want to use a config file with webpack with a custom name:
 
 [Example 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example1)
 
-Webpack is formally referred to as a module bundler. From my understanding, the way that it works is that you specify a single file as your entry point. Then every single file that is included in your entry point through `require` is concatenated into a single file called a bundle.
+Webpack is formally referred to as a module bundler. The way that it works is that you specify a single file as your entry point. Then every single file that is included in your entry point through `require` is concatenated into a single file called a bundle.
 
-For example lets say you have the files `index.js` (your entry point), `file1.js`, and `file2.js` all in the same directory.
+For example lets say you have the files `index.js` (your entry point), `file1.js`, `file2.js`, and `file3.js` all in the same directory.
 
 ```
 MyDirectory
 |- index.js
 |- file1.js
 |- file2.js
+|- file3.js
 ```
 
 and this is the content of your files
@@ -109,12 +114,16 @@ console.log('Second!')
 
 // file2.js
 console.log('First!')
+
+// file3.js
+console.log('No one likes me')
 ```
 
-Then, when you run webpack, you'll get a bundle with the contents of all three files like this because `index.js` required `file1.js`, which also required `file2.js`:
+Then, when you run webpack, you'll get a bundle with the contents of `index.js` `file1.js`, and `file2.js` because through `require` `file1.js` and `file2.js` are part of the dependency tree that starts at the entrypoint `index.js`. As you've probably noticed `file3.js` will not be part of the bundle because it is neither an entrypoint or a part of the dependency tree:
 
 So if you were to imagine the bundling process, it would look like this:
 
+1.
 ```javascript
 // index.js
 require('./file1.js')
@@ -124,14 +133,29 @@ console.log('Third!')
 /** require('./file2.js') is replaced by the contents of file2 **/
 console.log('First!')
 console.log('Second!')
+
+// file3.js
+console.log('No one likes me')
+```
+
+---
+2.
+```javascript
+// index.js
+/** require('./file1.js') is replaced by the contents of file1 **/
+console.log('First!')
+console.log('Second!')
+console.log('Third!')
+
+// file3.js
+console.log('No one likes me')
 ```
 
 ---
 
-
+3.
 ```javascript
-// index.js
-/** require('./file1.js') is replaced by the contents of file1 **/
+// bundle.js - file3.js not a part of the final bundle
 console.log('First!')
 console.log('Second!')
 console.log('Third!')
@@ -298,7 +322,7 @@ MyDirectory
 1. [Introducing Loaders](#introducing-loaders) - We will add loaders to let us add CSS to our bundle.
 2. [Adding More Plugins](#adding-more-plugins) - We will add a plugin that'll help us create/use an HTML file.
 3. [The Development Server](#the-development-server) - We'll split our webpack config into separate `development` and `production` files. Then use the webpack-dev-server to view our website and enable HMR.
-4. [Introducing Code](#introducing-code) - We will actually write some javascript.
+4. [Start Coding](#start-coding) - We will actually write some javascript.
 
 #### Introducing Loaders
 
@@ -353,7 +377,7 @@ When you run `webpack`, this will create a file called `bundle.js` in the dist f
 
 Now that we have the infrastructure for styling our website we need an actual page to style. We'll be doing this through the [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin)
 
-#### Introducing Code
+#### Start Coding
 
 The reason most people seem to be flustered by webpack is the fact that they need to go through all of this to get to the point where they finally write javascript. Hopefully I've reduced the "fatigue" :wink:
 
