@@ -1,7 +1,10 @@
+var path = require('path')
+var webpack = require('webpack')
+
 module.exports = {
   entry: ['./src/index'], // .js after index is optional
   output: {
-    path: __dirname + '/dist',
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   plugins: [
@@ -11,5 +14,11 @@ module.exports = {
       },
     }),
     new webpack.optimize.OccurenceOrderPlugin()
-  ]
+  ],
+  modules: {
+    loaders: [{
+      test: /\.css$/,
+      loaders: ["style", "css"]
+    }]
+  }
 }

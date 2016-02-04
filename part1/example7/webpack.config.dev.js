@@ -3,18 +3,18 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/index'], // .js after index is optional
+  devtool: 'cheap-eval-source-mao',
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/dev-server',
+    './src/index' // .js after index is optional
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-      },
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './src/website.html'
@@ -25,5 +25,9 @@ module.exports = {
       test: /\.css$/,
       loaders: ["style", "css"]
     }]
+  },
+  devServer: {
+    contentBase: './dist',
+    hot: true
   }
 }
