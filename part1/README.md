@@ -1,6 +1,9 @@
 # Beginner Webpack Tutorial Part 1 - Introduction To Webpack :zap:
 
-This is for the people like me who's first intro to webpack was a repository like this: https://github.com/davezuko/react-redux-starter-kit.
+This is for the people like me who's first intro to webpack was a repository similar to:
+
+* https://github.com/davezuko/react-redux-starter-kit
+* https://github.com/webpack/react-starter
 
 At the very least you are expected to know the basics of node.js and npm.
 
@@ -119,7 +122,7 @@ console.log('First!')
 console.log('No one likes me')
 ```
 
-Then, when you run webpack, you'll get a bundle with the contents of `index.js` `file1.js`, and `file2.js` because through `require` `file1.js` and `file2.js` are part of the dependency tree that starts at the entrypoint `index.js`. As you've probably noticed `file3.js` will not be part of the bundle because it is neither an entrypoint or a part of the dependency tree:
+Then, when you run webpack, you'll get a bundle with the contents of `index.js`, `file1.js`, and `file2.js` because, through `require`, `file1.js` and `file2.js` are part of the dependency tree that starts at the entrypoint `index.js`. As you've probably noticed `file3.js` will not be part of the bundle because it is neither an entrypoint or a part of the dependency tree:
 
 So if you were to imagine the bundling process, it would look like this:
 
@@ -266,7 +269,7 @@ module.exports = {
 Going over the new properties one by one:
 
 * plugins - An array that holds your plugins.
-  * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin)
+  * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify your code, and suppress warning messages.
 
 When you run `webpack`, this will create a file called `bundle.js` in the dist folder; however, now that you have the `UglifyJsPlugin` this could reduce your imaginary 900KB file to 200KB by through processes such as removing all the whitespace.
 
@@ -274,7 +277,7 @@ You can also add the [OrderOccurencePlugin](https://webpack.github.io/docs/list-
 
 > Assign the module and chunk ids by occurrence count. Ids that are used often get lower (shorter) ids. This make ids predictable, reduces to total file size and is recommended.
 
-To be honest I'm not sure how this helps, but it says recommended so why not just throw it in your config.
+To be honest I'm not sure how the underlying mechanisms work, but it says recommended so why not just throw it in your config.
 
 ```javascript
 // webpack.config.js
@@ -319,7 +322,7 @@ MyDirectory
 
 #### Contents
 
-1. [Introducing Loaders](#introducing-loaders) - We will add loaders to let us add CSS to our bundle.
+1. [Introducing Loaders](#introducing-loaders) - We will add loaders, which allow us to add CSS to our bundle.
 2. [Adding More Plugins](#adding-more-plugins) - We will add a plugin that'll help us create/use an HTML file.
 3. [The Development Server](#the-development-server) - We'll split our webpack config into separate `development` and `production` files. Then use the webpack-dev-server to view our website and enable HMR.
 4. [Start Coding](#start-coding) - We will actually write some javascript.
@@ -364,23 +367,205 @@ module.exports = {
 
 Going over the new properties one by one:
 
-* [modules](http://webpack.github.io/docs/configuration.html#module) - Options affecting the normal modules
+* [modules](http://webpack.github.io/docs/configuration.html#module) - Options affecting your files
   * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - An array of loaders that we specify for our application
     * test - A regular expression to match the loader with a file
     * loaders - Which loaders to use for files that match the test
 
 When you run `webpack`, this will create a file called `bundle.js` in the dist folder; however, if we `require` a file that ends in `.css`, then we will apply the `style` and `css` loaders to it, which adds the CSS to the bundle.
 
+**Optional**
+
+If you want to use SCSS instead of CSS you would need to run:
+
+    npm install --save-dev sass-loader node-sass webpack
+
+and instead your loader would be written as
+
+```javascript
+{
+  test: /\.scss$/,
+  loaders: ["style", "css", "sass"]
+}
+```
+
+The process is similar for LESS.
+
 #### Adding More Plugins
 
 [Example 5](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example5)
 
-Now that we have the infrastructure for styling our website we need an actual page to style. We'll be doing this through the [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin)
+Now that we have the infrastructure for styling our website we need an actual page to style. We'll be doing this through the [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin), which lets us generate an HTML page or use an existing one. We'll use an existing one `website.html`.
+
+First we install the plugin:
+
+    npm install --save-dev html-webpack-plugin@2
+
+Then we can add it to our config
+
+```javascript
+// webpack.config.js
+var path = require('path')
+var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  entry: ['./src/index'], // .js after index is optional
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+      },
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/website.html'
+    })
+  ],
+  modules: {
+    loaders: [{
+      test: /\.css$/,
+      loaders: ["style", "css"]
+    }]
+  }
+}
+```
+
+Adding the plugin just means requiring it, and adding it to your plugins array. We also specify that we want it to use `website.html` as the template, but call it index.html in the dist folder.
+
+We'll also have to actually put something in `website.html`
+
+```html
+<html>
+<head>
+  <title>Webpack Tutorial</title>
+</head>
+<body>
+  <h1 id="header">Great Website</h1>
+  <script src="bundle.js"></script>
+</body>
+</html>
+```
+
+and while we're at it let's add some basic styling in `styles.css`
+
+```css
+h1 {
+  color: rgb(114, 191, 190);
+}
+```
+
+#### The Development Server
+
+[Example 6](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example5)
+
+Now we want to actually see our website in the browser, which requires a web server to serve our code. Conveniently, webpack comes with the `webpack-dev-server`, which you can install using
+
+    npm install --save-dev webpack-dev-server
+
+This is a good point to split up our webpack config into one meant for development and one meant for production. Since we're keeping it simple in this tutorial, it won't be a huge difference, but it's an introduction to the extreme configurability of webpack. We'll call them `webpack.config.dev.js` and `webpack.config.prod.js`.
+
+```javascript
+// webpack.config.dev.js
+var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  devtool: 'cheap-eval-source-mao',
+  entry: ['./src/index'], // .js after index is optional
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/website.html'
+    })
+  ],
+  modules: {
+    loaders: [{
+      test: /\.css$/,
+      loaders: ["style", "css"]
+    }]
+  }
+}
+```
+
+and
+
+```javascript
+// webpack.config.prod.js
+var path = require('path')
+var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  devtool: 'source-map',
+  entry: ['./src/index'], // .js after index is optional
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+      },
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/website.html'
+    })
+  ],
+  modules: {
+    loaders: [{
+      test: /\.css$/,
+      loaders: ["style", "css"]
+    }]
+  }
+}
+```
+
+The dev config omits the optimizations as they are unnecessary overhead when you are constantly rebuilding. I've also added a brand new property to both the dev config and the prod config:
+
+* [devtool](https://webpack.github.io/docs/configuration.html#devtool) - This is a debugging aid. Basically, when you get a error, it'll help you see where you made the mistake something like the chrome developer console. As for the difference between `source-map` and `cheap-eval-source-map` it's a little hard to glean from the docs. What I can say definitively is that `source-map` is meant for production and has a lot of overhead, and that `cheap-eval-source-map` has less overhead and is meant for developing only.
+
+To make our lives a little easier we are now going to use `package.json` as a simple task runner so that we don't need to keep typing out every command.
+
+```json
+// package.json
+{
+
+}
+```
 
 #### Start Coding
 
-The reason most people seem to be flustered by webpack is the fact that they need to go through all of this to get to the point where they finally write javascript. Hopefully I've reduced the "fatigue" :wink:
+The reason most people seem to be flustered by webpack is the fact that they need to go through all of this to get to the point where they finally write javascript. Hopefully I've reduced the "fatigue" :wink: left to reach this point.
+
+```javascript
+// index.js
+require('./styles.css')
+
+// TODO other stuff
+```
 
 ## Conclusion
 
-### Next Parts
+I hope this is helpful. If you have any questions, feel free to leave them as issues.
+
+Webpack first and foremost is a module bundler. It's an extremely modular and useful tool, which you can use without ES6, and without React.
+
+Now given that
+
+* Part 2 will address using Webpack to transpile ES6 with Babel
+* Part 3 will address using Webpack with React
+
+Since those are the most common use cases.
