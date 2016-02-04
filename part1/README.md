@@ -32,6 +32,7 @@ I will gladly accept any and all contributions/corrections. Before filing an iss
   * [Introducing Loaders](#introducing-loaders)
   * [Adding More Plugins](#adding-more-plugins)
   * [The Development Server](#the-development-server)
+  * [Just Kidding We Need Some More Things](#just-kidding-we-need-some-more-things)
   * [Start Coding](#start-coding)
 
 ## Why Webpack?
@@ -68,9 +69,9 @@ like faster page loads.
 * Turn LESS/SCSS into CSS - Nicer way to write CSS.
 [Here's an intro if you're unfamiliar](http://alistapart.com/article/why-sass).
 
-* Use HMR - A huge boost in productivity. Basically you can make it so every time you save your
-code, it gets injected into the page without requiring you to refresh the page. This is really handy
-if you need to maintain the state of the page while you are editing your code.
+* Use HMR - A boost to productivity. Every time you save your code, it gets injected into the page
+without requiring a full page refresh. This is really handy if you need to maintain the state of the
+page while you are editing your code.
 
 * Include any type of file into your javascript - Reduces need for other build tools, and allows you
 to programmatically modify/use those files.
@@ -139,10 +140,10 @@ console.log('First!')
 console.log('No one likes me')
 ```
 
-Then, when you run webpack, you'll get a bundle with the contents of `index.js`, `file1.js`, and
+When you run `webpack`, you'll get a bundle with the contents of `index.js`, `file1.js`, and
 `file2.js` because, through `require`, `file1.js` and `file2.js` are part of the dependency tree
 that starts at the entrypoint `index.js`. As you've probably noticed `file3.js` will not be part of
-the bundle because it is neither an entrypoint or a part of the dependency tree:
+the bundle because it is neither an entrypoint nor a part of the dependency tree:
 
 So if you were to imagine the bundling process, it would look like this:
 
@@ -170,7 +171,7 @@ console.log('First!')
 console.log('Second!')
 console.log('Third!')
 
-// file3.js
+// file3.js - Completely ignored :'(
 console.log('No one likes me')
 ```
 
@@ -219,7 +220,7 @@ need to create a file called
 
     webpack.config.js
 
-as this is the name that webpack recognizes as default. If you choose to use a different name you
+as this is the name that webpack recognizes by default. If you choose to use a different name you
 would have to use the `--config` flag to specify the file's name.
 
 ### A Minimal Example
@@ -243,7 +244,7 @@ Then a very minimal webpack config you can make is this
 var path = require('path')
 
 module.exports = {
-  entry: ['./src/index'], // .js after index is optional
+  entry: ['./src/index'], // file extension after index is optional for .js files
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -284,11 +285,12 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: ['./src/index'], // .js after index is optional
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -303,9 +305,8 @@ Going over the new properties one by one:
 * plugins - An array that holds your plugins.
   * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify your code, and suppress warning messages.
 
-When you run `webpack`, this will create a file called `bundle.js` in the dist folder; however, now
-that you have the `UglifyJsPlugin` this could reduce your imaginary 900KB file to 200KB by through
-processes such as removing all the whitespace.
+This time, when you run `webpack`, now that you have the `UglifyJsPlugin` this could reduce your
+imaginary 900KB file to 200KB by through processes such as removing all the whitespace.
 
 You can also add the [OrderOccurencePlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)
 
@@ -313,15 +314,13 @@ You can also add the [OrderOccurencePlugin](https://webpack.github.io/docs/list-
 
 To be honest I'm not sure how the underlying mechanisms work, but in the current [webpack2 beta it's included by default](https://gist.github.com/sokra/27b24881210b56bbaff7) so I include it as well.
 
-> The plugin is no longer needed and occurrence order is on by default.
-
 ```javascript
 // webpack.config.js
 var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: ['./src/index'], // .js after index is optional
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -332,15 +331,18 @@ module.exports = {
         warnings: false,
       },
     }),
+
     new webpack.optimize.OccurenceOrderPlugin()
   ]
 }
 ```
 
-## A More Complete Example
-
 So now we have written a config that allows us to minify and bundle our javascript. This bundle
 could be copied and pasted into another project's directory, and thrown into a `<script>` tag there.
+You can skip to the [conclusion](#conclusion) if you only care about the basics of using webpack
+with *only javascript*.
+
+## A More Complete Example
 
 Alternatively, because webpack can do more than just work with javascript, you can avoid the
 copy-pasting and manage your entire project with webpack.
@@ -353,7 +355,7 @@ MyDirectory
 |- dist
 |- src
    |- index.js
-   |- website.html
+   |- index.html
    |- styles.css
 |- package.json
 |- webpack.config.js
@@ -364,7 +366,8 @@ MyDirectory
 1. [Introducing Loaders](#introducing-loaders) - We will add loaders, which allow us to add CSS to our bundle.
 2. [Adding More Plugins](#adding-more-plugins) - We will add a plugin that'll help us create/use an HTML file.
 3. [The Development Server](#the-development-server) - We'll split our webpack config into separate `development` and `production` files. Then use the webpack-dev-server to view our website and enable HMR.
-4. [Start Coding](#start-coding) - We will actually write some javascript.
+4. [Just Kidding We Need Some More Things](#just-kidding-we-need-some-more-things)
+5. [Start Coding](#start-coding) - We will actually write some javascript.
 
 #### Introducing Loaders
 
@@ -383,7 +386,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: ['./src/index'], // .js after index is optional
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -396,6 +399,7 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin()
   ],
+
   modules: {
     loaders: [{
       test: /\.css$/,
@@ -412,9 +416,16 @@ Going over the new properties one by one:
     * test - A regular expression to match the loader with a file
     * loaders - Which loaders to use for files that match the test
 
-When you run `webpack`, this will create a file called `bundle.js` in the dist folder; however, if
-we `require` a file that ends in `.css`, then we will apply the `style` and `css` loaders to it,
-which adds the CSS to the bundle.
+This time when you run `webpack`, if we `require` a file that ends in `.css`, then we will apply
+the `style` and `css` loaders to it, which adds the CSS to the bundle. If we didn't have the loaders,
+then we would get an error like this:
+
+```
+ERROR in ./test.css
+Module parse failed: /Users/Developer/workspace/tutorials/webpack/part1/example1/test.css
+Line 1: Unexpected token {
+You may need an appropriate loader to handle this file type.
+```
 
 **Optional**
 
@@ -440,7 +451,7 @@ The process is similar for LESS.
 Now that we have the infrastructure for styling our website we need an actual page to style.
 We'll be doing this through the
 [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin),
-which lets us generate an HTML page or use an existing one. We'll use an existing one `website.html`.
+which lets us generate an HTML page or use an existing one. We'll use an existing one `index.html`.
 
 First we install the plugin:
 
@@ -455,7 +466,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/index'], // .js after index is optional
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -468,8 +479,7 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/website.html'
+      template: './src/index.html'
     })
   ],
   modules: {
@@ -481,10 +491,12 @@ module.exports = {
 }
 ```
 
-Adding the plugin just means requiring it, and adding it to your plugins array. We also specify that
-we want it to use `website.html` as the template, but call it index.html in the dist folder.
+This time, when you run `webpack` because we specified an `HtmlWebpackPlugin` with a template of
+`./src/index.html`, it will generate a file called `index.html` in our `dist` folder with the
+contents of `./src/index.html`
 
-We'll also have to actually put something in `website.html`
+There's no point in using `index.html` as a template if it's empty so now would be a good time to
+actually populate it.
 
 ```html
 <html>
@@ -530,8 +542,10 @@ button {
 [Example 6](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example6)
 
 Now we want to actually see our website in the browser, which requires a web server to serve our
-code. Conveniently, webpack comes with the `webpack-dev-server`, which you can install using
+code. Conveniently, webpack comes with the `webpack-dev-server`, which you need to install both
+locally and globally
 
+    npm install -g webpack-dev-server
     npm install --save-dev webpack-dev-server
 
 This is a good point to split up our webpack config into one meant for development and one meant for
@@ -545,29 +559,39 @@ var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'cheap-eval-source-mao',
-  entry: ['./src/index'], // .js after index is optional
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/website.html'
-    })
-  ],
-  modules: {
-    loaders: [{
-      test: /\.css$/,
-      loaders: ["style", "css"]
-    }]
-  },
-  devServer: {
-    contentBase: './dist',
-    hot: true
+  var path = require('path')
+  var webpack = require('webpack')
+  var HtmlWebpackPlugin = require('html-webpack-plugin')
+
+  module.exports = {
+    devtool: 'cheap-eval-source-mao',
+    entry: [
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/dev-server',
+      './src/index'
+    ],
+    output: {
+      path: path.join(__dirname, 'dist'),
+      filename: 'bundle.js'
+    },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: './src/website.html'
+      })
+    ],
+    modules: {
+      loaders: [{
+        test: /\.css$/,
+        loaders: ["style", "css"]
+      }]
+    },
+    devServer: {
+      contentBase: './dist',
+      hot: true
+    }
   }
-}
 ```
 
 and
@@ -580,7 +604,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
-  entry: ['./src/index'], // .js after index is optional
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -593,8 +617,7 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/website.html'
+      template: './src/index.html'
     })
   ],
   modules: {
@@ -606,8 +629,22 @@ module.exports = {
 }
 ```
 
-The dev config omits the optimizations as they are unnecessary overhead when you are constantly
-rebuilding. I've also added a brand new property to both the dev config and the prod config:
+There are two major differences between the dev config, and the prod config:
+
+1. The dev config omits the optimizations as they are unnecessary overhead when you are constantly
+rebuilding. So no `webpack.optimize` plugins.
+
+2. The dev config has the necessary configuration for the dev server, which you can read more about
+[here](https://webpack.github.io/docs/webpack-dev-server.html).
+
+Summarized:
+
+* entry: The two new entry points connect the server to the browser to allow for HMR.
+* devServer
+  * contentBase: Where to serve files from
+  * hot: enable HMR
+
+I've also added a brand new property to both the dev config and the prod config:
 
 * [devtool](https://webpack.github.io/docs/configuration.html#devtool) - This is a debugging aid.
 Basically, when you get a error, it'll help you see where you made the mistake something like the
@@ -635,12 +672,18 @@ We will be adding a few commands to the `scripts` property of the config
 
 We can run these commands with
 
-```bash
+```
 npm run build
 npm run dev
 ```
 
 They're not necessary, but they'll save you from constantly having to write out the longer webpack commands.
+
+You can now view your beautiful website by running `npm run dev`, and navigating to
+`http://localhost:8080`.
+
+If you don't care that the server doesn't reload when you modify your html file. Feel free to skip
+ahead to the [Start Coding](#start-coding).
 
 #### Just Kidding We Need Some More Things
 
@@ -653,7 +696,7 @@ and [one more plugin](https://github.com/webpack/docs/wiki/list-of-plugins#defin
 our hacky solution from going into production.
 
 Basically to make Webpack hot reload our HTML we need to make it part of our dependency tree by
-requiring it in one of our files. In order to do this, we will be using the `raw` webpack loader,
+requiring it in one of our files. In order to do this, we will be using the `raw-loader` loader,
 which pulls our HTML into javascript as a string, but additionally will do exactly what we need:
 add the HTML to the dependency tree.
 
@@ -676,7 +719,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/dev-server',
-    './src/index' // .js after index is optional
+    './src/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -685,8 +728,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/website.html'
+      template: './src/index.html'
     })
   ],
   modules: {
@@ -695,7 +737,7 @@ module.exports = {
       loaders: ["style", "css"]
     }, {
       test: /\.html$/,
-      loader: "raw-loader"
+      loader: "raw-loader" // loaders: ['raw-loader'] is also perfectly acceptable.
     }]
   },
   devServer: {
@@ -705,32 +747,29 @@ module.exports = {
 }
 ```
 
-If you're wondering why I used `loader` instead of `loaders`, `loaders: ['raw-loader']` is also
-perfectly acceptable.
-
-When you run `webpack`, this will create a file called `bundle.js` in the dist folder; however, if
-we `require` a file that ends in `.html`, then we will apply the `raw-loader` loader to it,
-which adds the HTML to the bundle.
+This time, when you run `webpack`, if we `require` a file that ends in `.html`, then we will apply
+the `raw-loader` loader to it, which adds the HTML to the bundle.
 
 Now in our currently empty `index.js` file we can do.
 
 ```javascript
 // index.js
-require('./website.html')
+require('./index.html')
 ```
 
 If you were to check now, hot reloading should be working, but also you should realize we just
-required `website.html` in our `index.js`, and then did absolutely nothing with it. We don't want
-to do that in production, which is why we will be using the handy dandy DefinePlugin.
+required `index.html` in our `index.js`, and then did absolutely nothing with it. We don't want
+to do that in production, which is why we will be using the handy dandy
+[DefinePlugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin).
 
 The plugin lets us create a global constant for our entire bundle, which we could name anything,
-such as `DONT_USE_IN_PRODUCTION: true`, but more practically ,a popular choice that looks a bit more
-familiar is `process.env.NODE_ENV: JSON.stringify('production')`. Why JSON.stringify? Because of
-this:
+such as `DONT_USE_IN_PRODUCTION: true`, but more practically, a popular choice that looks a bit more
+familiar is `process.env.NODE_ENV: JSON.stringify('production')`. Why JSON.stringify? Because
+according to the docs:
 
 > If the value is a string it will be used as a code fragment.
 
-So now that we know all that we'll be adding this plugin to our production config:
+Now that we know that, we'll be adding this plugin to our production config:
 
 ```javascript
 // webpack.config.prod.js
@@ -740,7 +779,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
-  entry: ['./src/index'], // .js after index is optional
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -753,8 +792,7 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/website.html'
+      template: './src/index.html'
     }),
     new webpack.DefinePlugin({
       process.env.NODE_ENV: JSON.stringify('production')
@@ -773,32 +811,37 @@ and in our `index.js` we will add a condition
 
 ```javascript
 if (process.env.NODE_ENV !== 'production') {
-  require('./website.html')
+  require('./index.html')
 }
 ```
 
-Phew problem solved.
+Phew problem solved. In a production build, when we don't need the `index.html` as part of the
+dependency tree, we won't require `index.html`, which also means we don't need the `raw-loader`.
 
 #### Start Coding
 
 [Example 7](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example7)
 
 The reason most people seem to be flustered by webpack is the fact that they need to go through all
-of this to get to the point where they finally write javascript.
+of this to get to the point where they finally write javascript. However, now we have arrived at the
+climax of our tutorial.
 
-Anyways now we are going to require a npm package just to demonstrate how you can use them in your
+Just in case you haven't already: do `npm run dev`, and navigate to `http://localhost:8080`. Setting
+up that dev server with hot reloading wasn't for show. Every single time you save while editing your
+any part of your project the browser will reload to show your changes.
+
+We are also going to require a npm package just to demonstrate how you can use them in your
 frontend now.
 
     npm install --save pleasejs
 
-PleaseJS is a random color generator, which we're going to hook up to our button.
+PleaseJS is a random color generator, which we're going to hook up to our button to change the color
+of our div.
 
 ```javascript
 // index.js
-
-require('./styles.css')
+require('./styles.css') // The page is now styled
 var Please = require('pleasejs')
-
 
 // TODO other stuff
 ```
@@ -806,7 +849,7 @@ var Please = require('pleasejs')
 ## Conclusion
 
 I hope this is helpful. If you have any questions, feel free to leave them as issues. If you feel
-that I left anything out, also make sure to leave an issue or make a pull request.
+that I left anything out, make sure to leave an issue or make a pull request.
 
 Webpack first and foremost is a module bundler. It's an extremely modular and useful tool,
 which, in fact, you can use without ES6, and without React.
@@ -820,7 +863,7 @@ Since those are the most common use cases.
 
 **Important Note:** I feel like I should mention that the `html-webpack-plugin` should
 be used sparingly. To me, webpack should generate HTML files if you just have a really simple
-one to bootstrap a SPA. So while it was useful for the learning experience, which required only,
+one to bootstrap a SPA. So while it was useful for the learning experience, which required only
 one HTML file, I wouldn't recommend it to generate 12 HTML files. This doesn't mean you can't use
 html files with something like angular directives, which require HTML template files. In that case
 you could do something like:
@@ -833,9 +876,8 @@ template: require('./templates/button.html') // using raw loader
 Instead, it means that you should not be doing something like this:
 
 ```javascript
-new HtmlWebpackPlugin({
-  filename: 'index.html',
-  template: './src/website.html'
+new HtmlWebpackPlugin
+  template: './src/index.html'
 }),
 new HtmlWebpackPlugin({
   template: './src/button.html'
@@ -850,11 +892,6 @@ Anyone with other experience feel free to correct me if I'm wrong.
 
 Congratulations! You made a button that changes the color of a div! Isn't webpack great?
 
-Sarcasm aside, webpack is great. However, if all you're doing is making a button that changes the
-color of a div, it's probably not worth it writing a huge config from scratch. This philosophy also
-applies to ES6, React, Ember, Angular, and whatever else. Use the right tool for the job and don't
-over engineer your simple site.
-
-But boy am I a fan of overengineering things. I've made the config we've built over the course of
-this tutorial available to clone [here](), but without the HTML stuff because that's for you to
-decide.
+Yes it is; however, if all you're doing is making a button that changes the color of a div, it's
+probably not worth it writing a config like this. The config from example 2 would have been
+sufficient :smile:. Use the right tool for the job.
