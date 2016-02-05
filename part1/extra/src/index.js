@@ -1,1 +1,3 @@
-console.log('hello there my friends')
+if (process.env.NODE_ENV !== 'production') {
+  require('./index.html')
+}

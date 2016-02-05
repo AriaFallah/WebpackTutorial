@@ -555,8 +555,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/website.html'
+      template: './src/index.html'
     })
   ],
   modules: {
@@ -684,8 +683,8 @@ of this to get to the point where they finally write javascript; however, now we
 climax of our tutorial.
 
 Just in case you haven't already: do `npm run dev`, and navigate to `http://localhost:8080`. Setting
-up that dev server with hot reloading wasn't for show. Every single time you save while editing your
-any part of your project the browser will reload to show your changes.
+up that dev server with hot reloading wasn't for show. Every single time you save while editing
+any part of your project, the browser will reload to show your changes.
 
 We are also going to require a npm package just to demonstrate how you can use them in your
 frontend now.
@@ -708,6 +707,8 @@ function changeColor() {
 
 button.addEventListener('click', changeColor)
 ```
+
+and we're done!
 
 ## Conclusion
 

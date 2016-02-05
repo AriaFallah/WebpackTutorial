@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/index'], // .js after index is optional
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -16,8 +16,7 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/website.html'
+      template: './src/index.html'
     })
   ],
   modules: {

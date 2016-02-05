@@ -7,7 +7,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/dev-server',
-    './src/index' // .js after index is optional
+    './src/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -16,8 +16,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/website.html'
+      template: './src/index.html'
     })
   ],
   modules: {
