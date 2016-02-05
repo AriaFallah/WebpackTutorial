@@ -32,8 +32,9 @@ I will gladly accept any and all contributions/corrections. Before filing an iss
   * [Introducing Loaders](#introducing-loaders)
   * [Adding More Plugins](#adding-more-plugins)
   * [The Development Server](#the-development-server)
-  * [Just Kidding We Need Some More Things](#just-kidding-we-need-some-more-things)
   * [Start Coding](#start-coding)
+* [Conclusion](#conclusion)
+* [Closing Thoughts](#closing-thoughts)
 
 ## Why Webpack?
 
@@ -140,52 +141,27 @@ console.log('First!')
 console.log('No one likes me')
 ```
 
-When you run `webpack`, you'll get a bundle with the contents of `index.js`, `file1.js`, and
-`file2.js` because, through `require`, `file1.js` and `file2.js` are part of the dependency tree
-that starts at the entrypoint `index.js`. As you've probably noticed `file3.js` will not be part of
+Forgive my art skills, but you get something like this:
+
+```
+// Dependency Tree
+
+        index.js
+        /        
+    file1.js
+    /
+file2.js           file3.js // lonely :'(
+```
+
+When you run `webpack`, you'll get a bundle with the contents of this tree. As you've probably noticed `file3.js` will not be part of
 the bundle because it is neither an entrypoint nor a part of the dependency tree:
 
-So if you were to imagine the bundling process, it would look like this:
 
-1.
-```javascript
-// index.js
-require('./file1.js')
-console.log('Third!')
-
-// file1.js
-/** require('./file2.js') is replaced by the contents of file2 **/
-console.log('First!')
-console.log('Second!')
-
-// file3.js
-console.log('No one likes me')
 ```
+(index.js, file1.js, file2.js) // bundle
 
----
-2.
-```javascript
-// index.js
-/** require('./file1.js') is replaced by the contents of file1 **/
-console.log('First!')
-console.log('Second!')
-console.log('Third!')
-
-// file3.js - Completely ignored :'(
-console.log('No one likes me')
+file3.js // lonely :'(
 ```
-
----
-
-3.
-```javascript
-// bundle.js - file3.js not a part of the final bundle
-console.log('First!')
-console.log('Second!')
-console.log('Third!')
-```
-
----
 
 The things that are bundled are only the things that you explicitly required across your files.
 
@@ -366,8 +342,7 @@ MyDirectory
 1. [Introducing Loaders](#introducing-loaders) - We will add loaders, which allow us to add CSS to our bundle.
 2. [Adding More Plugins](#adding-more-plugins) - We will add a plugin that'll help us create/use an HTML file.
 3. [The Development Server](#the-development-server) - We'll split our webpack config into separate `development` and `production` files. Then use the webpack-dev-server to view our website and enable HMR.
-4. [Just Kidding We Need Some More Things](#just-kidding-we-need-some-more-things)
-5. [Start Coding](#start-coding) - We will actually write some javascript.
+4. [Start Coding](#start-coding) - We will actually write some javascript.
 
 #### Introducing Loaders
 
@@ -417,7 +392,9 @@ Going over the new properties one by one:
     * loaders - Which loaders to use for files that match the test
 
 This time when you run `webpack`, if we `require` a file that ends in `.css`, then we will apply
-the `style` and `css` loaders to it, which adds the CSS to the bundle. If we didn't have the loaders,
+the `style` and `css` loaders to it, which adds the CSS to the bundle.
+
+If we didn't have the loaders,
 then we would get an error like this:
 
 ```
@@ -495,7 +472,7 @@ This time, when you run `webpack` because we specified an `HtmlWebpackPlugin` wi
 `./src/index.html`, it will generate a file called `index.html` in our `dist` folder with the
 contents of `./src/index.html`
 
-There's no point in using `index.html` as a template if it's empty so now would be a good time to
+There's no point in using `index.html` as a template if it's empty. Now would be a good time to
 actually populate it.
 
 ```html
@@ -548,6 +525,8 @@ locally and globally
     npm install -g webpack-dev-server
     npm install --save-dev webpack-dev-server
 
+The dev server is an extremely useful resource for seeing what your website looks like in the browser, and more rapid development. By default you can visit it at `http://localhost:8080`. Unfortunately, features such as hot reloading don't work out of the box, and require some more configuration.
+
 This is a good point to split up our webpack config into one meant for development and one meant for
 production. Since we're keeping it simple in this tutorial, it won't be a huge difference, but it's
 an introduction to the extreme configurability of webpack. We'll call them `webpack.config.dev.js`
@@ -556,42 +535,38 @@ and `webpack.config.prod.js`.
 ```javascript
 // webpack.config.dev.js
 var path = require('path')
+var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  var path = require('path')
-  var webpack = require('webpack')
-  var HtmlWebpackPlugin = require('html-webpack-plugin')
-
-  module.exports = {
-    devtool: 'cheap-eval-source-mao',
-    entry: [
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/dev-server',
-      './src/index'
-    ],
-    output: {
-      path: path.join(__dirname, 'dist'),
-      filename: 'bundle.js'
-    },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new HtmlWebpackPlugin({
-        filename: 'index.html',
-        template: './src/website.html'
-      })
-    ],
-    modules: {
-      loaders: [{
-        test: /\.css$/,
-        loaders: ["style", "css"]
-      }]
-    },
-    devServer: {
-      contentBase: './dist',
-      hot: true
-    }
+  devtool: 'cheap-eval-source-mao',
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/dev-server',
+    './src/index'
+  ],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/website.html'
+    })
+  ],
+  modules: {
+    loaders: [{
+      test: /\.css$/,
+      loaders: ["style", "css"]
+    }]
+  },
+  devServer: {
+    contentBase: './dist',
+    hot: true
   }
+}
 ```
 
 and
@@ -682,148 +657,17 @@ They're not necessary, but they'll save you from constantly having to write out 
 You can now view your beautiful website by running `npm run dev`, and navigating to
 `http://localhost:8080`.
 
-If you don't care that the server doesn't reload when you modify your html file. Feel free to skip
-ahead to the [Start Coding](#start-coding).
-
-#### Just Kidding We Need Some More Things
-
-So while I was testing I realized that index.html would not hot reload! After searching for a bit
-I finally came across
-[this helpful answer](http://stackoverflow.com/questions/33183931/how-to-watch-index-html-using-webpack-dev-server-and-html-webpack-plugin),
-which will require
-[one more loader](https://github.com/webpack/raw-loader) to make our hacky solution come to life,
-and [one more plugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin) to prevent
-our hacky solution from going into production.
-
-Basically to make Webpack hot reload our HTML we need to make it part of our dependency tree by
-requiring it in one of our files. In order to do this, we will be using the `raw-loader` loader,
-which pulls our HTML into javascript as a string, but additionally will do exactly what we need:
-add the HTML to the dependency tree.
-
-So lets add the loader to our dev config:
-
-First we install with
-
-    npm install --save-dev raw-loader
-
-Then we can add it:
-
-```javascript
-// webpack.config.dev.js
-var path = require('path')
-var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-
-module.exports = {
-  devtool: 'cheap-eval-source-mao',
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/dev-server',
-    './src/index'
-  ],
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
-  ],
-  modules: {
-    loaders: [{
-      test: /\.css$/,
-      loaders: ["style", "css"]
-    }, {
-      test: /\.html$/,
-      loader: "raw-loader" // loaders: ['raw-loader'] is also perfectly acceptable.
-    }]
-  },
-  devServer: {
-    contentBase: './dist',
-    hot: true
-  }
-}
-```
-
-This time, when you run `webpack`, if we `require` a file that ends in `.html`, then we will apply
-the `raw-loader` loader to it, which adds the HTML to the bundle.
-
-Now in our currently empty `index.js` file we can do.
-
-```javascript
-// index.js
-require('./index.html')
-```
-
-If you were to check now, hot reloading should be working, but also you should realize we just
-required `index.html` in our `index.js`, and then did absolutely nothing with it. We don't want
-to do that in production, which is why we will be using the handy dandy
-[DefinePlugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin).
-
-The plugin lets us create a global constant for our entire bundle, which we could name anything,
-such as `DONT_USE_IN_PRODUCTION: true`, but more practically, a popular choice that looks a bit more
-familiar is `process.env.NODE_ENV: JSON.stringify('production')`. Why JSON.stringify? Because
-according to the docs:
-
-> If the value is a string it will be used as a code fragment.
-
-Now that we know that, we'll be adding this plugin to our production config:
-
-```javascript
-// webpack.config.prod.js
-var path = require('path')
-var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-
-module.exports = {
-  devtool: 'source-map',
-  entry: ['./src/index'],
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
-  },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-      },
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    }),
-    new webpack.DefinePlugin({
-      process.env.NODE_ENV: JSON.stringify('production')
-    })
-  ],
-  modules: {
-    loaders: [{
-      test: /\.css$/,
-      loaders: ["style", "css"]
-    }]
-  }
-}
-```
-
-and in our `index.js` we will add a condition
-
-```javascript
-if (process.env.NODE_ENV !== 'production') {
-  require('./index.html')
-}
-```
-
-Phew problem solved. In a production build, when we don't need the `index.html` as part of the
-dependency tree, we won't require `index.html`, which also means we don't need the `raw-loader`.
+**Side Note:** while I was testing this portion I realized that the server would not hot reload
+when I modified the `index.html` file. The solution to this problem is over at
+[extra](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/extra). It's useful
+information, but I feel like extended the tutorial by too much.
 
 #### Start Coding
 
 [Example 7](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example7)
 
 The reason most people seem to be flustered by webpack is the fact that they need to go through all
-of this to get to the point where they finally write javascript. However, now we have arrived at the
+of this to get to the point where they finally write javascript; however, now we have arrived at the
 climax of our tutorial.
 
 Just in case you haven't already: do `npm run dev`, and navigate to `http://localhost:8080`. Setting
