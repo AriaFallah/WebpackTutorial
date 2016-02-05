@@ -34,7 +34,7 @@ module.exports = {
       template: './src/index.html'
     })
   ],
-  modules: {
+  module: {
     loaders: [{
       test: /\.css$/,
       loaders: ["style", "css"]
@@ -59,7 +59,7 @@ actually populate it.
   <h1>Very Website</h1>
   <section id="color"></section>
   <button id="button">Such Button</button>
-  <script src="bundle.js"></script>
+  
 </body>
 </html>
 ```

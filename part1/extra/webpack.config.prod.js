@@ -23,7 +23,7 @@ module.exports = {
       process.env.NODE_ENV: JSON.stringify('production')
     })
   ],
-  modules: {
+  module: {
     loaders: [{
       test: /\.css$/,
       loaders: ["style", "css"]

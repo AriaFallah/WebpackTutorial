@@ -184,7 +184,8 @@ For example in the diagram above I had
 require('./styles.css')
 ```
 
-If I include [the css-loader](https://github.com/webpack/css-loader) in my webpack config, this is not only perfectly valid, but also will actually apply the CSS to my page.
+If I include [the style-loader](https://github.com/webpack/style-loader) and the [the css-loader](https://github.com/webpack/css-loader) in my webpack config, this is not only perfectly
+valid, but also will actually apply the CSS to my page.
 
 This is just a single example of the many loaders you can use with webpack.
 
@@ -352,9 +353,9 @@ MyDirectory
 [Example 4](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example4)
 
 Earlier in the tutorial I mentioned [loaders](#loaders). These will help us require non-js files in
-our code. In this case, the only loader we will need is the css loader. First we need to install the loader:
+our code. In this case, we will need the style loader and the css loader. First we need to install the loaders:
 
-    npm install --save-dev css-loader
+    npm install --save-dev style-loader css-loader
 
 Now that it's installed we can tweak our config to include the css loader:
 
@@ -377,7 +378,7 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin()
   ],
-  modules: {
+  module: {
     loaders: [{
       test: /\.css$/,
       loaders: ["style", "css"]
@@ -388,7 +389,7 @@ module.exports = {
 
 Going over the new properties one by one:
 
-* [modules](http://webpack.github.io/docs/configuration.html#module) - Options affecting your files
+* [module](http://webpack.github.io/docs/configuration.html#module) - Options affecting your files
   * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - An array of loaders that we specify for our application
     * test - A regular expression to match the loader with a file
     * loaders - Which loaders to use for files that match the test
@@ -461,7 +462,7 @@ module.exports = {
       template: './src/index.html'
     })
   ],
-  modules: {
+  module: {
     loaders: [{
       test: /\.css$/,
       loaders: ["style", "css"]
@@ -486,7 +487,7 @@ actually populate it.
   <h1>Very Website</h1>
   <section id="color"></section>
   <button id="button">Such Button</button>
-  <script src="bundle.js"></script>
+
 </body>
 </html>
 ```
@@ -541,7 +542,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'cheap-eval-source-mao',
+  devtool: 'cheap-eval-source-map',
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/dev-server',
@@ -557,7 +558,7 @@ module.exports = {
       template: './src/index.html'
     })
   ],
-  modules: {
+  module: {
     loaders: [{
       test: /\.css$/,
       loaders: ["style", "css"]
@@ -585,7 +586,6 @@ Summarized:
 * devServer
   * contentBase: Where to serve files from
   * hot: enable HMR
----
 
 The prod config doesn't change much
 
@@ -613,7 +613,7 @@ module.exports = {
       template: './src/index.html'
     })
   ],
-  modules: {
+  module: {
     loaders: [{
       test: /\.css$/,
       loaders: ["style", "css"]

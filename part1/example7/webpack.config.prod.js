@@ -20,7 +20,7 @@ module.exports = {
       template: './src/index.html'
     })
   ],
-  modules: {
+  module: {
     loaders: [{
       test: /\.css$/,
       loaders: ["style", "css"]

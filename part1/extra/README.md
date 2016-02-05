@@ -28,7 +28,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'cheap-eval-source-mao',
+  devtool: 'cheap-eval-source-map',
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/dev-server',
@@ -44,7 +44,7 @@ module.exports = {
       template: './src/index.html'
     })
   ],
-  modules: {
+  module: {
     loaders: [{
       test: /\.css$/,
       loaders: ["style", "css"]
@@ -111,7 +111,7 @@ module.exports = {
       process.env.NODE_ENV: JSON.stringify('production')
     })
   ],
-  modules: {
+  module: {
     loaders: [{
       test: /\.css$/,
       loaders: ["style", "css"]

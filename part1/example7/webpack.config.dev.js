@@ -3,10 +3,10 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'cheap-eval-source-mao',
+  devtool: 'cheap-eval-source-map',
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/dev-server',
+    'webpack/hot/only-dev-server',
     './src/index'
   ],
   output: {
@@ -19,7 +19,7 @@ module.exports = {
       template: './src/index.html'
     })
   ],
-  modules: {
+  module: {
     loaders: [{
       test: /\.css$/,
       loaders: ["style", "css"]
