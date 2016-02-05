@@ -108,81 +108,81 @@ If you want to use a config file with webpack with a custom name:
 
 [Example 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example1)
 
-Webpack is formally referred to as a module bundler. The way that it works is that you specify a
-single file as your entry point. Then every single file that is included in your entry point through
-`require` is concatenated into a single file called a bundle.
+![Dependency Tree](http://i.imgur.com/H6Y6YX7.png)
 
-For example lets say you have the files `index.js` (your entry point), `file1.js`, `file2.js`, and
-`file3.js` all in the same directory.
+Webpack is formally referred to as a module bundler. The way that it works is that you specify a
+single file as your entry point. This file will be the root of your tree. Then every time you `require` a file from another file it's added to the tree. When you run `webpack`, all these files/modules are bundled into a single file.
+
+Given the picture you have the directory:
 
 ```
 MyDirectory
 |- index.js
-|- file1.js
-|- file2.js
-|- file3.js
+|- UIStuff.js
+|- APIStuff.js
+|- styles.css
+|- extraFile.js
 ```
 
-and this is the content of your files
+and this could be the content of your files
 
 ```javascript
 // index.js
-require('./file1.js')
-console.log('Third!')
+require('./styles.css')
+require('./UIStuff.js')
+require('./APIStuff.js')
 
-// file1.js
-require('./file2.js')
-console.log('Second!')
+// UIStuff.js
+var React = require('React')
+React.createClass({
+  // stuff
+})
 
-// file2.js
-console.log('First!')
-
-// file3.js
-console.log('No one likes me')
+// APIStuff.js
+var fetch = require('fetch')
+fetch('https://google.com')
 ```
 
-Forgive my art skills, but you get something like this:
-
-```
-// Dependency Tree
-
-        index.js
-        /        
-    file1.js
-    /
-file2.js           file3.js // lonely :'(
+```css
+/* styles.css */
+body {
+  background-color: rgb(200, 56, 97);
+}
 ```
 
-When you run `webpack`, you'll get a bundle with the contents of this tree. As you've probably noticed `file3.js` will not be part of
-the bundle because it is neither an entrypoint nor a part of the dependency tree:
+When you run `webpack`, you'll get a bundle with the contents of this tree, but `extraFile.js`, which was in the same directory, will not be part of
+the bundle because it is not a part of the dependency tree:
 
+`bundle.js` will look like:
 
-```
-(index.js, file1.js, file2.js) // bundle
-
-file3.js // lonely :'(
+```javascript
+// contents of styles.css
+// contents of UIStuff.js + React
+// contents of APIStuff.js + fetch
 ```
 
 The things that are bundled are only the things that you explicitly required across your files.
 
 ### Loaders
 
+As you probably noticed, I did something strange in the above example. I `required` a css file in a javascript file.
+
 The really cool, and interesting thing about webpack is that you can `require` more than just
-javascript files. There is this concept in webpack called a loader. Using these loaders, you can
+javascript files.
+
+There is this thing in webpack called a loader. Using these loaders, you can
 include anything from `.css` and `.html` to `.png` files.
 
+For example in the diagram above I had
+
 ```javascript
-var myhtml = require('./myhtmlfile.html')
-var mycss  = require('./mycssfile.css')
-var mypng  = require('./mypng.png')
+// index.js
+require('./styles.css')
 ```
 
-The image loader can be used to modify/minify image files. The HTML loader can be used to pull in
-and programmatically modify/process/use your HTML files. The CSS loader can be used to include css
-in your web pages.
+If I include [the css-loader](https://github.com/webpack/css-loader) in my webpack config, this is not only perfectly valid, but also will actually apply the CSS to my page.
 
-These are just a few examples of the many loaders that webpack provides.
-
+This is just a single example of the many loaders you can use with webpack.
 
 ### Plugins
 
