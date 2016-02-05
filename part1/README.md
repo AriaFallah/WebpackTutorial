@@ -108,10 +108,10 @@ If you want to use a config file with webpack with a custom name:
 
 [Example 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example1)
 
-![Dependency Tree](http://i.imgur.com/H6Y6YX7.png)
-
 Webpack is formally referred to as a module bundler. The way that it works is that you specify a
 single file as your entry point. This file will be the root of your tree. Then every time you `require` a file from another file it's added to the tree. When you run `webpack`, all these files/modules are bundled into a single file.
+
+![Dependency Tree](http://i.imgur.com/dSghwwL.png)
 
 Given the picture you have the directory:
 
@@ -139,7 +139,7 @@ React.createClass({
 })
 
 // APIStuff.js
-var fetch = require('fetch')
+var fetch = require('fetch') // fetch polyfill
 fetch('https://google.com')
 ```
 
