@@ -108,12 +108,16 @@ If you want to use a config file with webpack with a custom name:
 
 [Example 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example1)
 
+![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
+
 Webpack is formally referred to as a module bundler. The way that it works is that you specify a
 single file as your entry point. This file will be the root of your tree. Then every time you `require` a file from another file it's added to the tree. When you run `webpack`, all these files/modules are bundled into a single file.
 
+Here's a simple example:
+
 ![Dependency Tree](http://i.imgur.com/dSghwwL.png)
 
-Given the picture you have the directory:
+Given this picture you could have the directory:
 
 ```
 MyDirectory
@@ -171,7 +175,7 @@ The really cool, and interesting thing about webpack is that you can `require` m
 javascript files.
 
 There is this thing in webpack called a loader. Using these loaders, you can
-include anything from `.css` and `.html` to `.png` files.
+`require` anything from `.css` and `.html` to `.png` files.
 
 For example in the diagram above I had
 
@@ -307,7 +311,6 @@ module.exports = {
         warnings: false,
       },
     }),
-
     new webpack.optimize.OccurenceOrderPlugin()
   ]
 }
@@ -468,7 +471,7 @@ module.exports = {
 }
 ```
 
-This time, when you run `webpack` because we specified an `HtmlWebpackPlugin` with a template of
+This time, when you run `webpack`, because we specified an `HtmlWebpackPlugin` with a template of
 `./src/index.html`, it will generate a file called `index.html` in our `dist` folder with the
 contents of `./src/index.html`
 
@@ -483,7 +486,7 @@ actually populate it.
 <body>
   <h1>Very Website</h1>
   <section id="color"></section>
-  <button>Such Button</button>
+  <button id="button">Such Button</button>
   <script src="bundle.js"></script>
 </body>
 </html>
@@ -569,7 +572,24 @@ module.exports = {
 }
 ```
 
-and
+
+**Changes**
+
+1. The dev config omits the optimizations as they are unnecessary overhead when you are constantly
+rebuilding. So no `webpack.optimize` plugins.
+
+2. The dev config has the necessary configuration for the dev server, which you can read more about
+[here](https://webpack.github.io/docs/webpack-dev-server.html).
+
+Summarized:
+
+* entry: The two new entry points connect the server to the browser to allow for HMR.
+* devServer
+  * contentBase: Where to serve files from
+  * hot: enable HMR
+---
+
+The prod config doesn't change much
 
 ```javascript
 // webpack.config.prod.js
@@ -604,21 +624,6 @@ module.exports = {
 }
 ```
 
-There are two major differences between the dev config, and the prod config:
-
-1. The dev config omits the optimizations as they are unnecessary overhead when you are constantly
-rebuilding. So no `webpack.optimize` plugins.
-
-2. The dev config has the necessary configuration for the dev server, which you can read more about
-[here](https://webpack.github.io/docs/webpack-dev-server.html).
-
-Summarized:
-
-* entry: The two new entry points connect the server to the browser to allow for HMR.
-* devServer
-  * contentBase: Where to serve files from
-  * hot: enable HMR
-
 I've also added a brand new property to both the dev config and the prod config:
 
 * [devtool](https://webpack.github.io/docs/configuration.html#devtool) - This is a debugging aid.
@@ -628,10 +633,19 @@ it's a little hard to glean from the docs. What I can say definitively is that `
 for production and has a lot of overhead, and that `cheap-eval-source-map` has less overhead and is
 meant for developing only.
 
-To make our lives a little easier we are now going to use `package.json` as a simple task runner so
-that we don't need to keep typing out every command.
+To run the dev server we have to run
 
-We will be adding a few commands to the `scripts` property of the config
+    webpack-dev-server --config webpack.config.dev.js
+
+and to build the production code we have to run
+
+    webpack --config webpack.config.prod.js
+
+
+To make our lives a little easier we are now going to use `package.json` as a simple task runner so
+that we don't need to keep typing out either command.
+
+We add them `scripts` property of the config
 
 ```javascript
 // package.json
@@ -652,15 +666,14 @@ npm run build
 npm run dev
 ```
 
-They're not necessary, but they'll save you from constantly having to write out the longer webpack commands.
-
 You can now view your beautiful website by running `npm run dev`, and navigating to
 `http://localhost:8080`.
 
 **Side Note:** while I was testing this portion I realized that the server would not hot reload
 when I modified the `index.html` file. The solution to this problem is over at
 [extra](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/extra). It's useful
-information, but I feel like extended the tutorial by too much.
+information that covers some more configuration options of webpack, which I recommend looking at,
+but I left it separate because I feel like it lengthens the tutorial for too trivial of a reason.
 
 #### Start Coding
 
@@ -686,8 +699,14 @@ of our div.
 // index.js
 require('./styles.css') // The page is now styled
 var Please = require('pleasejs')
+var div = document.getElementById('color')
+var button = document.getElementById('button')
 
-// TODO other stuff
+function changeColor() {
+  div.style.color = Please.make_color()
+}
+
+button.addEventListener('click', changeColor)
 ```
 
 ## Conclusion
@@ -696,7 +715,7 @@ I hope this is helpful. If you have any questions, feel free to leave them as is
 that I left anything out, make sure to leave an issue or make a pull request.
 
 Webpack first and foremost is a module bundler. It's an extremely modular and useful tool,
-which, in fact, you can use without ES6, and without React.
+which, in fact, is not chained to ES6 and React.
 
 Now given that
 
@@ -705,37 +724,9 @@ Now given that
 
 Since those are the most common use cases.
 
-**Important Note:** I feel like I should mention that the `html-webpack-plugin` should
-be used sparingly. To me, webpack should generate HTML files if you just have a really simple
-one to bootstrap a SPA. So while it was useful for the learning experience, which required only
-one HTML file, I wouldn't recommend it to generate 12 HTML files. This doesn't mean you can't use
-html files with something like angular directives, which require HTML template files. In that case
-you could do something like:
-
-```javascript
-// ...directive stuff
-template: require('./templates/button.html') // using raw loader
-```
-
-Instead, it means that you should not be doing something like this:
-
-```javascript
-new HtmlWebpackPlugin
-  template: './src/index.html'
-}),
-new HtmlWebpackPlugin({
-  template: './src/button.html'
-}),new HtmlWebpackPlugin({
-  template: './src/page2.html'
-})
-```
-
-Anyone with other experience feel free to correct me if I'm wrong.
-
 ## Closing Thoughts
 
 Congratulations! You made a button that changes the color of a div! Isn't webpack great?
 
 Yes it is; however, if all you're doing is making a button that changes the color of a div, it's
-probably not worth it writing a config like this. The config from example 2 would have been
-sufficient :smile:. Use the right tool for the job.
+probably not worth it writing a config like this. If you do, you might get...fatigued :anguished:

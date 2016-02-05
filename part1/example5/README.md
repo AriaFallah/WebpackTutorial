@@ -83,3 +83,32 @@ button {
   border-bottom: 2px solid rgb(143, 132, 200);
 }
 ```
+
+#### Side note
+
+I feel like I should mention that the `html-webpack-plugin` should
+be used sparingly. To me, webpack should generate HTML files if you just have a really simple
+one to bootstrap a SPA. So while it was useful for the learning experience, which required only
+one HTML file, I wouldn't recommend it to generate 12 HTML files. This doesn't mean you can't use
+html files with something like angular directives, which require HTML template files. In that case
+you could do something like:
+
+```javascript
+// ...directive stuff
+template: require('./templates/button.html') // using raw loader
+```
+
+Instead, it means that you should not be doing something like this:
+
+```javascript
+new HtmlWebpackPlugin
+  template: './src/index.html'
+}),
+new HtmlWebpackPlugin({
+  template: './src/button.html'
+}),new HtmlWebpackPlugin({
+  template: './src/page2.html'
+})
+```
+
+Anyone with other experience feel free to correct me if I'm wrong.
