@@ -1,6 +1,9 @@
 # Example 5 - Adding More Plugins
 
-Now that we have the infrastructure for styling our website we need an actual page to style. We'll be doing this through the [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin), which lets us generate an HTML page or use an existing one. We'll use an existing one `website.html`.
+Now that we have the infrastructure for styling our website we need an actual page to style.
+We'll be doing this through the
+[html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin),
+which lets us generate an HTML page or use an existing one. We'll use an existing one `index.html`.
 
 First we install the plugin:
 
@@ -15,7 +18,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/index'], // .js after index is optional
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -28,8 +31,7 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/website.html'
+      template: './src/index.html'
     })
   ],
   modules: {
@@ -41,9 +43,12 @@ module.exports = {
 }
 ```
 
-Adding the plugin just means requiring it, and adding it to your plugins array. We also specify that we want it to use `website.html` as the template, but call it index.html in the dist folder.
+This time, when you run `webpack`, because we specified an `HtmlWebpackPlugin` with a template of
+`./src/index.html`, it will generate a file called `index.html` in our `dist` folder with the
+contents of `./src/index.html`
 
-We'll also have to actually put something in `website.html`
+There's no point in using `index.html` as a template if it's empty. Now would be a good time to
+actually populate it.
 
 ```html
 <html>
@@ -53,7 +58,7 @@ We'll also have to actually put something in `website.html`
 <body>
   <h1>Very Website</h1>
   <section id="color"></section>
-  <button>Such Button</button>
+  <button id="button">Such Button</button>
   <script src="bundle.js"></script>
 </body>
 </html>

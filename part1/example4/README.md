@@ -1,6 +1,5 @@
-# Example 4 - Introducing Loaders
-
-Earlier in the tutorial I mentioned [loaders](#loaders). These will help us require non-js files in our code. In this case, the only loader we will need is the css loader. First we need to install the loader:
+Earlier in the tutorial I mentioned [loaders](#loaders). These will help us require non-js files in
+our code. In this case, the only loader we will need is the css loader. First we need to install the loader:
 
     npm install --save-dev css-loader
 
@@ -12,7 +11,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: ['./src/index'], // .js after index is optional
+  entry: ['./src/index'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -41,7 +40,18 @@ Going over the new properties one by one:
     * test - A regular expression to match the loader with a file
     * loaders - Which loaders to use for files that match the test
 
-When you run `webpack`, this will create a file called `bundle.js` in the dist folder; however, if we `require` a file that ends in `.css`, then we will apply the `style` and `css` loaders to it, which adds the CSS to the bundle.
+This time when you run `webpack`, if we `require` a file that ends in `.css`, then we will apply
+the `style` and `css` loaders to it, which adds the CSS to the bundle.
+
+If we didn't have the loaders,
+then we would get an error like this:
+
+```
+ERROR in ./test.css
+Module parse failed: /Users/Developer/workspace/tutorials/webpack/part1/example1/test.css
+Line 1: Unexpected token {
+You may need an appropriate loader to handle this file type.
+```
 
 **Optional**
 

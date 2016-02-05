@@ -50,6 +50,7 @@ module.exports = {
 }
 ```
 
+
 **Changes**
 
 1. The dev config omits the optimizations as they are unnecessary overhead when you are constantly

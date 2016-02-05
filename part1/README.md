@@ -377,7 +377,6 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin()
   ],
-
   modules: {
     loaders: [{
       test: /\.css$/,

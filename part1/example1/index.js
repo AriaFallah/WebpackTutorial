@@ -1,2 +1,3 @@
-require('./file1.js')
-console.log('Third!')
+require('./styles.css')
+require('./UIStuff.js')
+require('./APIStuff.js')
