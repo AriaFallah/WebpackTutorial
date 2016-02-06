@@ -110,8 +110,12 @@ If you want to use a config file with webpack with a custom name:
 
 ![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
 
-Webpack is formally referred to as a module bundler. The way that it works is that you specify a
-single file as your entry point. This file will be the root of your tree. Then every time you `require` a file from another file it's added to the tree. When you run `webpack`, all these files/modules are bundled into a single file.
+Webpack is formally referred to as a module bundler. If you want an indepth and accessible explanation,
+look [here](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
+and [here](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2).
+We're gonna keep it simple. The way that it works is that you specify a single file as your entry point.
+This file will be the root of your tree. Then every time you `require` a file from another file it's
+added to the tree. When you run `webpack`, all these files/modules are bundled into a single file.
 
 Here's a simple example:
 
@@ -154,8 +158,8 @@ body {
 }
 ```
 
-When you run `webpack`, you'll get a bundle with the contents of this tree, but `extraFile.js`, which was in the same directory, will not be part of
-the bundle because it is not a part of the dependency tree:
+When you run `webpack`, you'll get a bundle with the contents of this tree, but `extraFile.js`,
+which was in the same directory, will not be part of the bundle because it was never `required`.
 
 `bundle.js` will look like:
 
@@ -169,7 +173,8 @@ The things that are bundled are only the things that you explicitly required acr
 
 ### Loaders
 
-As you probably noticed, I did something strange in the above example. I `required` a css file in a javascript file.
+As you probably noticed, I did something strange in the above example. I `required` a css file in
+a javascript file.
 
 The really cool, and interesting thing about webpack is that you can `require` more than just
 javascript files.
@@ -669,7 +674,7 @@ You can now view your beautiful website by running `npm run dev`, and navigating
 
 **Side Note:** while I was testing this portion I realized that the server would not hot reload
 when I modified the `index.html` file. The solution to this problem is over at
-[extra](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/extra). It's useful
+[html-reload](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload). It's useful
 information that covers some more configuration options of webpack, which I recommend looking at,
 but I left it separate because I feel like it lengthens the tutorial for too trivial of a reason.
 
@@ -708,6 +713,11 @@ button.addEventListener('click', changeColor)
 ```
 
 and we're done!
+
+**Side Note:** You might have noticed a delay before your css was applied, or maybe you hate the
+fact that your css is in your javascript file. I've put aside an example,
+[css-extract](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/css-extract),
+that describes how to put get your CSS in a different file.
 
 ## Conclusion
 
