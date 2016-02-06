@@ -705,7 +705,7 @@ var div = document.getElementById('color')
 var button = document.getElementById('button')
 
 function changeColor() {
-  div.style.color = Please.make_color()
+  div.style.backgroundColor = Please.make_color()
 }
 
 button.addEventListener('click', changeColor)
@@ -720,8 +720,9 @@ that describes how to put get your CSS in a different file.
 
 ## Conclusion
 
-I hope this is helpful. If you have any questions, feel free to leave them as issues. If you feel
-that I left anything out, make sure to leave an issue or make a pull request.
+I hope this is helpful. If you have any questions, feel free to leave them as issues.
+If I made mistakes, please point them out. Finally, if you feel that I left anything out, or could
+have explained something better make sure to leave an issue or make a pull request.
 
 Webpack first and foremost is a module bundler. It's an extremely modular and useful tool,
 which, in fact, is not chained to ES6 and React.
