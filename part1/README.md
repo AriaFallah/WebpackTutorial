@@ -110,7 +110,7 @@ If you want to use a config file with webpack with a custom name:
 
 ![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
 
-Webpack is formally referred to as a module bundler. If you want an indepth and accessible explanation,
+Webpack is formally referred to as a module bundler. If you want an indepth and accessible explanation
 on modules and module bundling definitely check out these two great articles:
 [here](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
 and [here](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2).
@@ -493,7 +493,6 @@ actually populate it.
   <h1>Very Website</h1>
   <section id="color"></section>
   <button id="button">Such Button</button>
-
 </body>
 </html>
 ```
@@ -503,6 +502,7 @@ and while we're at it let's add some basic styling in `styles.css`
 ```css
 h1 {
   color: rgb(114, 191, 190);
+  text-align: center;
 }
 
 #color {
@@ -513,13 +513,11 @@ h1 {
 
 button {
   cursor: pointer;
-  display: inline-block;
-  height: 20px;
-  background-color: rgb(123, 109, 198);
-  color: rgb(255, 255, 255);
-  padding: 10px 5px;
-  border-radius: 4px;
-  border-bottom: 2px solid rgb(143, 132, 200);
+  display: block;
+  width: 100px;
+  outline: 0;
+  border: 0;
+  margin: 20px auto;
 }
 ```
 

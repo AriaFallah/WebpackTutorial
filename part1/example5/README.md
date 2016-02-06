@@ -59,7 +59,7 @@ actually populate it.
   <h1>Very Website</h1>
   <section id="color"></section>
   <button id="button">Such Button</button>
-  
+
 </body>
 </html>
 ```
@@ -69,6 +69,7 @@ and while we're at it let's add some basic styling in `styles.css`
 ```css
 h1 {
   color: rgb(114, 191, 190);
+  text-align: center;
 }
 
 #color {
@@ -79,13 +80,11 @@ h1 {
 
 button {
   cursor: pointer;
-  display: inline-block;
-  height: 20px;
-  background-color: rgb(123, 109, 198);
-  color: rgb(255, 255, 255);
-  padding: 10px 5px;
-  border-radius: 4px;
-  border-bottom: 2px solid rgb(143, 132, 200);
+  display: block;
+  width: 100px;
+  outline: 0;
+  border: 0;
+  margin: 20px auto;
 }
 ```
 

@@ -2,8 +2,13 @@
 
 ![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
 
-Webpack is formally referred to as a module bundler. The way that it works is that you specify a
-single file as your entry point. This file will be the root of your tree. Then every time you `require` a file from another file it's added to the tree. When you run `webpack`, all these files/modules are bundled into a single file.
+Webpack is formally referred to as a module bundler. If you want an indepth and accessible explanation
+on modules and module bundling definitely check out these two great articles:
+[here](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
+and [here](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2).
+We're gonna keep it simple. The way that it works is that you specify a single file as your entry point.
+This file will be the root of your tree. Then every time you `require` a file from another file it's
+added to the tree. When you run `webpack`, all these files/modules are bundled into a single file.
 
 Here's a simple example:
 
