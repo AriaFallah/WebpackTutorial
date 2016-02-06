@@ -719,7 +719,7 @@ and we're done!
 **Side Note:** You might have noticed a delay before your css was applied, or maybe you hate the
 fact that your css is in your javascript file. I've put aside an example,
 [css-extract](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/css-extract),
-that describes how to put get your CSS in a different file.
+that describes how to put your CSS in a different file.
 
 ## Conclusion
 
