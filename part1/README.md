@@ -650,7 +650,7 @@ and to build the production code we have to run
 To make our lives a little easier we are now going to use `package.json` as a simple task runner so
 that we don't need to keep typing out either command.
 
-We add them `scripts` property of the config
+We add the `scripts` property to the config
 
 ```javascript
 // package.json
