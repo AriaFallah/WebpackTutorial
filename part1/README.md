@@ -15,7 +15,10 @@ At the very least you are expected to know the basics of node.js and npm.
 
 ## Contributing
 
-I will gladly accept any and all contributions/corrections. Before filing an issue/opening a pull request just make sure to include some *objective* reason why you think the change is necessary.
+I will gladly accept any and all contributions/corrections. If you have any questions,
+feel free to leave them as issues. If I made mistakes, please point them out. Finally, if you feel
+that I left anything out, or could have explained something better make sure to leave an issue or
+make a pull request.
 
 ## Table of Contents
 
@@ -720,9 +723,7 @@ that describes how to put get your CSS in a different file.
 
 ## Conclusion
 
-I hope this is helpful. If you have any questions, feel free to leave them as issues.
-If I made mistakes, please point them out. Finally, if you feel that I left anything out, or could
-have explained something better make sure to leave an issue or make a pull request.
+I hope this is helpful.
 
 Webpack first and foremost is a module bundler. It's an extremely modular and useful tool,
 which, in fact, is not chained to ES6 and React.
