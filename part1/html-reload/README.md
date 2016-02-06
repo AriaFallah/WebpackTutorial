@@ -1,4 +1,4 @@
-# Just Kidding We Need Some More Things
+# Extra - Make your HTML hot reload
 
 So while I was testing I realized that index.html would not hot reload! After searching for a bit
 I finally came across

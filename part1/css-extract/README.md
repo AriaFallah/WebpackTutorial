@@ -1,4 +1,4 @@
-# Example 7 - Extract Your CSS
+# Extra - Extract Your CSS
 
 Ok so now you've finished, but in production you don't want your CSS file to be inline with your
 javascript. For this purpose we'll be using the
