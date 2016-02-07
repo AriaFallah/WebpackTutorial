@@ -18,16 +18,31 @@ of our div.
 
 ```javascript
 // index.js
+
+// Accept hot module reloading
+if (module.hot) {
+  module.hot.accept()
+}
+
 require('./styles.css') // The page is now styled
 var Please = require('pleasejs')
 var div = document.getElementById('color')
 var button = document.getElementById('button')
 
 function changeColor() {
-  div.style.color = Please.make_color()
+  div.style.backgroundColor = Please.make_color()
 }
 
 button.addEventListener('click', changeColor)
 ```
 
-and we're done!
+Interestingly, [in order for Hot Module Replacement to work](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html#what-is-needed-to-use-it)
+You need to include the code:
+
+```javascript
+if (module.hot) {
+  module.hot.accept()
+}
+```
+
+in a module or a parent of that module.
