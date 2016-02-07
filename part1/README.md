@@ -433,6 +433,8 @@ and instead your loader would be written as
 
 The process is similar for LESS.
 
+An important aspect to recognize is that there is an *order* to which these loaders need to be specified. In the above example, the `sass` loader is first applied to your `.scss` files, then the `css` loader, and finally the `style` loader. As you can see, the pattern is that these loaders are applied from right to left.
+
 #### Adding More Plugins
 
 [Example 5](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example5)
