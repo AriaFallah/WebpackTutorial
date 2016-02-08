@@ -47,7 +47,7 @@ Simply stated, babel lets you take advantage of a much more fully featured speci
 javascript, which isn't supported by most browsers and environments, and turns
 it into ES5, which has much more widespread support.
 
-With babel, this code, which would be rejected by any browser
+With babel, this code, which is *just* getting support now in the latest browsers
 
 ```javascript
 const square = n => n * n;
