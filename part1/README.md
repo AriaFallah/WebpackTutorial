@@ -390,7 +390,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.css$/,
-      loaders: ["style", "css"]
+      loaders: ['style', 'css']
     }]
   }
 }
@@ -476,7 +476,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.css$/,
-      loaders: ["style", "css"]
+      loaders: ['style', 'css']
     }]
   }
 }
@@ -573,7 +573,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.css$/,
-      loaders: ["style", "css"]
+      loaders: ['style', 'css']
     }]
   },
   devServer: {
@@ -628,7 +628,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.css$/,
-      loaders: ["style", "css"]
+      loaders: ['style', 'css']
     }]
   }
 }

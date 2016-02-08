@@ -22,7 +22,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.css$/,
-      loaders: ["style", "css"]
+      loaders: ['style', 'css']
     }, {
       test: /\.html$/,
       loader: "raw-loader" // loaders: ['raw-loader'] is also perfectly acceptable.
