@@ -149,6 +149,6 @@ You can now view your beautiful website by running `npm run dev`, and navigating
 
 **Side Note:** while I was testing this portion I realized that the server would not hot reload
 when I modified the `index.html` file. The solution to this problem is over at
-[extra](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/extra). It's useful
+[extra](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload). It's useful
 information that covers some more configuration options of webpack, which I recommend looking at,
 but I left it separate because I feel like it lengthens the tutorial for too trivial of a reason.
