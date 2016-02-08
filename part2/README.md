@@ -348,7 +348,11 @@ We'll be using this in part 3 with react when we introduce the
 
 If you've looked at any project seeds/starters for Webpack/React, you've probably seen a file called
 `.eslintrc`. If you aren't using an IDE, but instead are using a text editor like Atom, Sublime,
-Emacs, Vim, etc., eslint provides syntax and style checks, pointing out your mistakes. Do take note
+Emacs, Vim, etc., eslint provides syntax and style checks, pointing out your mistakes. Moreover,
+even if you're using an IDE, it can provide more features, and ensure uniformity in coding style
+for all contributors to the project.
+
+Do take note
 that if you want it integrated into your editor, you need to install a package. For example, I use
 [linter-eslint](https://github.com/AtomLinter/linter-eslint) for Atom.
 
