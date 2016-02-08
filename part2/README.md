@@ -184,11 +184,13 @@ module.exports = {
 
 ### A New Loader
 
-We need to install a new loader called `babel-loader` along with it's dependency `babel-core`.
+To transpile our code to ES5 we need to run it through a new loader called `babel-loader`, which has
+a dependency of `babel-core`. This loader will use our `.babelrc` config to understand and transform
+our code into its new form.
 
     npm install --save-dev babel-loader babel-core
 
-and add that to both our dev and prod configs:
+We add that to both our dev and prod configs:
 
 ```javascript
 // To save space I'll just show the "loaders" part
@@ -417,9 +419,10 @@ and tweaking our config once more to add [babel specific rules](https://github.c
 }
 ```
 
-Finally it's also a good idea to add an npm script for linting
+Finally it's also a good idea to add an npm script for linting to our existing package.json file
 
 ```javascript
+// package.json
 "scripts": {
   "build": "webpack --config webpack.config.prod.js",
   "dev": "webpack-dev-server --config webpack.config.dev.js",
@@ -429,11 +432,12 @@ Finally it's also a good idea to add an npm script for linting
 
 which you can run with `npm run lint` just to make sure none of your code violates the rules you specified.
 
+## Conclusion
+
 I've put the end result of all of this into
 [example 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part2/example1) just in case
-I wasn't clear on anything.
-
-## Conclusion
+I wasn't clear on anything. If you still have trouble understanding, feel free to leave a question
+in issues.
 
 So now we can easily write ES6 code, and additionally, understand the config that enables us to write it :tada:!
 
