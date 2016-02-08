@@ -29,6 +29,7 @@ make a pull request.
 * [Webpack](#webpack)
   * [A New Loader](#a-new-loader)
 * [We are Done?](#we-are-done)
+  * [Requiring With ES6 Modules](#requiring-with-es6-modules)
 * [Extra Credit](#extra-credit)
   * [Production Environment Variables With Webpack and Babel](#production-environment-variables-with-webpack-and-babel)
   * [Adding Linting](#adding-linting)
@@ -157,11 +158,26 @@ if (module.hot) {
 
 require('./styles.css') // The page is now styled
 const Please = require('pleasejs')
+
 const div = document.getElementById('color')
 const button = document.getElementById('button')
 const changeColor = () => div.style.backgroundColor = Please.make_color()
 
 button.addEventListener('click', changeColor)
+```
+
+### Requiring With ES6 Modules
+
+Another thing to note is that now we can use the es6 module system. For example, instead of
+
+```javascript
+const Please = require('pleasejs')
+```
+
+we can now do
+
+```javascript
+import Please from 'pleasejs'
 ```
 
 ## Extra Credit
