@@ -256,6 +256,7 @@ that eslint lets you inherit from other people's configs. I always like to use a
 
 To get started, we need to install eslint as well as airbnb's config
 
+    npm install -g eslint
     npm install --save-dev eslint eslint-config-airbnb
 
 Our starting config will look like:
