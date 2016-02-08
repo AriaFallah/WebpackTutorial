@@ -4,8 +4,8 @@ Now that we learned the basics of using webpack, we're going to learn to leverag
 to write ES6, the new specification of javascript.
 
 If you've ever written ES6, it's hard to want to go back to writing ES5. If you haven't had the
-chance to write ES6 yet, a big reason is probably because setting up a dev environment, and *understanding*
-all the configuration options is a huge hassle that can be discouraging.
+chance to write ES6 yet, a big reason is probably because setting up a dev environment, *understanding*
+all the configuration options, and deciding which ones to use can be discouraging.
 
 I hope that this tutorial can make that process of getting started much easier.
 
