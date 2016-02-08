@@ -1,4 +1,4 @@
-# Beginner Webpack Tutorial Part 2 - Using Webpack with Babel
+# Beginner Webpack Tutorial Part 2 - Using Webpack with Babel :zap:
 
 Now that we learned the basics of using webpack, we're going to learn to leverage babel 6 in order
 to write ES6, the new specification of javascript.
@@ -336,8 +336,9 @@ I wasn't clear on anything.
 
 So now we can easily write ES6 code, and additionally, understand the config that enables us to write it :tada:!
 
-However, just because you can write it from scratch, it doesn't mean you have to. For your convenience, [I have made a separate repository you can clone](https://github.com/AriaFallah/minimal-babel-starter) to get started,
-which is minimal and based on this tutorial series.
+However, just because you can write it from scratch, it doesn't mean you have to. For your convenience,
+[I have made a separate repository you can clone](https://github.com/AriaFallah/minimal-babel-starter)
+to get started, which is minimal and based on this tutorial series.
 
 Looking towards the future:
 
