@@ -266,9 +266,11 @@ If we don't want to execute a portion of code in production we can use the handy
 [DefinePlugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin).
 
 The plugin lets us create a global constant for our entire bundle, which we could name anything,
-such as `DONT_USE_IN_PRODUCTION: true`, but more practically, a popular choice that looks a bit more
-familiar is `process.env.NODE_ENV: JSON.stringify('production')`. Why `JSON.stringify`? Because
-according to the docs:
+such as `DONT_USE_IN_PRODUCTION: true`, but more practically, it's a much better choice to use
+`process.env.NODE_ENV: JSON.stringify('production')`. This is because many programs recognize and
+use `process.env.NODE_ENV` for additional features and optimization of your code.
+
+Why `JSON.stringify`? Because according to the docs:
 
 > If the value is a string it will be used as a code fragment.
 
@@ -302,7 +304,16 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 
-I touched upon a real world usage of this in an isolated section of part 1 [here](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload).
+In our current project we could say to exclude the hot reloading if it's in production:
+
+```javascript
+// Accept hot module reloading during development
+if (process.env.NODE_ENV !== 'production') {
+  if (module.hot) {
+    module.hot.accept()
+  }
+}
+```
 
 #### Babel
 
