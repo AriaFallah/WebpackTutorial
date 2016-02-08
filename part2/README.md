@@ -106,14 +106,13 @@ and that's actually all you need to do.
 
 ## Webpack
 
-We're going to use the same exact config as in [example 7 from part 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example7), but add the
+We're going to use the same exact configs from [example 7 from part 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example7), but add the
 functionality needed to use ES6.
 
 Current configs:
 
-dev config
-
 ```javascript
+// webpack.config.dev.js
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -148,9 +147,10 @@ module.exports = {
 }
 ```
 
-prod config
+and
 
 ```javascript
+// webpack.config.prod.js
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
