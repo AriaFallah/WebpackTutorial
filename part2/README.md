@@ -109,6 +109,79 @@ and that's actually all you need to do.
 We're going to use the same exact config as in [example 7 from part 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example7), but add the
 functionality needed to use ES6.
 
+Current configs:
+
+dev config
+
+```javascript
+var path = require('path')
+var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  devtool: 'cheap-eval-source-map',
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/dev-server',
+    './src/index'
+  ],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
+  ],
+  module: {
+    loaders: [{
+      test: /\.css$/,
+      loaders: ['style', 'css']
+    }]
+  },
+  devServer: {
+    contentBase: './dist',
+    hot: true
+  }
+}
+```
+
+prod config
+
+```javascript
+var path = require('path')
+var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  devtool: 'source-map',
+  entry: ['./src/index'],
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
+      },
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
+  ],
+  module: {
+    loaders: [{
+      test: /\.css$/,
+      loaders: ['style', 'css']
+    }]
+  }
+}
+```
+
 ### A New Loader
 
 We need to install a new loader called `babel-loader` along with it's dependency `babel-core`.
