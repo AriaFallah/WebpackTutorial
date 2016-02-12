@@ -5,7 +5,9 @@ This is for the people like me who's first intro to webpack was a repository sim
 * https://github.com/davezuko/react-redux-starter-kit
 * https://github.com/webpack/react-starter
 
-While these repositories are very well put together, they aren't necessarily the best learning tools. In my case, I got pretty confused trying to understand what was going on, and scrapped together my understanding from a lot of scattered resources.
+While these repositories are very well put together, they aren't necessarily the best learning tools.
+In my case, I got pretty confused trying to understand what was going on, and scrapped together my
+understanding from a lot of scattered resources.
 
 I hope that this tutorial can make Webpack easy to learn.
 
