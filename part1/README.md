@@ -298,7 +298,7 @@ Going over the new properties one by one:
   * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify your code, and suppress warning messages.
 
 This time, when you run `webpack`, now that you have the `UglifyJsPlugin` this could reduce your
-imaginary 900KB file to 200KB by through processes such as removing all the whitespace.
+imaginary 900KB file to 200KB through processes such as removing all the whitespace.
 
 You can also add the [OrderOccurencePlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)
 
