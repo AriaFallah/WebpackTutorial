@@ -68,7 +68,7 @@ The things that are bundled are only the things that you explicitly required acr
 
 As you probably noticed, I did something strange in the above example. I `required` a css file in a javascript file.
 
-The really cool, and interesting thing about webpack is that you can `require` more than just
+The really cool and interesting thing about webpack is that you can `require` more than just
 javascript files.
 
 There is this thing in webpack called a loader. Using these loaders, you can
