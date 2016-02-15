@@ -1,6 +1,6 @@
 # Beginner Webpack Tutorial Part 1 - Introduction To Webpack :zap:
 
-This is for the people like me who's first intro to webpack was a repository similar to:
+This is for the people like me whose first intro to webpack was a repository similar to:
 
 * https://github.com/davezuko/react-redux-starter-kit
 * https://github.com/webpack/react-starter
@@ -115,7 +115,7 @@ If you want to use a config file with webpack with a custom name:
 
 ![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
 
-Webpack is formally referred to as a module bundler. If you want an indepth and accessible explanation
+Webpack is formally referred to as a module bundler. If you want an in-depth and accessible explanation
 on modules and module bundling definitely check out these two great articles:
 [here](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
 and [here](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2).
@@ -302,7 +302,7 @@ imaginary 900KB file to 200KB through processes such as removing all the whitesp
 
 You can also add the [OrderOccurencePlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)
 
-> Assign the module and chunk ids by occurrence count. Ids that are used often get lower (shorter) ids. This make ids predictable, reduces to total file size and is recommended.
+> Assign the module and chunk ids by occurrence count. Ids that are used often get lower (shorter) ids. This makes ids predictable, reduces to total file size and is recommended.
 
 To be honest I'm not sure how the underlying mechanisms work, but in the current [webpack2 beta it's included by default](https://gist.github.com/sokra/27b24881210b56bbaff7) so I include it as well.
 
