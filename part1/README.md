@@ -47,26 +47,26 @@ Because every single react/redux tutorial assumes you know it :cry:
 
 More realistically here are some reasons you would want to use webpack.
 
-* Lets you
+Lets you
   * Bundle your js files into a single file
   * Use npm packages in your frontend code
-  * Write ES6/ES7 javascript (with help from babel)
+  * Write ES6/ES7 JavaScript (with help from babel)
   * Minify/Optimize code
   * Turn LESS/SCSS into CSS
   * Use HMR (Hot Module Replacement)
-  * Include any type of file into your javascript
+  * Include any type of file into your JavaScript
   * A lot more advanced stuff, which I won't cover
 
 ##### Why do I want these features?
 
-* Bundle js files - Lets you write modular javascript, but you do not need to include a separate
-`<script>` tag for each js file. (Configurable in case you do need more than one js file)
+* Bundle JS files - Lets you write modular JavaScript, but you do not need to include a separate
+`<script>` tag for each JS file. (Configurable in case you do need more than one js file)
 
 * Use npm packages in your frontend code - npm is the biggest ecosystem of open source code on the
 internet. Chances are you can save writing code by taking a look at npm, and including the packages
 you want in your frontend.
 
-* ES6/ES7 - Adds lots of features to javascript that makes it more powerful and easier to write.
+* ES6/ES7 - Adds lots of features to JavaScript that makes it more powerful and easier to write.
 [Look here for an intro](https://github.com/DrkSephy/es6-cheatsheet).
 
 * Minify/Optimize Code - Reduces the size of file that you're distributing. Benefits include things
@@ -79,7 +79,7 @@ like faster page loads.
 without requiring a full page refresh. This is really handy if you need to maintain the state of the
 page while you are editing your code.
 
-* Include any type of file into your javascript - Reduces need for other build tools, and allows you
+* Include any type of file into your JavaScript - Reduces need for other build tools, and allows you
 to programmatically modify/use those files.
 
 ## The Basics
@@ -115,7 +115,7 @@ If you want to use a config file with webpack with a custom name:
 
 ![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
 
-Webpack is formally referred to as a module bundler. If you want an indepth and accessible explanation
+Webpack is formally referred to as a module bundler. If you want an in-depth and accessible explanation
 on modules and module bundling definitely check out these two great articles:
 [here](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
 and [here](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2).
@@ -180,10 +180,10 @@ The things that are bundled are only the things that you explicitly required acr
 ### Loaders
 
 As you probably noticed, I did something strange in the above example. I `required` a css file in
-a javascript file.
+a JavaScript file.
 
 The really cool, and interesting thing about webpack is that you can `require` more than just
-javascript files.
+JavaScript files.
 
 There is this thing in webpack called a loader. Using these loaders, you can
 `require` anything from `.css` and `.html` to `.png` files.
@@ -203,7 +203,7 @@ This is just a single example of the many loaders you can use with webpack.
 ### Plugins
 
 Plugins, like the name suggests, add extra functionality to webpack. One frequently used plugin is
-the `UglifyJsPlugin`, which lets you minify your javascript code. We'll cover how to use this later.
+the `UglifyJsPlugin`, which lets you minify your JavaScript code. We'll cover how to use this later.
 
 ## Your Config File
 
@@ -306,7 +306,7 @@ You can also add the [OrderOccurencePlugin](https://webpack.github.io/docs/list-
 
 To be honest I'm not sure how the underlying mechanisms work, but in the current [webpack2 beta it's included by default](https://gist.github.com/sokra/27b24881210b56bbaff7) so I include it as well.
 
-```javascript
+```JavaScript
 // webpack.config.js
 var path = require('path')
 var webpack = require('webpack')
@@ -328,14 +328,14 @@ module.exports = {
 }
 ```
 
-So now we have written a config that allows us to minify and bundle our javascript. This bundle
+So now we have written a config that allows us to minify and bundle our JavaScript. This bundle
 could be copied and pasted into another project's directory, and thrown into a `<script>` tag there.
 You can skip to the [conclusion](#conclusion) if you only care about the basics of using webpack
-with *only javascript*.
+with *only JavaScript*.
 
 ## A More Complete Example
 
-Alternatively, because webpack can do more than just work with javascript, you can avoid the
+Alternatively, because webpack can do more than just work with JavaScript, you can avoid the
 copy-pasting and manage your entire project with webpack.
 
 In the following section, we are going to create a very simple website using webpack. If you wish to
@@ -357,7 +357,7 @@ MyDirectory
 1. [Introducing Loaders](#introducing-loaders) - We will add loaders, which allow us to add CSS to our bundle.
 2. [Adding More Plugins](#adding-more-plugins) - We will add a plugin that'll help us create/use an HTML file.
 3. [The Development Server](#the-development-server) - We'll split our webpack config into separate `development` and `production` files. Then use the webpack-dev-server to view our website and enable HMR.
-4. [Start Coding](#start-coding) - We will actually write some javascript.
+4. [Start Coding](#start-coding) - We will actually write some JavaScript.
 
 #### Introducing Loaders
 
@@ -405,7 +405,7 @@ Going over the new properties one by one:
     * test - A regular expression to match the loader with a file
     * loaders - Which loaders to use for files that match the test
 
-This time when you run `webpack`, if we `require` a file that ends in `.css`, then we will apply
+This time when you run `webpack`, if you `require` a file that ends in `.css`, then we will apply
 the `style` and `css` loaders to it, which adds the CSS to the bundle.
 
 If we didn't have the loaders,
@@ -692,7 +692,7 @@ but I left it separate because I feel like it lengthens the tutorial for too tri
 [Example 7](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example7)
 
 The reason most people seem to be flustered by webpack is the fact that they need to go through all
-of this to get to the point where they finally write javascript; however, now we have arrived at the
+of this to get to the point where they finally write JavaScript; however, now we have arrived at the
 climax of our tutorial.
 
 Just in case you haven't already: do `npm run dev`, and navigate to `http://localhost:8080`. Setting
