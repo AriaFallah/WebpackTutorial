@@ -47,7 +47,7 @@ Because every single react/redux tutorial assumes you know it :cry:
 
 More realistically here are some reasons you would want to use webpack.
 
-Lets you
+Lets you:
   * Bundle your js files into a single file
   * Use npm packages in your frontend code
   * Write ES6/ES7 JavaScript (with help from babel)
