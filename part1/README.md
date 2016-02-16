@@ -300,7 +300,7 @@ Going over the new properties one by one:
 This time, when you run `webpack`, now that you have the `UglifyJsPlugin` this could reduce your
 imaginary 900KB file to 200KB by through processes such as removing all the whitespace.
 
-You can also add the [OrderOccurencePlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)
+You can also add the [OccurenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)
 
 > Assign the module and chunk ids by occurrence count. Ids that are used often get lower (shorter) ids. This make ids predictable, reduces to total file size and is recommended.
 
