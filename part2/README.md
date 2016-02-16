@@ -374,7 +374,7 @@ Our starting config will look like:
 }
 ```
 
-However because linting is **highly opiniated**, I like to tweak this a bit. If you want to know what
+However because linting is **highly opinionated**, I like to tweak this a bit. If you want to know what
 all these rules mean, or tweak them to fit your preferences look [here](http://eslint.org/docs/rules/):
 
 ```javascript
