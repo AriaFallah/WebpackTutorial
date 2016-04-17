@@ -1,7 +1,7 @@
 Earlier in the tutorial I mentioned [loaders](#loaders). These will help us require non-js files in
 our code. In this case, the only loader we will need is the css loader. First we need to install the loader:
 
-    npm install --save-dev css-loader
+    npm install --save-dev style-loader css-loader
 
 Now that it's installed we can tweak our config to include the css loader:
 
