@@ -218,6 +218,9 @@ by an extreme amount.
 
 `include` prevents this by specifying that this loader only applies to `.js` files in your `src` directory.
 
+Alternatively you could change `include: path.join(__dirname, 'src')` to `exclude: /node_modules/` which will then 
+include everything but the `node_modules` folder. More information can be found [here](https://webpack.github.io/docs/configuration.html#module-loaders). 
+
 ## We are Done?
 
 Honestly I thought this tutorial would be longer, but it seems I forgot that adding babel is
