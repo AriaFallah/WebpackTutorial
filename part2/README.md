@@ -218,7 +218,7 @@ by an extreme amount.
 
 `include` prevents this by specifying that this loader only applies to `.js` files in your `src` directory.
 
-Alternative you could change `include: path.join(__dirname, 'src')` to `exclude: /node_modules/` which will then 
+Alternatively you could change `include: path.join(__dirname, 'src')` to `exclude: /node_modules/` which will then 
 include everything but the `node_modules` folder. More information can be found [here](https://webpack.github.io/docs/configuration.html#module-loaders). 
 
 ## We are Done?
