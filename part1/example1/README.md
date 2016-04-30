@@ -81,6 +81,7 @@ For example in the diagram above I had
 require('./styles.css')
 ```
 
-If I include [the css-loader](https://github.com/webpack/css-loader) in my webpack config, this is not only perfectly valid, but also will actually apply the CSS to my page.
+If I include [the style-loader](https://github.com/webpack/style-loader) and the [the css-loader](https://github.com/webpack/css-loader) in my webpack config, this is not only perfectly
+valid, but also will actually apply the CSS to my page.
 
 This is just a single example of the many loaders you can use with webpack.
