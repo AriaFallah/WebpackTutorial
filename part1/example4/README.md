@@ -35,7 +35,7 @@ module.exports = {
 
 Going over the new properties one by one:
 
-* [modules](http://webpack.github.io/docs/configuration.html#module) - Options affecting your files
+* [module](http://webpack.github.io/docs/configuration.html#module) - Options affecting your files
   * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - An array of loaders that we specify for our application
     * test - A regular expression to match the loader with a file
     * loaders - Which loaders to use for files that match the test
