@@ -1,15 +1,14 @@
-# Example 5 - Adding More Plugins
+# 範例五 - 加入更多的 Plugin
 
-Now that we have the infrastructure for styling our website we need an actual page to style.
-We'll be doing this through the
-[html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin),
-which lets us generate an HTML page or use an existing one. We'll use an existing one `index.html`.
+現在我們的網站有基礎的樣式，但我們還需要實際的網站樣式。
 
-First we install the plugin:
+我們通過 [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin) 來做，它讓我們可以產生一個 HTML 頁面使用現有的。我們將使用一個目前現有的 `index.html`。
+
+首先我們需要安裝 plugin：
 
     npm install --save-dev html-webpack-plugin@2
 
-Then we can add it to our config
+然後在我們的 webpack 設定檔加入：
 
 ```javascript
 // webpack.config.js
@@ -43,12 +42,9 @@ module.exports = {
 }
 ```
 
-This time, when you run `webpack`, because we specified an `HtmlWebpackPlugin` with a template of
-`./src/index.html`, it will generate a file called `index.html` in our `dist` folder with the
-contents of `./src/index.html`
+這個時候當你執行 `webpack`，因為我們指定一個 `HtmlWebpackPlugin` 和 `./src/index.html` 的 template，它會產生一個檔案叫做 `index.html` 在我們的 `dist` 資料夾，而網頁的內容是 `./src/index.html`。
 
-There's no point in using `index.html` as a template if it's empty. Now would be a good time to
-actually populate it.
+如果 `index.html` 作為 template 是空的也沒用。現在是個好時機我們可以填入一些元素進去。
 
 ```html
 <html>
@@ -64,7 +60,9 @@ actually populate it.
 </html>
 ```
 
-and while we're at it let's add some basic styling in `styles.css`
+注意到我們沒有放入一個 `bundle.js` 的 `<script>` 標籤到我們的 HTML。實際上 plugin 會自動的幫你處理。如果你放入 script，到頭來你會載入兩次相同的程式碼。
+
+而讓我們加入一些基本的樣式在 `styles.css`：
 
 ```css
 h1 {
@@ -88,21 +86,16 @@ button {
 }
 ```
 
-#### Side note
+#### 備註
 
-I feel like I should mention that the `html-webpack-plugin` should
-be used sparingly. To me, webpack should generate HTML files if you just have a really simple
-one to bootstrap a SPA. So while it was useful for the learning experience, which required only
-one HTML file, I wouldn't recommend it to generate 12 HTML files. This doesn't mean you can't use
-html files with something like angular directives, which require HTML template files. In that case
-you could do something like:
+我覺得我應該提到 `html-webpack-plugin` 需要謹慎使用。對我來說，如果你真的只是簡單的啟用一個 SPA，webpack 應該只產生 HTML 檔案。這裡只需要一個 HTML 檔案，我不會推薦它來產生 12 HTML 檔案，當作一個學習經驗。這意思不是說你不能使用 html 檔案之類的，像是 angular 指令，只需要 HTML template 檔案。在這個情況下你可以做類似像是：
 
 ```javascript
 // ...directive stuff
-template: require('./templates/button.html') // using raw loader
+template: require('./templates/button.html') // 使用 raw loader
 ```
 
-Instead, it means that you should not be doing something like this:
+相反的，它意味著你不應該做這樣的事情︰
 
 ```javascript
 new HtmlWebpackPlugin
@@ -115,4 +108,4 @@ new HtmlWebpackPlugin({
 })
 ```
 
-Anyone with other experience feel free to correct me if I'm wrong.
+如果我錯了，任何有經驗的人請隨時糾正我。

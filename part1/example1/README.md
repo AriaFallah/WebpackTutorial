@@ -1,20 +1,18 @@
-# Example 1 - Bundling and Loaders
+# 範例一 - Bundle 和 Loader
 
 ![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
 
-Webpack is formally referred to as a module bundler. If you want an in-depth and accessible explanation
-on modules and module bundling definitely check out these two great articles:
-[here](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
-and [here](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2).
-We're gonna keep it simple. The way that it works is that you specify a single file as your entry point.
-This file will be the root of your tree. Then every time you `require` a file from another file it's
-added to the tree. When you run `webpack`, all these files/modules are bundled into a single file.
+Webpack 簡稱為模組的整合工具。如果你想要深入的話，可以拜訪「modules」和「module bundling definitely」這兩篇優秀的解釋文章：
+[JavaScript Modules: A Beginner’s Guide](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
+和 [JavaScript Modules Part 2: Module Bundling](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2)。
+我們要保持它的簡單，webpack 運作的方式是透過指定一個單一檔案作為你的進入點。
+這個檔案會是 tree 的 root。然後你每次 `require` 一個檔案從其他檔案並把它加入到 tree。當你執行 `webpack`，所有的檔案和 module 都會被 bundle 成一個檔案。
 
-Here's a simple example:
+這裡是一個簡單的範例：
 
 ![Dependency Tree](http://i.imgur.com/dSghwwL.png)
 
-Given this picture you could have the directory:
+根據這樣的情況，你可以有這樣的目錄：
 
 ```
 MyDirectory
@@ -25,7 +23,7 @@ MyDirectory
 |- extraFile.js
 ```
 
-and this could be the content of your files
+這些可能是你檔案的內容：
 
 ```javascript
 // index.js
@@ -51,10 +49,9 @@ body {
 }
 ```
 
-When you run `webpack`, you'll get a bundle with the contents of this tree, but `extraFile.js`, which was in the same directory, will not be part of
-the bundle because it is not a part of the dependency tree:
+當你執行 `webpack`，你會得到一個這個 tree 的 bundle 內容，雖然 `extraFile.js` 也是在相同的目錄中，但它不是被 bundle 的一部份，因為它在 `index.js` 沒有被 `require`。
 
-`bundle.js` will look like:
+`bundle.js` 看起來會像：
 
 ```javascript
 // contents of styles.css
@@ -62,25 +59,23 @@ the bundle because it is not a part of the dependency tree:
 // contents of APIStuff.js + fetch
 ```
 
-The things that are bundled are only the things that you explicitly required across your files.
+被 bundle 的這些檔案是你明確所 require 進來的檔案。
 
 ### Loaders
 
-As you probably noticed, I did something strange in the above example. I `required` a css file in a javascript file.
+你可能會注意到，我在上方的範例做了一些奇怪的事情。我在 JavaScript 檔案中 `require` 一個 css 檔案。
 
-The really cool and interesting thing about webpack is that you can `require` more than just
-javascript files.
+關於 webpack 真的很酷，有趣的事情是，你可以 `require` 更多不只是 JavaScript 的檔案。
 
-There is this thing in webpack called a loader. Using these loaders, you can
-`require` anything from `.css` and `.html` to `.png` files.
+在 webpack 這些東西我們稱為 loader。使用這些 loader，你可以 `require` 任何 `.css` 和 `.html`  到 `.png` 檔。
 
-For example in the diagram above I had
+例如在上圖我有：
 
 ```javascript
 // index.js
 require('./styles.css')
 ```
 
-If I include [the css-loader](https://github.com/webpack/css-loader) in my webpack config, this is not only perfectly valid, but also will actually apply the CSS to my page.
+如果我在我的 webpack 設定檔中，引入 [style-loader](https://github.com/webpack/style-loader) 和 [css-loader](https://github.com/webpack/css-loader)，這不是完全有效的，但是實際上還是會應用 CSS 到我的網頁。
 
-This is just a single example of the many loaders you can use with webpack.
+你可以在 webpack 使用多個 loader，這裡只是一個單一的例子。
