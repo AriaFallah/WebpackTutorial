@@ -64,6 +64,9 @@ actually populate it.
 </html>
 ```
 
+Note that we aren't putting a `<script>` tag into our HTML for `bundle.js`. The plugin will actually
+automatically do that for you. If you do put in the script tag, you'll end up loading your same code twice.
+
 and while we're at it let's add some basic styling in `styles.css`
 
 ```css
