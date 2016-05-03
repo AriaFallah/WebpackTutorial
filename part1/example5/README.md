@@ -60,7 +60,6 @@ module.exports = {
 </html>
 ```
 
-<<<<<<< HEAD
 注意到我們沒有放入一個 `bundle.js` 的 `<script>` 標籤到我們的 HTML。實際上 plugin 會自動的幫你處理。如果你放入 script，到頭來你會載入兩次相同的程式碼。
 
 而讓我們加入一些基本的樣式在 `styles.css`：
