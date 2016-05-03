@@ -1,133 +1,119 @@
-# Beginner Webpack Tutorial Part 1 - Introduction To Webpack :zap:
+# Webpack 初學者教學 Part 1 - Webpack 簡介 :zap:
 
-This is for the people like me whose first intro to webpack was a repository similar to:
+對於像我這樣的人來說，第一次接觸到 webpack 是像是這些 repository：
 
 * https://github.com/davezuko/react-redux-starter-kit
 * https://github.com/webpack/react-starter
 
-While these repositories are very well put together, they aren't necessarily the best learning tools.
-In my case, I got pretty confused trying to understand what was going on, and scrapped together my
-understanding from a lot of scattered resources.
+雖然這些 repository 放在一起很棒，但它們不一定是最好的學習工具。
+像我的情況，我試著了解發生了那些事情，但還是很困惑，所以我決定不從這些大量而且分散的資源來理解。
 
-I hope that this tutorial can make Webpack easy to learn.
+我希望這個教學可以讓 webpack 更容易的學習。
 
-## Requirements
+## 需求
 
-At the very least you are expected to know the basics of node.js and npm.
+至少，希望你了解基本的 node.js 和 npm。
 
-## Contributing
+## 貢獻
 
-I will gladly accept any and all contributions/corrections. If you have any questions,
-feel free to leave them as issues. If I made mistakes, please point them out. Finally, if you feel
-that I left anything out, or could have explained something better make sure to leave an issue or
-make a pull request.
+我很樂意接受任何所有的貢獻或是修正。如果你有任何問題，
+可以將這些問題發成 issue。如果我有錯誤的話，請將問題指出。最後，如果你覺得我漏了些什麼，或者可以將某些部分解釋的更好，留下一個 issue 或者是發送 Pull Request。
 
-## Table of Contents
+## 內容列表
 
-* [Why Webpack?](#why-webpack)
-* [The Basics](#the-basics)
-  * [Installation](#installation)
+* [為什麼要 Webpack？](#why-webpack)
+* [基礎](#the-basics)
+  * [安裝](#installation)
   * [Bundling](#bundling)
   * [Loaders](#loaders)
   * [Plugins](#plugins)
-* [Your Config File](#your-config-file)
-  * [A Minimal Example](#a-minimal-example)
-  * [Introducing Plugins](#introducing-plugins)
-* [A More Complete Example](#a-more-complete-example)
-  * [Introducing Loaders](#introducing-loaders)
-  * [Adding More Plugins](#adding-more-plugins)
-  * [The Development Server](#the-development-server)
-  * [Start Coding](#start-coding)
-* [Conclusion](#conclusion)
-* [Closing Thoughts](#closing-thoughts)
+* [你的設定檔案](#your-config-file)
+  * [一個簡單的範例](#a-minimal-example)
+  * [介紹 Plugins](#introducing-plugins)
+* [一個更完整的範例](#a-more-complete-example)
+  * [介紹 Loaders](#introducing-loaders)
+  * [加入更多 Plugins](#adding-more-plugins)
+  * [開發伺服器](#the-development-server)
+  * [開始撰寫程式](#start-coding)
+* [結論](#conclusion)
+* [結束後的思考](#closing-thoughts)
 
-## Why Webpack?
+## 為什麼要 Webpack？
 
-Because every single react/redux tutorial assumes you know it :cry:
+因為每個 react 或 redux 教學都假設你知道什麼是 webpack。:cry:
 
-More realistically here are some reasons you would want to use webpack.
+以下這些是更現實的原因，你可能需要使用 webpack。
 
-Lets you:
-  * Bundle your js files into a single file
-  * Use npm packages in your frontend code
-  * Write ES6/ES7 JavaScript (with help from babel)
-  * Minify/Optimize code
-  * Turn LESS/SCSS into CSS
-  * Use HMR (Hot Module Replacement)
-  * Include any type of file into your JavaScript
-  * A lot more advanced stuff, which I won't cover
+你可以：
+  * Bundle 你的 js 檔案變成單一的檔案
+  * 在你的前端程式碼中使用 npm packages
+  * 撰寫 JavaScript ES6 或 ES7（需要透過 babel 來幫助）
+  * Minify 或優化程式碼
+  * 將 LESS 或 SCSS 轉換成 CSS
+  * 使用 HMR（Hot Module Replacement）
+  * 包含任何類型的檔案到你的 JavaScript
+  * 更多進階的東西，暫時不介紹
 
-##### Why do I want these features?
+##### 為什麼我需要這些功能？
 
-* Bundle JS files - Lets you write modular JavaScript, but you do not need to include a separate
-`<script>` tag for each JS file. (Configurable in case you do need more than one js file)
+* Bundle JS 檔案 - 讓你可以撰寫模組化的 JavaScript，但是你不需要 inclue 每個 JavaScript `<script>` 的檔案（如果你需要多個 JavaScript 檔案可以透過設定來完成）。
 
-* Use npm packages in your frontend code - npm is the biggest ecosystem of open source code on the
-internet. Chances are you can save writing code by taking a look at npm, and including the packages
-you want in your frontend.
+* 在你的前端程式碼中使用 npm packages - npm 在 internet 上是一個大型的 open source 生態系統。有機會你可以儲存你的程式碼，然後到 npm 看一看，可能包含你想要的前端套件。
 
-* ES6/ES7 - Adds lots of features to JavaScript that makes it more powerful and easier to write.
-[Look here for an intro](https://github.com/DrkSephy/es6-cheatsheet).
+* ES6 和 ES7 - 加入一些 JavaScript 的新功能，讓撰寫程式碼可以更強大更容易，[請看這裡的介紹](https://github.com/DrkSephy/es6-cheatsheet)。
 
-* Minify/Optimize Code - Reduces the size of file that you're distributing. Benefits include things
-like faster page loads.
+* Minify 或優化程式碼 - 減少你所分配的檔案大小，好處包括像是更快的將頁面載入。
 
-* Turn LESS/SCSS into CSS - Nicer way to write CSS.
-[Here's an intro if you're unfamiliar](http://alistapart.com/article/why-sass).
+* 將 LESS 或 SCSS 轉換成 CSS - 更好的方式來撰寫 CSS，
+[如果你不熟悉的話，這裡有一些介紹](http://alistapart.com/article/why-sass)。
 
-* Use HMR - A boost to productivity. Every time you save your code, it gets injected into the page
-without requiring a full page refresh. This is really handy if you need to maintain the state of the
-page while you are editing your code.
+* 使用 HMR - 增加生產力。每當你儲存程式碼的時候，它可以注入到網頁，而不需將網頁刷新。如果當編輯你的程式碼，你需要維護頁面的狀態，這是非常方便的。
 
-* Include any type of file into your JavaScript - Reduces need for other build tools, and allows you
-to programmatically modify/use those files.
+* 包含任何類型的檔案到你的 JavaScript - 減少對其他 build 工具的需要，必讓你可以透過程式的方式修改或使用這些檔案。
 
-## The Basics
+## 基礎
 
-### Installation
+### 安裝
 
-To use most of the features of webpack you only need a global installation:
+你需要全域安裝來使用 webpack 大部分的功能：
 
     npm install -g webpack
 
-However some features of webpack, such as optimization plugins, require you to have it installed
-locally. In which case you'll need to:
+然而 webpack 有些功能，像是優化的 plugins，需要你將它安裝在本機。想這種情況下你需要：
 
     npm install --save-dev webpack
 
-### The Command Line
+### 命令列
 
-To run webpack:
+如果要執行 webpack：
 
     webpack
 
-If you want webpack to build every time you change a file:
+如果你想要在 webpack 每次 build 的時候查看改變的檔案：
 
     webpack --watch
 
-If you want to use a config file with webpack with a custom name:
+如果你想要使用自訂的 webpack 設定檔：
 
     webpack --config myconfig.js
 
 ### Bundling
 
-[Example 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example1)
+[範例一](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example1)
 
 ![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
 
-Webpack is formally referred to as a module bundler. If you want an in-depth and accessible explanation
-on modules and module bundling definitely check out these two great articles:
-[here](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
-and [here](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2).
-We're gonna keep it simple. The way that it works is that you specify a single file as your entry point.
-This file will be the root of your tree. Then every time you `require` a file from another file it's
-added to the tree. When you run `webpack`, all these files/modules are bundled into a single file.
+Webpack 簡稱為模組的整合工具。如果你想要深入的話，可以拜訪「modules」和「module bundling definitely」這兩篇優秀的解釋文章：
+[JavaScript Modules: A Beginner’s Guide](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
+和 [JavaScript Modules Part 2: Module Bundling](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2)。
+我們要保持它的簡單，webpack 運作的方式是透過指定一個單一檔案作為你的進入點。
+這個檔案會是 tree 的 root。然後你每次 `require` 一個檔案從其他檔案並把它加入到 tree。當你執行 `webpack`，所有的檔案和 module 都會被 bundle 成一個檔案。
 
-Here's a simple example:
+這裡是一個簡單的範例：
 
 ![Dependency Tree](http://i.imgur.com/dSghwwL.png)
 
-Given this picture you could have the directory:
+根據這樣的情況，你可以有這樣的目錄：
 
 ```
 MyDirectory
@@ -138,7 +124,7 @@ MyDirectory
 |- extraFile.js
 ```
 
-and this could be the content of your files
+這些可能是你檔案的內容：
 
 ```javascript
 // index.js
@@ -164,10 +150,9 @@ body {
 }
 ```
 
-When you run `webpack`, you'll get a bundle with the contents of this tree, but `extraFile.js`,
-which was in the same directory, will not be part of the bundle because it was never `required`.
+當你執行 `webpack`，你會得到一個這個 tree 的 bundle 內容，雖然 `extraFile.js` 也是在相同的目錄中，但它不是被 bundle 的一部份，因為它在 `index.js` 沒有被 `require`。
 
-`bundle.js` will look like:
+`bundle.js` 看起來會像：
 
 ```javascript
 // contents of styles.css
@@ -175,50 +160,43 @@ which was in the same directory, will not be part of the bundle because it was n
 // contents of APIStuff.js + fetch
 ```
 
-The things that are bundled are only the things that you explicitly required across your files.
+被 bundle 的這些檔案是你明確所 require 進來的檔案。
 
 ### Loaders
 
-As you probably noticed, I did something strange in the above example. I `required` a css file in
-a JavaScript file.
+你可能會注意到，我在上方的範例做了一些奇怪的事情。我在 JavaScript 檔案中 `require` 一個 css 檔案。
 
-The really cool, and interesting thing about webpack is that you can `require` more than just
-JavaScript files.
+關於 webpack 真的很酷，有趣的事情是，你可以 `require` 更多不只是 JavaScript 的檔案。
 
-There is this thing in webpack called a loader. Using these loaders, you can
-`require` anything from `.css` and `.html` to `.png` files.
+在 webpack 這些東西我們稱為 loader。使用這些 loader，你可以 `require` 任何 `.css` 和 `.html`  到 `.png` 檔。
 
-For example in the diagram above I had
+例如在上圖我有：
 
 ```javascript
 // index.js
 require('./styles.css')
 ```
 
-If I include [the style-loader](https://github.com/webpack/style-loader) and the [the css-loader](https://github.com/webpack/css-loader) in my webpack config, this is not only perfectly
-valid, but also will actually apply the CSS to my page.
+如果我在我的 webpack 設定檔中，引入 [style-loader](https://github.com/webpack/style-loader) 和 [css-loader](https://github.com/webpack/css-loader)，這不是完全有效的，但是實際上還是會應用 CSS 到我的網頁。
 
-This is just a single example of the many loaders you can use with webpack.
+你可以在 webpack 使用多個 loader，這裡只是一個單一的例子。
 
 ### Plugins
 
-Plugins, like the name suggests, add extra functionality to webpack. One frequently used plugin is
-the `UglifyJsPlugin`, which lets you minify your JavaScript code. We'll cover how to use this later.
+Plugin，顧名思義就是為 webpack 增加額外的功能。其中常使用到的一個 plugin 是 `UglifyJsPlugin`，它可以 minify 你的 JavaScript 程式碼。我們之後會介紹如何使用。
 
-## Your Config File
+## 你的 webpack 設定檔案
 
-Webpack does not work out of the box so you need to tailor it to your needs. In order to do this you
-need to create a file called
+Webpack 沒辦法直接使用，需要透過你的需求來做設定。為了做到這一點，你需要建立一個檔案叫做：
 
     webpack.config.js
 
-as this is the name that webpack recognizes by default. If you choose to use a different name you
-would have to use the `--config` flag to specify the file's name.
+預設情況下，webpack 會去識別這個檔名。如果你選擇使用不同的檔名，你需要加入 `--config` 來指定你的檔案名稱。
 
-### A Minimal Example
-[Example 2](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example2)
+### 一個簡單的範例
+[範例二](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example2)
 
-Say your directory structure looks like this:
+你的目錄結構像是這樣：
 
 ```
 MyDirectory
@@ -229,14 +207,14 @@ MyDirectory
 
 ```
 
-Then a very minimal webpack config you can make is this
+然後這是一個非常簡易的 webpack 設定：
 
 ```javascript
 // webpack.config.js
 var path = require('path')
 
 module.exports = {
-  entry: ['./src/index'], // file extension after index is optional for .js files
+  entry: ['./src/index'], // 在 index 檔案後的 .js 副檔名是可選的
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -244,32 +222,27 @@ module.exports = {
 }
 ```
 
-Going over the new properties one by one:
+我們一個一個複習這些屬性：
 
-* [entry](https://webpack.github.io/docs/configuration.html#entry) - The entrypoint of your bundle,
-which we discussed in the [bundling](#bundling) section. It's an array because webpack allows
-multiple entry points if you want to generate multiple bundles.
+* [entry](https://webpack.github.io/docs/configuration.html#entry) - 這是你的 bundle 的進入點，這是我們在討論 [bundling](#bundling) 的部分。`entry` 是一個陣列，根據你的需求，webpack 允許可以有多個進入點，來產生多個 bundle 檔案。
 
-* [output](https://webpack.github.io/docs/configuration.html#output) - Dictates the form of the output by webpack
-  * [path](https://webpack.github.io/docs/configuration.html#output-path) - where to put the bundle
-  * [filename](https://webpack.github.io/docs/configuration.html#output-filename) - what to call the bundle
+* [output](https://webpack.github.io/docs/configuration.html#output) - 由 webpack 規定的形式輸出。
+  * [path](https://webpack.github.io/docs/configuration.html#output-path) - bundle 檔案位置。
+  * [filename](https://webpack.github.io/docs/configuration.html#output-filename) - bundle 檔案名稱。
 
-When you run `webpack`, this will create a file called `bundle.js` in the dist folder.
+當你執行 `webpack`，會在你的 dist 資料夾建立一個叫做 `bundle.js` 的檔案。
 
-### Introducing Plugins
+### 介紹 Plugins
 
-[Example 3](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example3)
+[範例三](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example3)
 
-Imagine that you've used webpack to bundle all your files together, and now you've realized that all
-together it's 900KB. This is a problem that can be ameliorated by minifying your bundle. To do this
-you need to use a plugin I mentioned earlier called the
-[UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin).
+想像一下，你使用 webpack 將你的檔案 bundle 在一起，然後你意識到 bundle 後的結果是 900KB。這裡有個問題，但是你可以透過 minify 你的 bundle 檔案來做改善。如果需要做到這一點，你需要使用一個我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
 
-Moreover you will need to have webpack installed locally to actually be able to use the plugin.
+此外，你需要在本機安裝 webpack 才能實際的去使用這個 plugin。
 
     npm install --save-dev webpack
 
-Now you can require webpack and minify your code.
+現在你可以 require webpack 並 minify 你的程式碼。
 
 ```javascript
 // webpack.config.js
@@ -292,19 +265,18 @@ module.exports = {
   ]
 }
 ```
-Going over the new properties one by one:
+我們一個一個複習這些屬性：
 
-* plugins - An array that holds your plugins.
-  * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify your code, and suppress warning messages.
+* plugins - 一個可以儲存你的 plugin 的陣列。
+  * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify 你的程式碼，並顯示警告訊息。
 
-This time, when you run `webpack`, now that you have the `UglifyJsPlugin` this could reduce your
-imaginary 900KB file to 200KB through processes such as removing all the whitespace.
+這個時候，當我們執行 `webpack`，`UglifyJsPlugin` 通過像是移除所有空白的處理，可以將你的檔案減少至 200KB。
 
-You can also add the [OccurenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)
+你也可以加入 [OccurenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)。
 
-> Assign the module and chunk ids by occurrence count. Ids that are used often get lower (shorter) ids. This makes ids predictable, reduces to total file size and is recommended.
+> 透過發生次數分配 module 和 chunk 的 id。一些常用的 Id 取得較低（短）的 id。這使得 id 可以預測，透過推薦來減少檔案的大小。
 
-To be honest I'm not sure how the underlying mechanisms work, but in the current [webpack2 beta it's included by default](https://gist.github.com/sokra/27b24881210b56bbaff7) so I include it as well.
+老實說，我不太確定底層的機制是如何工作的，但在目前包含 [webpack2 beta 的預設情況下](https://gist.github.com/sokra/27b24881210b56bbaff7)，所以我將它包含在內。
 
 ```JavaScript
 // webpack.config.js
@@ -328,18 +300,13 @@ module.exports = {
 }
 ```
 
-So now we have written a config that allows us to minify and bundle our JavaScript. This bundle
-could be copied and pasted into another project's directory, and thrown into a `<script>` tag there.
-You can skip to the [conclusion](#conclusion) if you only care about the basics of using webpack
-with *only JavaScript*.
+所以現在我們寫了一個設定檔讓我們可以 minify 和 bundle 我們的 JavaScript。這個 bundle 檔案可以被複製並貼到其他的專案目錄中，放入 `<script>` 就可以使用。如果*只有 JavaScript*，而且你只在乎關於 webpack 基本的使用，你可以直接跳到[結論](#conclusion)。
 
-## A More Complete Example
+## 一個更完整的範例
 
-Alternatively, because webpack can do more than just work with JavaScript, you can avoid the
-copy-pasting and manage your entire project with webpack.
+此外，比起單單使用 JavaScript，使用 webpack 可以做的更多，你可以避免複製-貼上並透過 webpack 管理你的整個專案。
 
-In the following section, we are going to create a very simple website using webpack. If you wish to
-follow along with the example, create a directory with the structure
+在下面的部份中，我們要使用 webpack 建立一個非常簡單的網站。如果你想要跟著這個範例，建立一個像下方的目錄結構：
 
 ```
 MyDirectory
@@ -352,23 +319,22 @@ MyDirectory
 |- webpack.config.js
 ```
 
-#### Contents
+#### 內容
 
-1. [Introducing Loaders](#introducing-loaders) - We will add loaders, which allow us to add CSS to our bundle.
-2. [Adding More Plugins](#adding-more-plugins) - We will add a plugin that'll help us create/use an HTML file.
-3. [The Development Server](#the-development-server) - We'll split our webpack config into separate `development` and `production` files. Then use the webpack-dev-server to view our website and enable HMR.
-4. [Start Coding](#start-coding) - We will actually write some JavaScript.
+1. [介紹 Loader](#introducing-loaders) - 我們將會加入 loader，這可以讓我 bundle 加入的 CSS。
+2. [加入更多 Plugin](#adding-more-plugins) - 我們加入一個 plugin 來幫助我們建立和使用一個 HTML 檔案。
+3. [開發伺服器](#the-development-server) - 我們會將 webpack 設定檔案分為 `development 和 `production` 兩種版本，然後使用 webpack-dev-server 來查看我們的網站並啟用 HMR。
+4. [開始撰寫程式](#start-coding) - 我們來實際寫一些 JavaScript。
 
-#### Introducing Loaders
+#### 介紹 Loader
 
-[Example 4](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example4)
+[範例四](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example4)
 
-Earlier in the tutorial I mentioned [loaders](#loaders). These will help us require non-js files in
-our code. In this case, we will need the style loader and the css loader. First we need to install the loaders:
+在稍早前面的教學中我提到了 [loaders](#loaders)。這些程式碼來幫助我們 require 非 JavaScript 的檔案。在這種情況下，我們將需要 `style-loader` 和 `css-loader`。首先我們需要安裝這些 loader：
 
     npm install --save-dev style-loader css-loader
 
-Now that it's installed we can tweak our config to include the css loader:
+現在安裝完後，我們可以調整我們的 webpack 設定來引入 `css-loader`：
 
 ```javascript
 // webpack.config.js
@@ -398,18 +364,16 @@ module.exports = {
 }
 ```
 
-Going over the new properties one by one:
+我們一個一個複習這些屬性：
 
-* [module](http://webpack.github.io/docs/configuration.html#module) - Options affecting your files
-  * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - An array of loaders that we specify for our application
-    * test - A regular expression to match the loader with a file
-    * loaders - Which loaders to use for files that match the test
+* [module](http://webpack.github.io/docs/configuration.html#module) - 設定你的檔案選項。
+  * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - 我們為應用程式所指定的一個 loader 陣列。
+    * test - 一個正規表達式來匹配 loader 的檔案。
+    * loaders - loader 用於這些匹配 test （正規表達式）的檔案。
 
-This time when you run `webpack`, if you `require` a file that ends in `.css`, then we will apply
-the `style` and `css` loaders to it, which adds the CSS to the bundle.
+這個時候你執行 `webpack`，如果你 `require` 的檔案結尾是 `.css`，然會我們會使用 `style` 和 `css` loader，將 CSS 加入到 bundle。
 
-If we didn't have the loaders,
-then we would get an error like this:
+如果我們沒有 loaders，我們會得到像是這樣的錯誤：
 
 ```
 ERROR in ./test.css
@@ -418,13 +382,13 @@ Line 1: Unexpected token {
 You may need an appropriate loader to handle this file type.
 ```
 
-**Optional**
+**可選項目**
 
-If you want to use SCSS instead of CSS you would need to run:
+如果你想要使用 SCSS 而不是 CSS 你需要執行：
 
     npm install --save-dev sass-loader node-sass webpack
 
-and instead your loader would be written as
+然後你的 loader 必須修改成：
 
 ```javascript
 {
@@ -433,24 +397,23 @@ and instead your loader would be written as
 }
 ```
 
-The process is similar for LESS.
+處理 LESS 也類似於這個方式。
 
-An important aspect to recognize is that there is an *order* to which these loaders need to be specified. In the above example, the `sass` loader is first applied to your `.scss` files, then the `css` loader, and finally the `style` loader. As you can see, the pattern is that these loaders are applied from right to left.
+要知道這些需要被指定的 loader 是有*順序*的，這是一個很重要部分。在上面的範例，`sass` loader 是第一個應用在你的 `.scss` 檔案，然後是 `css` loader，最後是 `style` loader。你可以看到，這些 loader 的應用模式是由右到左。
 
-#### Adding More Plugins
+#### 加入更多的 Plugin
 
-[Example 5](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example5)
+[範例五](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example5)
 
-Now that we have the infrastructure for styling our website we need an actual page to style.
-We'll be doing this through the
-[html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin),
-which lets us generate an HTML page or use an existing one. We'll use an existing one `index.html`.
+現在我們的網站有基礎的樣式，但我們還需要實際的網站樣式。
 
-First we install the plugin:
+我們通過 [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin) 來做，它讓我們可以產生一個 HTML 頁面使用現有的。我們將使用一個目前現有的 `index.html`。
+
+首先我們需要安裝 plugin：
 
     npm install --save-dev html-webpack-plugin@2
 
-Then we can add it to our config
+然後在我們的 webpack 設定檔加入：
 
 ```javascript
 // webpack.config.js
@@ -484,12 +447,9 @@ module.exports = {
 }
 ```
 
-This time, when you run `webpack`, because we specified an `HtmlWebpackPlugin` with a template of
-`./src/index.html`, it will generate a file called `index.html` in our `dist` folder with the
-contents of `./src/index.html`
+這個時候當你執行 `webpack`，因為我們指定一個 `HtmlWebpackPlugin` 和 `./src/index.html` 的 template，它會產生一個檔案叫做 `index.html` 在我們的 `dist` 資料夾，而網頁的內容是 `./src/index.html`。
 
-There's no point in using `index.html` as a template if it's empty. Now would be a good time to
-actually populate it.
+如果 `index.html` 作為 template 是空的也沒用。現在是個好時機我們可以填入一些元素進去。
 
 ```html
 <html>
@@ -504,10 +464,9 @@ actually populate it.
 </html>
 ```
 
-Note that we aren't putting a `<script>` tag into our HTML for `bundle.js`. The plugin will actually
-automatically do that for you. If you do put in the script tag, you'll end up loading your same code twice.
+注意到我們沒有放入一個 `bundle.js` 的 `<script>` 標籤到我們的 HTML。實際上 plugin 會自動的幫你處理。如果你放入 script，到頭來你會載入兩次相同的程式碼。
 
-and while we're at it let's add some basic styling in `styles.css`
+而讓我們加入一些基本的樣式在 `styles.css`：
 
 ```css
 h1 {
@@ -531,23 +490,18 @@ button {
 }
 ```
 
-#### The Development Server
+#### 開發伺服器
 
-[Example 6](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example6)
+[範例六](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example6)
 
-Now we want to actually see our website in the browser, which requires a web server to serve our
-code. Conveniently, webpack comes with the `webpack-dev-server`, which you need to install both
-locally and globally
+現在我們想要實際在瀏覽器看到我們的網站，需要一個 web 伺服器來服務我們的程式碼。webpack 自帶了方便的 `webpack-dev-server`，你需要在本機和全域安裝。
 
     npm install -g webpack-dev-server
     npm install --save-dev webpack-dev-server
 
-The dev server is an extremely useful resource for seeing what your website looks like in the browser, and more rapid development. By default you can visit it at `http://localhost:8080`. Unfortunately, features such as hot reloading don't work out of the box, and require some more configuration.
+dev server 可以在瀏覽器看到你的網站是怎麼樣子以及可以更快速的開發，是一個相當有用的資源。預設情況下你可以拜訪 `http://localhost:8080`。不幸的是，像是 hot reloading 的功能並不是內建的，還需要一些其他的設定。
 
-This is a good point to split up our webpack config into one meant for development and one meant for
-production. Since we're keeping it simple in this tutorial, it won't be a huge difference, but it's
-an introduction to the extreme configurability of webpack. We'll call them `webpack.config.dev.js`
-and `webpack.config.prod.js`.
+這是 webpack 設定檔一個很棒的分離點，意思是說你可以將他分成用於「development」以及「production」。因為我們必須在這個教學中保持簡單的方式，所不會有很大的改變，但是會介紹 webpack 很棒的可設置性。我們稱他們為 `webpack.config.dev.js` 和 `webpack.config.prod.js`。
 
 ```javascript
 // webpack.config.dev.js
@@ -586,22 +540,20 @@ module.exports = {
 ```
 
 
-**Changes**
+**修改**
 
-1. The dev config omits the optimizations as they are unnecessary overhead when you are constantly
-rebuilding. So no `webpack.optimize` plugins.
+1. dev 設定檔省略了優化，當你不斷的 rebuild 時，他們不是必要的。所以不需要 `webpack.optimize` plugins。
 
-2. The dev config has the necessary configuration for the dev server, which you can read more about
-[here](https://webpack.github.io/docs/webpack-dev-server.html).
+2. dev 設定檔需要對 dev server 做必要的設定，你可以到[這裡](https://webpack.github.io/docs/webpack-dev-server.html)了解更多。
 
-Summarized:
+總結：
 
-* entry: The two new entry points connect the server to the browser to allow for HMR.
+* entry: 兩個新的進入點將伺服器連結到瀏覽器，方便 HMR。
 * devServer
-  * contentBase: Where to serve files from
-  * hot: enable HMR
+  * contentBase: 服務的檔案來自哪裡。
+  * hot: 啟用 HMR。
 
-The prod config doesn't change much
+prod 設定檔不需要改變太多：
 
 ```javascript
 // webpack.config.prod.js
@@ -636,28 +588,22 @@ module.exports = {
 }
 ```
 
-I've also added a brand new property to both the dev config and the prod config:
+我也加入一個全新的屬性在 dev 和 prod 設定檔：
 
-* [devtool](https://webpack.github.io/docs/configuration.html#devtool) - This is a debugging aid.
-Basically, when you get a error, it'll help you see where you made the mistake something like the
-chrome developer console. As for the difference between `source-map` and `cheap-eval-source-map`
-it's a little hard to glean from the docs. What I can say definitively is that `source-map` is meant
-for production and has a lot of overhead, and that `cheap-eval-source-map` has less overhead and is
-meant for developing only.
+* [devtool](https://webpack.github.io/docs/configuration.html#devtool) - 這是協助 debug 的。基本上，當你得到一個錯誤，它會幫助你找到哪裡發生了錯誤，像是 chrome developer console。`source-map` 和 `cheap-eval-source-map` 之間的差異從文件說明有點難解釋。我可以肯定的是，`source-map` 是用於 production，`cheap-eval-source-map` 是用於 `development`。
 
-To run the dev server we have to run
+如果要執行 dev server，我們可以執行：
 
     webpack-dev-server --config webpack.config.dev.js
 
-and to build the production code we have to run
+如果我們要 build production 的程式碼，我們可以執行：
 
     webpack --config webpack.config.prod.js
 
 
-To make our lives a little easier we are now going to use `package.json` as a simple task runner so
-that we don't need to keep typing out either command.
+如果想要讓這些指令使用的更容易，我們可以到 `package.json` 來設定簡單的 script。
 
-We add the `scripts` property to the config
+我們加入 `scripts` 屬性到設定檔：
 
 ```javascript
 // package.json
@@ -671,25 +617,20 @@ We add the `scripts` property to the config
 }
 ```
 
-We can run these commands with
+我們可以執行這些指令：
 
 ```
 npm run build
 npm run dev
 ```
 
-You can now view your beautiful website by running `npm run dev`, and navigating to
-`http://localhost:8080`.
+你現在可以透過 `npm run dev`，並導到 `http://localhost:8080` 看到你的網站。
 
-**Side Note:** while I was testing this portion I realized that the server would not hot reload
-when I modified the `index.html` file. The solution to this problem is over at
-[html-reload](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload). It's useful
-information that covers some more configuration options of webpack, which I recommend looking at,
-but I left it separate because I feel like it lengthens the tutorial for too trivial of a reason.
+**備註：** 當我正在測試這個部份時，我明白到當我修改 `index.html` 檔案時，伺服器不能 hot reload。 解決這個問題的方法在 [html-reload](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload)。這裡涵蓋了一些 webpack 設定檔選項的有用資訊，我推薦你可以看一下，但是我把它分開了，因為我覺得會因為這個不太重要的原因，這會延長這個教學。
 
-#### Start Coding
+#### 開始撰寫程式
 
-[Example 7](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example7)
+[範例七](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/example7)
 
 The reason most people seem to be flustered by webpack is the fact that they need to go through all
 of this to get to the point where they finally write JavaScript; however, now we have arrived at the

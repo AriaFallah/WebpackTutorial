@@ -1,6 +1,6 @@
-# Example 2 - A minimal example
+# 範例二 - 一個簡單的範例
 
-Say your directory structure looks like this:
+你的目錄結構像是這樣：
 
 ```
 MyDirectory
@@ -11,7 +11,7 @@ MyDirectory
 
 ```
 
-Then a very minimal webpack config you can make is this
+然後這是一個非常簡易的 webpack 設定：
 
 ```javascript
 // webpack.config.js
@@ -26,12 +26,12 @@ module.exports = {
 }
 ```
 
-Going over the new properties one by one:
+我們一個一個複習這些屬性：
 
-* [entry](https://webpack.github.io/docs/configuration.html#entry) - The entrypoint of your bundle, which we discussed in the [bundling](#bundling) section. It's an array because webpack allows multiple entry points if you want to generate multiple bundles.
+* [entry](https://webpack.github.io/docs/configuration.html#entry) - 這是你的 bundle 的進入點，這是我們在討論 [bundling](#bundling) 的部分。`entry` 是一個陣列，根據你的需求，webpack 允許可以有多個進入點，來產生多個 bundle 檔案。
 
-* [output](https://webpack.github.io/docs/configuration.html#output) - Dictates the form of the output by webpack
-  * [path](https://webpack.github.io/docs/configuration.html#output-path) - where to put the bundle
-  * [filename](https://webpack.github.io/docs/configuration.html#output-filename) - what to call the bundle
+* [output](https://webpack.github.io/docs/configuration.html#output) - 由 webpack 規定的形式輸出。
+  * [path](https://webpack.github.io/docs/configuration.html#output-path) - bundle 檔案位置。
+  * [filename](https://webpack.github.io/docs/configuration.html#output-filename) - bundle 檔案名稱。
 
-When you run `webpack`, this will create a file called `bundle.js` in the dist folder.
+當你執行 `webpack`，會在你的 dist 資料夾建立一個叫做 `bundle.js` 的檔案。
