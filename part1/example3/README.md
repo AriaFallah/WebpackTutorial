@@ -1,12 +1,15 @@
-# 範例三 - 介紹 Plugins
+# Example 3 - Introducing Plugins
 
-想像一下，你使用 webpack 將你的檔案 bundle 在一起，然後你意識到 bundle 後的結果是 900KB。這裡有個問題，但是你可以透過 minify 你的 bundle 檔案來做改善。如果需要做到這一點，你需要使用一個我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
+Imagine that you've used webpack to bundle all your files together, and now you've realized that all
+together it's 900KB. This is a problem that can be ameliorated by minifying your bundle. To do this
+you need to use a plugin I mentioned earlier called the
+[UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin).
 
-此外，你需要在本機安裝 webpack 才能實際的去使用這個 plugin。
+Moreover you will need to have webpack installed locally to actually be able to use the plugin.
 
     npm install --save-dev webpack
 
-現在你可以 require webpack 並 minify 你的程式碼。
+Now you can require webpack and minify your code.
 
 ```javascript
 // webpack.config.js
@@ -29,18 +32,19 @@ module.exports = {
   ]
 }
 ```
-我們一個一個複習這些屬性：
+Going over the new properties one by one:
 
-* plugins - 一個可以儲存你的 plugin 的陣列。
-  * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify 你的程式碼，並顯示警告訊息。
+* plugins - An array that holds your plugins.
+  * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify your code, and suppress warning messages.
 
-這個時候，當我們執行 `webpack`，`UglifyJsPlugin` 通過像是移除所有空白的處理，可以將你的檔案減少至 200KB。
+This time, when you run `webpack`, now that you have the `UglifyJsPlugin` this could reduce your
+imaginary 900KB file to 200KB by through processes such as removing all the whitespace.
 
-你也可以加入 [OccurenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)。
+You can also add the [OrderOccurencePlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)
 
-> 透過發生次數分配 module 和 chunk 的 id。一些常用的 Id 取得較低（短）的 id。這使得 id 可以預測，透過推薦來減少檔案的大小。
+> Assign the module and chunk ids by occurrence count. Ids that are used often get lower (shorter) ids. This make ids predictable, reduces to total file size and is recommended.
 
-老實說，我不太確定底層的機制是如何工作的，但在目前包含 [webpack2 beta 的預設情況下](https://gist.github.com/sokra/27b24881210b56bbaff7)，所以我將它包含在內。
+To be honest I'm not sure how the underlying mechanisms work, but in the current [webpack2 beta it's included by default](https://gist.github.com/sokra/27b24881210b56bbaff7) so I include it as well.
 
 ```javascript
 // webpack.config.js
@@ -64,4 +68,7 @@ module.exports = {
 }
 ```
 
-所以現在我們寫了一個設定檔讓我們可以 minify 和 bundle 我們的 JavaScript。這個 bundle 檔案可以被複製並貼到其他的專案目錄中，放入 `<script>` 就可以使用。如果*只有 JavaScript*，而且你只在乎關於 webpack 基本的使用，你可以直接跳到[結論](#conclusion)。
+So now we have written a config that allows us to minify and bundle our javascript. This bundle
+could be copied and pasted into another project's directory, and thrown into a `<script>` tag there.
+You can skip to the [conclusion](#conclusion) if you only care about the basics of using webpack
+with *only javascript*.

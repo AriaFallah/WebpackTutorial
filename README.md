@@ -1,6 +1,10 @@
-# Webpack 初學者教學 :school:
+# Beginner Webpack Tutorial :school:
 
-Webpack 剛開始對我來說是很困難的。我想要建立一個對初學者友善，而且對 webpack 有非常全面的介紹。
+Starting off with webpack was hard for me. I want to create a beginner friendly and comprehensive
+intro to webpack.
 
-- [Part 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1) - Webpack 基礎和設定。
-- [Part 2](https://github.com/AriaFallah/WebpackTutorial/tree/master/part2) - Babel、Lint、以及環境變數。
+- [Part 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1) - Webpack Basics and configuration.
+- [Part 2](https://github.com/AriaFallah/WebpackTutorial/tree/master/part2) - Babel, linting, and environment variables.
+
+### Translations
+- [Chinese Traditional](https://github.com/neighborhood999/WebpackTutorial)

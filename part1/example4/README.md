@@ -1,8 +1,9 @@
-在稍早前面的教學中我提到了 [loaders](#loaders)。這些程式碼來幫助我們 require 非 JavaScript 的檔案。在這種情況下，我們將需要 `style-loader` 和 `css-loader`。首先我們需要安裝這些 loader：
+Earlier in the tutorial I mentioned [loaders](#loaders). These will help us require non-js files in
+our code. In this case, the only loader we will need is the css loader. First we need to install the loader:
 
     npm install --save-dev style-loader css-loader
 
-現在安裝完後，我們可以調整我們的 webpack 設定來引入 `css-loader`：
+Now that it's installed we can tweak our config to include the css loader:
 
 ```javascript
 // webpack.config.js
@@ -32,16 +33,18 @@ module.exports = {
 }
 ```
 
-我們一個一個複習這些屬性：
+Going over the new properties one by one:
 
-* [module](http://webpack.github.io/docs/configuration.html#module) - 設定你的檔案選項。
-  * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - 我們為應用程式所指定的一個 loader 陣列。
-    * test - 一個正規表達式來匹配 loader 的檔案。
-    * loaders - loader 用於這些匹配 test （正規表達式）的檔案。
+* [module](http://webpack.github.io/docs/configuration.html#module) - Options affecting your files
+  * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - An array of loaders that we specify for our application
+    * test - A regular expression to match the loader with a file
+    * loaders - Which loaders to use for files that match the test
 
-這個時候你執行 `webpack`，如果你 `require` 的檔案結尾是 `.css`，然會我們會使用 `style` 和 `css` loader，將 CSS 加入到 bundle。
+This time when you run `webpack`, if we `require` a file that ends in `.css`, then we will apply
+the `style` and `css` loaders to it, which adds the CSS to the bundle.
 
-如果我們沒有 loaders，我們會得到像是這樣的錯誤：
+If we didn't have the loaders,
+then we would get an error like this:
 
 ```
 ERROR in ./test.css
@@ -50,13 +53,13 @@ Line 1: Unexpected token {
 You may need an appropriate loader to handle this file type.
 ```
 
-**可選項目**
+**Optional**
 
-如果你想要使用 SCSS 而不是 CSS 你需要執行：
+If you want to use SCSS instead of CSS you would need to run:
 
     npm install --save-dev sass-loader node-sass webpack
 
-然後你的 loader 必須修改成：
+and instead your loader would be written as
 
 ```javascript
 {
@@ -65,6 +68,6 @@ You may need an appropriate loader to handle this file type.
 }
 ```
 
-處理 LESS 也類似於這個方式。
+The process is similar for LESS.
 
-要知道這些需要被指定的 loader 是有*順序*的，這是一個很重要部分。在上面的範例，`sass` loader 是第一個應用在你的 `.scss` 檔案，然後是 `css` loader，最後是 `style` loader。你可以看到，這些 loader 的應用模式是由右到左。
+An important aspect to recognize is that there is an *order* to which these loaders need to be specified. In the above example, the `sass` loader is first applied to your `.scss` files, then the `css` loader, and finally the `style` loader. As you can see, the pattern is that these loaders are applied from right to left.
