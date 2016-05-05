@@ -7,4 +7,4 @@ intro to webpack.
 - [Part 2](https://github.com/AriaFallah/WebpackTutorial/tree/master/part2) - Babel, linting, and environment variables.
 
 ### Translations
-- [Chinese Traditional](https://github.com/neighborhood999/WebpackTutorial)
+- [Chinese Traditional](https://github.com/AriaFallah/WebpackTutorial/tree/master/zh-TW)
