@@ -5,3 +5,6 @@ intro to webpack.
 
 - [Part 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1) - Webpack Basics and configuration.
 - [Part 2](https://github.com/AriaFallah/WebpackTutorial/tree/master/part2) - Babel, linting, and environment variables.
+
+### Translations
+- [Chinese Traditional](https://github.com/neighborhood999/WebpackTutorial)
