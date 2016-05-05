@@ -118,8 +118,4 @@ new HtmlWebpackPlugin({
 })
 ```
 
-<<<<<<< HEAD
 Anyone with other experience feel free to correct me if I'm wrong.
-=======
-如果我錯了，請任何有這方面經驗的人隨時糾正我。
->>>>>>> bd62391... translate ex5 ex6

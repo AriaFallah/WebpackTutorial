@@ -18,16 +18,16 @@
 ## 目錄
 
 * [Babel](#babel)
-  * [Babel 是做什麼用的？](#what-does-babel-do)
-  * [設定 Babel](#configuring-babel)
+  * [Babel 是做什麼用的？](#babel-是做什麼用的)
+  * [設定 Babel](#設定-babel)
 * [Webpack](#webpack)
-  * [一個新的 Loader](#a-new-loader)
-* [我們完成了？](#we-are-done)
-  * [Require ES6 的 Module](#requiring-with-es6-modules)
-* [額外收穫](#extra-credit)
-  * [Production 環境變數以及 Webpack 和 Babel](#production-environment-variables-with-webpack-and-babel)
-  * [加入 Lint](#adding-linting)
-* [結論](#conclusion)
+  * [一個新的 Loader](#一個新的-loader)
+* [我們完成了？](#我們完成了)
+  * [Require ES6 的 Module](#require-es6-的-module)
+* [額外收穫](#額外收穫)
+  * [Production 環境變數以及 Webpack 和 Babel](#production-環境變數以及-webpack-和-babel)
+  * [加入 Lint](#加入-lint)
+* [結論](#結論)
 
 
 ## Babel
@@ -197,7 +197,7 @@ module: {
 
 另一個方式，你可以將 `include: path.join(__dirname, 'src')` 改變成 `exclude: /node_modules/`，除了 `node_modules` 目錄外其他都包括。更多資訊可以在[這裡](https://webpack.github.io/docs/configuration.html#module-loaders)找到。
 
-## 我們完成了嗎？
+## 我們完成了？
 
 老實說，我覺得這個教學過程有點太長了，看起來我似乎忘了加入 babel 實際上不是這麼的重要。我們現在可以使用 ES6 語法更新先前在 `index.js` 的程式碼：
 

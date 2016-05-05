@@ -20,22 +20,22 @@
 
 ## 目錄
 
-* [為什麼要 Webpack？](#why-webpack)
-* [基礎](#the-basics)
-  * [安裝](#installation)
+* [為什麼要 Webpack？](#為什麼要-webpack)
+* [基礎](#基礎)
+  * [安裝](#安裝)
   * [Bundling](#bundling)
   * [Loaders](#loaders)
   * [Plugins](#plugins)
-* [你的設定檔案](#your-config-file)
-  * [一個簡單的範例](#a-minimal-example)
-  * [介紹 Plugins](#introducing-plugins)
-* [一個更完整的範例](#a-more-complete-example)
-  * [介紹 Loaders](#introducing-loaders)
-  * [加入更多 Plugins](#adding-more-plugins)
-  * [開發伺服器](#the-development-server)
-  * [開始撰寫程式](#start-coding)
-* [結論](#conclusion)
-* [反思](#closing-thoughts)
+* [你的設定檔案](#你的設定檔案)
+  * [一個簡單的範例](#一個簡單的範例)
+  * [介紹 Plugins](#介紹-plugins)
+* [一個更完整的範例](#一個更完整的範例)
+  * [介紹 Loaders](#介紹-loaders)
+  * [加入更多的 Plugins](#加入更多的-plugins)
+  * [開發伺服器](#開發伺服器)
+  * [開始撰寫程式](#開始撰寫程式)
+* [結論](#結論)
+* [反思](#反思)
 
 ## 為什麼要 Webpack？
 
@@ -399,7 +399,7 @@ You may need an appropriate loader to handle this file type.
 
 要知道這些需要被指定的 loader 是有*順序*的，這是一個很重要部分。在上面的範例，`sass` loader 是第一個應用在你的 `.scss` 檔案，然後是 `css` loader，最後是 `style` loader。你可以看到，這些 loader 的應用模式是由右到左。
 
-#### 加入更多的 Plugin
+#### 加入更多的 Plugins
 
 [範例五](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example5)
 
