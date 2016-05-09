@@ -72,7 +72,7 @@ The really cool and interesting thing about webpack is that you can `require` mo
 javascript files.
 
 There is this thing in webpack called a loader. Using these loaders, you can
-`require` anything from `.css` and `.html` to `.png` files.
+`require` anything from `.css` and `.png` to `.html` files.
 
 For example in the diagram above I had
 
