@@ -166,7 +166,7 @@ body {
 
 關於 webpack 真的很酷，有趣的事情是，你可以 `require` 更多不只是 JavaScript 的檔案。
 
-在 webpack 這些東西我們稱為 loader。使用這些 loader，你可以 `require` 任何 `.css` 和 `.html`  到 `.png` 檔。
+在 webpack 這些東西我們稱為 loader。使用這些 loader，你可以 `require` 任何 `.css` 和 `.png` 到 `.html` 檔。
 
 例如在上圖我有：
 
