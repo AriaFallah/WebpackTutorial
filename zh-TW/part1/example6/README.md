@@ -48,7 +48,7 @@ module.exports = {
 
 **修改**
 
-1. dev 設定檔省略了優化，當你不斷的 rebuild 時，他們不是必要的。所以不需要 `webpack.optimize` plugins。
+1. dev 設定檔省略了優化，當你不斷的 rebuild 時，他們是不必要的。所以不需要 `webpack.optimize` plugins。
 
 2. dev 設定檔需要對 dev server 做必要的設定，你可以到[這裡](https://webpack.github.io/docs/webpack-dev-server.html)了解更多。
 
@@ -97,7 +97,7 @@ module.exports = {
 
 我也加入一個全新的屬性在 dev 和 prod 的設定檔：
 
-* [devtool](https://webpack.github.io/docs/configuration.html#devtool) - 這是協助 debug 的。基本上，當你得到一個錯誤，它會幫助你找到哪裡發生了錯誤，像是 chrome developer console。`source-map` 和 `cheap-eval-source-map` 之間的差異從文件說明有點難解釋。我可以肯定的是，`source-map` 是用於 production，`cheap-eval-source-map` 是用於 `development`。
+* [devtool](https://webpack.github.io/docs/configuration.html#devtool) - 這是協助 debug 的工具。基本上，當你得到一個錯誤，它會幫助你找到哪裡發生了錯誤，像是 chrome developer console。`source-map` 和 `cheap-eval-source-map` 之間的差異從文件說明有點難解釋。我可以肯定的是，`source-map` 是用於 `production`，`cheap-eval-source-map` 是用於 `development`。
 
 如果要執行 dev server，我們可以執行：
 
@@ -133,4 +133,4 @@ npm run dev
 
 你現在可以透過 `npm run dev`，並導到 `http://localhost:8080` 看到你的網站。
 
-**備註：** 當我正在測試這個部份時，我明白到當我修改 `index.html` 檔案時，伺服器不能 hot reload。 解決這個問題的方法在 [html-reload](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload)。這裡涵蓋了一些 webpack 設定檔選項的有用資訊，我推薦你可以看一下，但是我把它分開了，因為我覺得會因為這個不太重要的原因，這會延長這個教學。
+**備註：** 當我正在測試這個部份時，我了解到，當我修改 `index.html` 檔案時，伺服器不能 hot reload。解決這個問題的方法在 [html-reload](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload)。這裡涵蓋了一些 webpack 設定檔選項的有用資訊，我推薦你可以看一下，但是我把它分開了，因為我覺得會因為這個不太重要的原因，這會延長這個教學課程。

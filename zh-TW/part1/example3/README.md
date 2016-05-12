@@ -1,6 +1,6 @@
 # 範例三 - 介紹 Plugins
 
-想像一下，你使用 webpack 將你的檔案 bundle 在一起，然後你意識到 bundle 後的結果是 900KB。這裡有個問題，但是你可以透過 minify 你的 bundle 檔案來做改善。如果需要做到這一點，你需要使用一個我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
+想像一下，你使用 webpack 將你的檔案 bundle 在一起，然後你發現到 bundle 後的結果是 900KB。這裡有個問題，但是你可以透過 minify 你的 bundle 檔案來做改善。如果需要做到這一點，你需要使用一個我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
 
 此外，你需要在本機安裝 webpack 才能實際的去使用這個 plugin。
 
