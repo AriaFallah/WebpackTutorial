@@ -65,7 +65,7 @@ body {
 
 你可能會注意到，我在上方的範例做了一些奇怪的事情。我在 JavaScript 檔案中 `require` 一個 css 檔案。
 
-關於 webpack 真的很酷，有趣的事情是，你可以 `require` 更多不只是 JavaScript 的檔案。
+關於 webpack 真的很酷，有趣的事情是，你可以 `require` 其他不只是 JavaScript 的檔案。
 
 在 webpack 這些東西我們稱為 loader。使用這些 loader，你可以 `require` 任何 `.css` 和 `.png` 到 `.html` 檔。
 
@@ -76,6 +76,6 @@ body {
 require('./styles.css')
 ```
 
-如果我在我的 webpack 設定檔中，inclue [style-loader](https://github.com/webpack/style-loader) 和 [css-loader](https://github.com/webpack/css-loader)，這不僅是可以的，還可以實際應用 CSS 到我的網頁。
+如果在我的 webpack 設定檔中，inclue [style-loader](https://github.com/webpack/style-loader) 和 [css-loader](https://github.com/webpack/css-loader)，這是可行的，還可以實際應用 CSS 到我的網頁。
 
 你可以在 webpack 使用多個 loader，這裡只是一個單一的例子。

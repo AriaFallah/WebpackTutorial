@@ -1,15 +1,15 @@
 # Webpack 初學者教學課程 Part 2 - 使用 Webpack 與 Babel :zap:
 
-現在我們已經學習了基礎的 webpack 使用方式，為了撰寫 ES6，我們要學會利用 babel 6，因為它是 JavaScript 新的規範。
+現在我們已經學習了基礎的 webpack 使用方式，為了撰寫 ES6，我們要學會利用 babel 6，因為 ES6 是 JavaScript 新的規範。
 
-如果你曾經撰寫過 ES6，應該就不想再回去寫 ES5 了。如果你還沒有機會撰寫 ES6，很大的原因可能是因為*不了解*開發環境該使用哪些設定選項，因為這些很令人沮喪。
+如果你曾經撰寫過 ES6，應該就不想再回去寫 ES5 了。如果你還沒有機會撰寫 ES6，很大的原因可能是因為*不了解*開發環境該使用哪些設定選項，因為那些設定很令人沮喪。
 
 我希望這個教學課程可以讓這些過程可以變得更容易。
 
 ## 需求
 
 1. 如果你還沒有準備好，請先閱讀 [part 1][2]
-2. 有關 ES6 的概述，[這個](https://github.com/DrkSephy/es6-cheatsheet)是一個很棒的資源。
+2. 有關 ES6 的概述，[es6-cheatsheet](https://github.com/DrkSephy/es6-cheatsheet) 是一個很棒的資源。
 
 ## 貢獻
 
@@ -32,7 +32,7 @@
 
 ## Babel
 
-如果你想要有更深入的說明，和更細微的設定 babel ，請參考這個[手冊][1]。我在這裡了解了一些基本的設定。
+如果你想要有更深入的說明，和更細微的設定 babel，請參考這個[手冊][1]。我在這裡了解了一些基本的設定。
 
 ### Babel 是做什麼用的？
 
@@ -70,7 +70,7 @@ var square = function square(n) {
 
 你只需要指定一個 `presets` 選項，下面是描述的摘錄：
 
-> JavaScript 也有一些提案需要 TC39（背後的 ECMASript 標準為員會）的處理，才能將這些納入到標準中。
+> JavaScript 也有一些提案需要 TC39（背後的 ECMAScript 標準為員會）的處理，才能將這些納入到標準中。
 
 > 這個程序被分為 5 個 statge（0-4）。如果提案獲得更多的同意，通過各個 stage，就很容易被接受納入標準中，最後在 stage 4 中被接受納入標準。
 
@@ -90,7 +90,7 @@ var square = function square(n) {
 
 ## Webpack
 
-我們可以使用與[part 1-範例七](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example7)相同的設定檔，但是需要加入 ES6 所需要的功能。
+我們可以使用與 [part 1-範例七](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example7)相同的設定檔，但是需要加入 ES6 所需要的功能。
 
 目前設定檔：
 
@@ -400,7 +400,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 ## 結論
 
-我已經把所有這一切的最終結果放入到[範例 1](https://github.com/neighborhood999/WebpackTutorial/tree/master/part2/example1)。如果你仍然有不理解的地方，可以在 issue 提出你的問題。
+我已經把所有這一切的最終結果放入到[範例一](https://github.com/neighborhood999/WebpackTutorial/tree/master/part2/example1)。如果你仍然有不理解的地方，可以在 issue 提出你的問題。
 
 所以現在我們可以輕鬆的撰寫 ES6 程式碼，此外，也讓我們了解到如何撰寫設定檔 :tada:！
 

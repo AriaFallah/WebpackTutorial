@@ -12,7 +12,7 @@
 
 ## 需求
 
-至少，希望你了解基本的 node.js 和 npm。
+至少希望你了解基本的 node.js 和 npm。
 
 ## 貢獻
 
@@ -57,16 +57,16 @@
 
 * Bundle JS 檔案 - 讓你可以撰寫模組化的 JavaScript，但是你不需要 inclue 每個 JavaScript `<script>` 的檔案（如果你需要多個 JavaScript 檔案可以透過設定來完成）。
 
-* 在你的前端程式碼中使用 npm packages - npm 在 internet 上是一個大型的 open source 生態系統。有機會你可以儲存你的程式碼，然後到 npm 看一看，可能包含你想要的前端套件。
+* 在你的前端程式碼中使用 npm packages - npm 在 internet 上是一個大型的 open source 生態系統。可以儲存或發佈你的程式碼，你可以到 npm 看一看，可能包含你想要的前端套件。
 
 * ES6 和 ES7 - 加入一些 JavaScript 的新功能，讓撰寫程式碼可以更強大更容易，[請看這裡的介紹](https://github.com/DrkSephy/es6-cheatsheet)。
 
 * Minify 或優化程式碼 - 減少你所分配的檔案大小，好處包括像是更快的將頁面載入。
 
-* 將 LESS 或 SCSS 轉換成 CSS - 更好的方式來撰寫 CSS，
+* 將 LESS 或 SCSS 轉換成 CSS - 使用更好的方式來撰寫 CSS，
 [如果你不熟悉的話，這裡有一些介紹](http://alistapart.com/article/why-sass)。
 
-* 使用 HMR - 增加生產力。每當你儲存程式碼的時候，它可以注入到網頁，而不需將網頁刷新。如果當編輯你的程式碼，你需要維護頁面的狀態，這是非常方便的。
+* 使用 HMR - 增加開發速度。每當你儲存程式碼的時候，它可以注入到網頁，而不需將網頁刷新。如果當編輯你的程式碼，你需要維護頁面的狀態，這是非常方便的。
 
 * 包含任何類型的檔案到你的 JavaScript - 減少對其他 build 工具的需要，讓你可以透過程式的方式修改或使用這些檔案。
 
@@ -164,7 +164,7 @@ body {
 
 你可能會注意到，我在上方的範例做了一些奇怪的事情。我在 JavaScript 檔案中 `require` 一個 css 檔案。
 
-關於 webpack 真的很酷，有趣的事情是，你可以 `require` 更多不只是 JavaScript 的檔案。
+關於 webpack 真的很酷，有趣的事情是，你可以 `require` 其他不只是 JavaScript 的檔案。
 
 在 webpack 這些東西我們稱為 loader。使用這些 loader，你可以 `require` 任何 `.css` 和 `.png` 到 `.html` 檔。
 
@@ -175,13 +175,13 @@ body {
 require('./styles.css')
 ```
 
-如果我在我的 webpack 設定檔中，inclue [style-loader](https://github.com/webpack/style-loader) 和 [css-loader](https://github.com/webpack/css-loader)，這不僅是可以的，還可以實際應用 CSS 到我的網頁。
+如果在我的 webpack 設定檔中，inclue [style-loader](https://github.com/webpack/style-loader) 和 [css-loader](https://github.com/webpack/css-loader)，這是可行的，還可以實際應用 CSS 到我的網頁。
 
 你可以在 webpack 使用多個 loader，這裡只是一個單一的例子。
 
 ### Plugins
 
-Plugin，顧名思義就是為 webpack 增加額外的功能。其中常使用到的一個 plugin 是 `UglifyJsPlugin`，它可以 minify 你的 JavaScript 程式碼。我們之後會介紹如何使用。
+Plugin，顧名思義就是替 webpack 增加額外的功能。其中常使用到的一個 plugin 是 `UglifyJsPlugin`，它可以 minify 你的 JavaScript 程式碼。我們之後會介紹如何使用。
 
 ## 你的 webpack 設定檔案
 
@@ -234,7 +234,7 @@ module.exports = {
 
 [範例三](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example3)
 
-想像一下，你使用 webpack 將你的檔案 bundle 在一起，然後你意識到 bundle 後的結果是 900KB。這裡有個問題，但是你可以透過 minify 你的 bundle 檔案來做改善。如果需要做到這一點，你需要使用一個我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
+想像一下，你使用 webpack 將你的檔案 bundle 在一起，然後你發現到 bundle 後的結果是 900KB。這裡有個問題，但是你可以透過 minify 你的 bundle 檔案來做改善。如果需要做到這一點，你需要使用一個我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
 
 此外，你需要在本機安裝 webpack 才能實際的去使用這個 plugin。
 
@@ -302,7 +302,7 @@ module.exports = {
 
 ## 一個更完整的範例
 
-此外，比起單單使用 JavaScript，使用 webpack 可以做的更多，你可以避免複製-貼上並透過 webpack 管理你的整個專案。
+此外，比起單單使用 JavaScript，使用 webpack 可以做的更多，你可以避免複製、貼上並透過 webpack 管理你的整個專案。
 
 在下面的部份中，我們要使用 webpack 建立一個非常簡單的網站。如果你想要跟著這個範例，建立一個像下方的目錄結構：
 
@@ -321,7 +321,7 @@ MyDirectory
 
 1. [介紹 Loader](#introducing-loaders) - 我們將會加入 loader，這可以讓我 bundle 加入的 CSS。
 2. [加入更多 Plugin](#adding-more-plugins) - 我們加入一個 plugin 來幫助我們建立和使用一個 HTML 檔案。
-3. [開發伺服器](#the-development-server) - 我們會將 webpack 設定檔案分為 `development 和 `production` 兩種版本，然後使用 webpack-dev-server 來查看我們的網站並啟用 HMR。
+3. [開發伺服器](#the-development-server) - 我們會將 webpack 設定檔案分為 `development` 和 `production` 兩種版本，然後使用 webpack-dev-server 來查看我們的網站並啟用 HMR。
 4. [開始撰寫程式](#start-coding) - 我們來實際寫一些 JavaScript。
 
 #### 介紹 Loader
@@ -403,7 +403,7 @@ You may need an appropriate loader to handle this file type.
 
 [範例五](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example5)
 
-現在我們的網站有基礎的樣式，但我們還需要實際的網站樣式。
+現在我們的網站有一些基礎了，但我們還需要實際的網站樣式。
 
 我們通過 [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin) 來做，它讓我們可以產生一個 HTML 頁面使用現有的。我們將使用一個目前現有的 `index.html`。
 
@@ -540,7 +540,7 @@ module.exports = {
 
 **修改**
 
-1. dev 設定檔省略了優化，當你不斷的 rebuild 時，他們不是必要的。所以不需要 `webpack.optimize` plugins。
+1. dev 設定檔省略了優化，當你不斷的 rebuild 時，他們是不必要的。所以不需要 `webpack.optimize` plugins。
 
 2. dev 設定檔需要對 dev server 做必要的設定，你可以到[這裡](https://webpack.github.io/docs/webpack-dev-server.html)了解更多。
 
@@ -588,7 +588,7 @@ module.exports = {
 
 我也加入一個全新的屬性在 dev 和 prod 設定檔：
 
-* [devtool](https://webpack.github.io/docs/configuration.html#devtool) - 這是協助 debug 的。基本上，當你得到一個錯誤，它會幫助你找到哪裡發生了錯誤，像是 chrome developer console。`source-map` 和 `cheap-eval-source-map` 之間的差異從文件說明有點難解釋。我可以肯定的是，`source-map` 是用於 production，`cheap-eval-source-map` 是用於 `development`。
+* [devtool](https://webpack.github.io/docs/configuration.html#devtool) - 這是協助 debug 的工具。基本上，當你得到一個錯誤，它會幫助你找到哪裡發生了錯誤，像是 chrome developer console。`source-map` 和 `cheap-eval-source-map` 之間的差異從文件說明有點難解釋。我可以肯定的是，`source-map` 是用於 `production`，`cheap-eval-source-map` 是用於 `development`。
 
 如果要執行 dev server，我們可以執行：
 
@@ -624,7 +624,7 @@ npm run dev
 
 你現在可以透過 `npm run dev`，並導到 `http://localhost:8080` 看到你的網站。
 
-**備註：** 當我正在測試這個部份時，我明白到當我修改 `index.html` 檔案時，伺服器不能 hot reload。 解決這個問題的方法在 [html-reload](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/html-reload)。這裡涵蓋了一些 webpack 設定檔選項的有用資訊，我推薦你可以看一下，但是我把它分開了，因為我覺得會因為這個不太重要的原因，這會延長這個教學課程。
+**備註：** 當我正在測試這個部份時，我了解到，當我修改 `index.html` 檔案時，伺服器不能 hot reload。解決這個問題的方法在 [html-reload](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/html-reload)。這裡涵蓋了一些 webpack 設定檔選項的有用資訊，我推薦你可以看一下，但是我把它分開了，因為我覺得會因為這個不太重要的原因，這會延長這個教學課程。
 
 #### 開始撰寫程式
 
@@ -672,7 +672,7 @@ if (module.hot) {
 
 然後我們就完成了！
 
-**備註：** 你可能已經注意到在你的 css 被使用之前有些 delay，或許事實上你討厭你的 css 在你的 JavaScript 檔案中。我留了另一個範例：[css-extract](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/css-extract)，描述如何將你的 CSS 放在不同的檔案。
+**備註：** 你可能已經注意到在你的 css 被使用之前有些 delay，或許事實上你討厭將你的 css 放入到 JavaScript 檔案中。我留了另一個範例：[css-extract](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/css-extract)，描述如何將你的 CSS 放在不同的檔案。
 
 ## 結論
 
@@ -680,7 +680,7 @@ if (module.hot) {
 
 首先 Webpack 最重要的它是一個模組整合工具。它是一個高度模組化的工具，事實上，它並不是被限於在 ES6 和 React。
 
-現在考慮到
+現在考慮到：
 
 * Part 2 將解決使用 Webpack 透過 Babel 將 ES6 轉換到 ES5。
 * Part 3 將解決使用 Webpack 和 React + Babel。

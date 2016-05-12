@@ -1,6 +1,6 @@
 # 範例五 - 加入更多的 Plugin
 
-現在我們的網站有基礎的樣式，但我們還需要實際的網站樣式。
+現在我們的網站有一些基礎了，但我們還需要實際的網站樣式。
 
 我們通過 [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin) 來做，它讓我們可以產生一個 HTML 頁面使用現有的。我們將使用一個目前現有的 `index.html`。
 
