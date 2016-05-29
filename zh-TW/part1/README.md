@@ -26,7 +26,7 @@
   * [Bundling](#bundling)
   * [Loaders](#loaders)
   * [Plugins](#plugins)
-* [你的設定檔案](#你的設定檔案)
+* [你的 webpack 設定檔案](#你的-webpack-設定檔案)
   * [一個簡單的範例](#一個簡單的範例)
   * [介紹 Plugins](#介紹-plugins)
 * [一個更完整的範例](#一個更完整的範例)
@@ -41,10 +41,10 @@
 
 因為每個 react 或 redux 教學課程都假設你知道什麼是 webpack。:cry:
 
-以下這些是更現實的原因，你可能需要使用 webpack。
+以下這些是更現實的原因，你可能會需要使用 webpack。
 
 你可以：
-  * Bundle 你的 js 檔案變成單一的檔案
+  * 將你的 js 檔案 Bundle 變成單一的檔案
   * 在你的前端程式碼中使用 npm packages
   * 撰寫 JavaScript ES6 或 ES7（需要透過 babel 來幫助）
   * Minify 或優化程式碼
@@ -55,13 +55,13 @@
 
 ##### 為什麼我需要這些功能？
 
-* Bundle JS 檔案 - 讓你可以撰寫模組化的 JavaScript，但是你不需要 inclue 每個 JavaScript `<script>` 的檔案（如果你需要多個 JavaScript 檔案可以透過設定來完成）。
+* Bundle JS 檔案 - 讓你可以撰寫模組化的 JavaScript，但是你不需要 include 每個 JavaScript `<script>` 的檔案（如果你需要多個 JavaScript 檔案可以透過設定來完成）。
 
 * 在你的前端程式碼中使用 npm packages - npm 在 internet 上是一個大型的 open source 生態系統。可以儲存或發佈你的程式碼，你可以到 npm 看一看，可能包含你想要的前端套件。
 
-* ES6 和 ES7 - 加入一些 JavaScript 的新功能，讓撰寫程式碼可以更強大更容易，[請看這裡的介紹](https://github.com/DrkSephy/es6-cheatsheet)。
+* ES6 和 ES7 - 加入一些 JavaScript 的新功能，讓撰寫程式碼可以更容易而且更強大，[請看這裡的介紹](https://github.com/DrkSephy/es6-cheatsheet)。
 
-* Minify 或優化程式碼 - 減少你所分配的檔案大小，好處包括像是更快的將頁面載入。
+* Minify 或優化程式碼 - 減少你的檔案大小，好處包括像是更快的將頁面載入。
 
 * 將 LESS 或 SCSS 轉換成 CSS - 使用更好的方式來撰寫 CSS，
 [如果你不熟悉的話，這裡有一些介紹](http://alistapart.com/article/why-sass)。
