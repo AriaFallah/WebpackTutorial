@@ -366,14 +366,14 @@ that eslint lets you inherit from other people's configs. I always like to use a
 To get started, we need to install eslint as well as airbnb's config
 
     npm install -g eslint
-    npm install --save-dev eslint eslint-config-airbnb
+    npm install --save-dev eslint eslint-config-airbnb-base
 
 Our starting config will look like:
 
 ```javascript
 // .eslintrc
 {
-  "extends": "airbnb/base" // 'airbnb/base' because 'airbnb' assumes usage of react
+  "extends": "airbnb-base" // 'airbnb-base' because 'airbnb' assumes usage of react
 }
 ```
 
@@ -383,7 +383,7 @@ all these rules mean, or tweak them to fit your preferences look [here](http://e
 ```javascript
 // .eslintrc
 {
-  "extends": "airbnb/base",
+  "extends": "airbnb-base",
   "rules": {
     "comma-dangle": 0,
     "no-console": 0,
@@ -405,7 +405,7 @@ and tweaking our config once more to add [babel specific rules](https://github.c
 ```javascript
 // .eslintrc
 {
-  "extends": "airbnb/base",
+  "extends": "airbnb-base",
   "parser": "babel-eslint",
   "rules": {
     "comma-dangle": 0,
