@@ -300,7 +300,7 @@ Going over the new properties one by one:
 This time, when you run `webpack`, now that you have the `UglifyJsPlugin` this could reduce your
 imaginary 900KB file to 200KB through processes such as removing all the whitespace.
 
-You can also add the [OccurenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)
+You can also add the [OccurrenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)
 
 > Assign the module and chunk ids by occurrence count. Ids that are used often get lower (shorter) ids. This makes ids predictable, reduces to total file size and is recommended.
 
@@ -323,7 +323,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin()
   ]
 }
 ```
@@ -387,7 +387,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin()
   ],
   module: {
     loaders: [{
@@ -470,7 +470,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
@@ -622,7 +622,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })

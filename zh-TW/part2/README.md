@@ -151,7 +151,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
@@ -260,7 +260,7 @@ plugins: [
       warnings: false,
     },
   }),
-  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.optimize.OccurrenceOrderPlugin(),
   new HtmlWebpackPlugin({
     template: './src/index.html'
   }),

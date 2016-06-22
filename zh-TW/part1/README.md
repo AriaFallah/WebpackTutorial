@@ -270,7 +270,7 @@ module.exports = {
 
 這個時候，當我們執行 `webpack`，`UglifyJsPlugin` 通過像是移除所有空白的處理，可以將你的檔案減少至 200KB。
 
-你也可以加入 [OccurenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)。
+你也可以加入 [OccurrenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)。
 
 > 透過發生次數分配 module 和 chunk 的 id。一些常用的 Id 取得較低（短）的 id。這使得 id 可以預測，減少檔案的大小和建議。
 
@@ -293,7 +293,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin()
   ]
 }
 ```
@@ -351,7 +351,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin()
   ],
   module: {
     loaders: [{
@@ -431,7 +431,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
@@ -572,7 +572,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
