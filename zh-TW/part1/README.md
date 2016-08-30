@@ -319,12 +319,12 @@ MyDirectory
 
 #### 內容
 
-1. [介紹 Loader](#introducing-loaders) - 我們將會加入 loader，這可以讓我 bundle 加入的 CSS。
-2. [加入更多 Plugin](#adding-more-plugins) - 我們加入一個 plugin 來幫助我們建立和使用一個 HTML 檔案。
-3. [開發伺服器](#the-development-server) - 我們會將 webpack 設定檔案分為 `development` 和 `production` 兩種版本，然後使用 webpack-dev-server 來查看我們的網站並啟用 HMR。
-4. [開始撰寫程式](#start-coding) - 我們來實際寫一些 JavaScript。
+1. [介紹 Loaders](#介紹-loaders) - 我們將會加入 loader，這可以讓我 bundle 加入的 CSS。
+2. [加入更多的 Plugins](#加入更多的-plugins) - 我們加入一個 plugin 來幫助我們建立和使用一個 HTML 檔案。
+3. [開發伺服器](#開發伺服器) - 我們會將 webpack 設定檔案分為 `development` 和 `production` 兩種版本，然後使用 webpack-dev-server 來查看我們的網站並啟用 HMR。
+4. [開始撰寫程式](#開始撰寫程式) - 我們來實際寫一些 JavaScript。
 
-#### 介紹 Loader
+#### 介紹 Loaders
 
 [範例四](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example4)
 
