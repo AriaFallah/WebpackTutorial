@@ -20,7 +20,7 @@
 
 ## Table of Contents
 
-* [왜 웹팩인가](#왜 웹팩인가)
+* [왜 웹팩인가](#why-webpack)
 * [기초](#the-basics)
   * [설치](#installation)
   * [번들링](#bundling)
@@ -37,7 +37,7 @@
 * [Conclusion](#conclusion)
 * [Closing Thoughts](#closing-thoughts)
 
-## 왜 웹팩인가
+## Why Webpack?
 
 Because every single react/redux tutorial assumes you know it :cry:
 
