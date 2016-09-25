@@ -1,12 +1,12 @@
 # Extra - Extract Your CSS
 
-예. 당신이 마쳤습니다만, production 에서는 css 파일이 javascript안에 들어가기를 원하지 않습니다. 이러한 목적을 위해서 우리는 
+Ok so now you've finished, but in production you don't want your CSS file to be inline with your
+javascript. For this purpose we'll be using the
 [Extract Text Plugin](https://github.com/webpack/extract-text-webpack-plugin).
-을 사용할 것입니다. 
 
     npm install --save-dev extract-text-webpack-plugin
 
-그리고 우리의 웹팩 production설정을 다음과 같이 바꿔줘야합니다 : 
+And we make the necessary changes to our webpack prod config:
 
 ```javascript
 var path = require('path')
@@ -42,11 +42,15 @@ module.exports = {
 }
 ```
 
-이러한 변화는 [official-repo](https://github.com/webpack/extract-text-webpack-plugin) 에서 유래했습니다. 어떻게 이것이 동작하는 지 알고 싶다면 한번 살펴보세요.
+These changes come straight from the README of the
+[official-repo](https://github.com/webpack/extract-text-webpack-plugin). Make sure to take a look if
+you want to know how it works more in depth.
 
-> 엔트리 청크에서 모든 require("style.css")들은 분리된 css 아웃풋 파일로 이동합니다. 그러니 당신의 스타일들은 더 이상 자바스크립트 안에 들어가지않고 css 번들파일안에 들어가게 됩니다. 만약 당신의 전체적인 스타일 시트 볼륨이 크다면, 이게 더 빠를 겁니다. 왜냐하면 스타일시트번들은 자바스크립트 번들과 병렬로 불러와지기 때문입니다.
+> It moves every require("style.css") in entry chunks into a separate css output file. So your styles are no longer inlined into the javascript, but separate in a css bundle file (styles.css). If your total stylesheet volume is big, it will be faster because the stylesheet bundle is loaded in parallel to the javascript bundle.
 
-이제 당신이 `npm run build`를 하면 설정을 사용하여 CSS는 분리된 파일로 들어가게 되고, 흥미롭게도 이미 `inde.html`에 포함(include)될 것입니다. 
+Now if you do an `npm run build` using this config your CSS will be in a separate file, and
+interestingly, already included in your `index.html`.
+
 ```html
 <html>
 <head>
