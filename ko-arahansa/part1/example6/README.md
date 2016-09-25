@@ -1,18 +1,15 @@
 # Example 6 - The Development Server
 
-Now we want to actually see our website in the browser, which requires a web server to serve our
-code. Conveniently, webpack comes with the `webpack-dev-server`, which you need to install both
-locally and globally
+이제 우리는 실제로 우리의 우리의 코드를 서비스하는 웹사이트를 브라우저로 보기를 원합니다. 편리하게 웹팩은 
+
+Now we want to actually see our website in the browser, which requires a web  `webpack-dev-server`를 가지고 있는데 이것은 로컬과 글로벌로 동시에 설치하는 것을 필요로 합니다. 
 
     npm install -g webpack-dev-server
     npm install --save-dev webpack-dev-server
 
-The dev server is an extremely useful resource for seeing what your website looks like in the browser, and more rapid development. By default you can visit it at `http://localhost:8080`. Unfortunately, features such as hot reloading don't work out of the box, and require some more configuration.
+웹팩개발서버는 브라우저로 당신의 웹사이트를 보는데 꽤 유용하며 빠른 개발을 하게 해줍니다. 기본적으로 당신은 `http://localhost:8080` 로 접속해서 볼 수가 있습니다. 불행하게도 핫모듈 대체같은 것은 꽤 훌륭하진 않아서 몇가지 추가 설정이 필요합니다. 
 
-This is a good point to split up our webpack config into one meant for development and one meant for
-production. Since we're keeping it simple in this tutorial, it won't be a huge difference, but it's
-an introduction to the extreme configurability of webpack. We'll call them `webpack.config.dev.js`
-and `webpack.config.prod.js`.
+왜냐하면 우리는 지금까지 이 튜토리얼에서 단순하게 해왔고, 지금까지 많은 차이가 없을 테지만, 웹팩 설정의 기초적인 설정이었습니다. 우리는 나눌 설정파일들을 `webpack.config.dev.js` 와 `webpack.config.prod.js` 로 부르겠습니다. 
 
 ```javascript
 // webpack.config.dev.js
@@ -51,23 +48,21 @@ module.exports = {
 ```
 
 
-**Changes**
+**변화들**
 
-1. The dev config omits the optimizations as they are unnecessary overhead when you are constantly
-rebuilding. So no `webpack.optimize` plugins.
+1. 웹팩 개발 서버는 다시 재building을 하는데 있어서 불필요한 최적화들을 생략합니다. 그래서  `webpack.optimize`플러그인들이 없습니다. 
 
-2. The dev config has the necessary configuration for the dev server, which you can read more about
+2. 개발설정은 개발서버를  위하여 필요하며 여기를 더 읽어보시면 될겁니다. 
 [here](https://webpack.github.io/docs/webpack-dev-server.html).
 
-Summarized:
+요약 Summarized:
 
-* entry: The two new entry points connect the server to the browser to allow for HMR.
+* entry : 두개의 새로운 엔트리포인트가 서버와 브라우저에 접속하여 HMR을 허용합니다. 
 * devServer
-  * contentBase: Where to serve files from
-  * hot: enable HMR
----
+  * contentBase: 제공할 파일들을 위치를 지정합니다. 
+  * hot: 핫모듈 대체를 활성화하합니다. 
 
-The prod config doesn't change much
+프로덕션 설정은 별로 바뀐 것이 없습니다
 
 ```javascript
 // webpack.config.prod.js
@@ -88,7 +83,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
@@ -102,28 +97,25 @@ module.exports = {
 }
 ```
 
-I've also added a brand new property to both the dev config and the prod config:
+여기서 개발설정와 프로덕션 설정에도 새로운 속성을 추가해줬습니다 : 
 
-* [devtool](https://webpack.github.io/docs/configuration.html#devtool) - This is a debugging aid.
-Basically, when you get a error, it'll help you see where you made the mistake something like the
-chrome developer console. As for the difference between `source-map` and `cheap-eval-source-map`
-it's a little hard to glean from the docs. What I can say definitively is that `source-map` is meant
-for production and has a lot of overhead, and that `cheap-eval-source-map` has less overhead and is
-meant for developing only.
+* [devtool](https://webpack.github.io/docs/configuration.html#devtool) - 디버깅 목적입니다.
+기본적으로 당신이 에러를 얻을 때, 이것은 당신이 크롬개발콘솔같이 어디서 실수를 만들어냈는지 보기 쉽게 해줍니다. 
+`source-map`과 `cheap-eval-source-map`의 차이는 문서를 찾기 어렵지만, 제가 분명히 말씀드릴 수 있는 것은 `source-map`은 프로덕션용이고 오버헤드가 많으며 `cheap-eval-source-map` 는 오버헤드가 적고 개발만을 위합니다.
 
-To run the dev server we have to run
+개발서버를 실행시키기 위해 다음과 같이 실행할 것입니다
 
     webpack-dev-server --config webpack.config.dev.js
 
-and to build the production code we have to run
+그리고 프로덕션 코드는 다음과 같이 실행할 것입니다. 
 
     webpack --config webpack.config.prod.js
 
 
-To make our lives a little easier we are now going to use `package.json` as a simple task runner so
-that we don't need to keep typing out either command.
+우리의 삶을 좀 더 쉽게 하기 위해 우리는 `package.json`에 간단한 태스크 실행기를 추가하여서 우리가 저런 명령들을 계속 타이핑 하지 않게 할 수 있습니다 .
 
-We add them `scripts` property of the config
+우리는 설정에 `scripts` 속성들을 추가할 것입니다
+
 
 ```javascript
 // package.json
@@ -137,18 +129,13 @@ We add them `scripts` property of the config
 }
 ```
 
-We can run these commands with
+그러면 다음과 같이 실행하면 됩니다
 
 ```
 npm run build
 npm run dev
 ```
 
-You can now view your beautiful website by running `npm run dev`, and navigating to
-`http://localhost:8080`.
+당신은 당신의 아름다움 웹사이트를 `npm run dev`를 실행시킴으로써 볼 수가 있습니다. 그리고 `http://localhost:8080`로 접속해보세요
 
-**Side Note:** while I was testing this portion I realized that the server would not hot reload
-when I modified the `index.html` file. The solution to this problem is over at
-[extra](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload). It's useful
-information that covers some more configuration options of webpack, which I recommend looking at,
-but I left it separate because I feel like it lengthens the tutorial for too trivial of a reason.
+**기타 노트**: 제가 이 부분을 테스트해보면서 `index.html`을 수정하였을때 서버가 핫리로드 되지 않았단 것을 알 수가 있었습니다. 이것에 대한 해결책으로 [html-reload](https://github.com/AriaFallah/WebpackTutorial/tree/master/ko-arahansa/part1/html-reload)를 보시면 됩니다. 이것은 웹팩의 좀 더 많은 설정을 살펴보는 유용한 정보지만 저는 이것을 이 튜토리얼과 분리하도록 하겠습니다. 

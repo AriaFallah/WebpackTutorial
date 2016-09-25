@@ -1,25 +1,21 @@
-# Extra - Make your HTML hot reload
+# 추가 - HTML을 핫리로드하게 만들기
 
-So while I was testing I realized that index.html would not hot reload! After searching for a bit
-I finally came across
-[this helpful answer](http://stackoverflow.com/questions/33183931/how-to-watch-index-html-using-webpack-dev-server-and-html-webpack-plugin),
-which will require
-[one more loader](https://github.com/webpack/raw-loader) to make our hacky solution come to life,
-and [one more plugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin) to prevent
-our hacky solution from going into production.
+제가 테스트를 할 동안에 저는 index.html이 hot reload되지 않는 다는 것을 꺠달았습니다. 잠시 검색한 후에 저는 최종적으로 여기들을 보았습니다. 
 
-Basically to make Webpack hot reload our HTML we need to make it part of our dependency tree by
-requiring it in one of our files. In order to do this, we will be using the `raw-loader` loader,
-which pulls our HTML into javascript as a string, but additionally will do exactly what we need:
-add the HTML to the dependency tree.
+[이것이 도움이 되는 답변이었고](http://stackoverflow.com/questions/33183931/how-to-watch-index-html-using-webpack-dev-server-and-html-webpack-plugin) 약간 hacky한 해결책을 이루기위해서, 
+[로더를 더 필요했습니다. ](https://github.com/webpack/raw-loader) 
 
-So lets add the loader to our dev config:
+그리고 이 솔루션이 프로덕션으로 가는 것을 방지하기 위해 [one more plugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin) 이 더 필요했습니다. 
 
-First we install with
+기본적으로 웹팩에서 HTML을 핫리로드하기 위해서, 우리는 그것을 우리의 우리가 require 하는 파일들 중 하나로, 의존성 계층의 하나로 만들어야 합니다. 이것은 HTML을 문자열로 자바스크립트로 불러오는데 이것이 우리가 필요로 하는 것입니다. 그리고 의존성 계층에 HTML을 더할 것입니다. 
+
+그러면 우리의 개발설정에 로더를 추가해봅시다 : 
+
+먼저 다음과 같이 치고
 
     npm install --save-dev raw-loader
 
-Then we can add it:
+다음과 같이 칩시다 :
 
 ```javascript
 // webpack.config.dev.js
@@ -59,6 +55,9 @@ module.exports = {
   }
 }
 ```
+여기서 당신이 `webpack`을 실행하고 `.html`로 끝나는 파일을 `require`하게 되어있다면 우리는 그것들에 `raw-loader`를 적용하여 HTML을 번들에 추가할 것입니다. 
+
+우리는 현재 우리가 비어있는 `index.js` 에서 해볼 것입니다. 
 
 This time, when you run `webpack`, if we `require` a file that ends in `.html`, then we will apply
 the `raw-loader` loader to it, which adds the HTML to the bundle.
@@ -70,19 +69,15 @@ Now in our currently empty `index.js` file we can do.
 require('./index.html')
 ```
 
-If you were to check now, hot reloading should be working, but also you should realize we just
-required `index.html` in our `index.js`, and then did absolutely nothing with it. We don't want
-to do that in production, which is why we will be using the handy dandy
-[DefinePlugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin).
+만약 우리가 검사해보면, 핫리로드는 동작할 것입니다. 하지만 당신은 `index.js`에 `index.html`을 require해야 한다는 것을 깨달을 것입니다. 그리고 이것은 실제 의미없는 일입니다.. (맞나?;;) 
 
-The plugin lets us create a global constant for our entire bundle, which we could name anything,
-such as `DONT_USE_IN_PRODUCTION: true`, but more practically, a popular choice that looks a bit more
-familiar is `process.env.NODE_ENV: JSON.stringify('production')`. Why JSON.stringify? Because
-according to the docs:
+우리는 프로덕션에서 이렇게 되기를 원하지 않으므로 이것이 우리가 [DefinePlugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin) 을 필요로 하는 이유입니다 .
 
-> If the value is a string it will be used as a code fragment.
+이 플러그인은 우리의 전체 번들에서 글로벌 상수를 만들게 해주고 이것의 이름을 어떤 것이든 할 수가 있습니다. `DONT_USE_IN_PRODUCTION: true` 이렇게도 말이죠... 그러나 좀 더 실용적으로 봤을 때, 좀더 친숙하여 인기있는 선택은 `process.env.NODE_ENV: JSON.stringify('production')` 입니다. 왜 JSON.stringfy이냐구요? 문서에 그렇게 나와있어서인듯합니다(?)
 
-Now that we know that, we'll be adding this plugin to our production config:
+> 만약 값이 문자열일 때 우리는 그것을 코드의 조각으로 사용될 것입니다.
+
+이제 우리는 우리의 프로덕션 설정에 이플러그인을 추가할 것입니다 : 
 
 ```javascript
 // webpack.config.prod.js
@@ -119,14 +114,12 @@ module.exports = {
   }
 }
 ```
+그리고 우리의 `index.js`에서 우리는 다음과같은 조건을 넣을 것입니다
 
-and in our `index.js` we will add a condition
 
 ```javascript
 if (process.env.NODE_ENV !== 'production') {
   require('./index.html')
 }
 ```
-
-Phew problem solved. In a production build, when we don't need the `index.html` as part of the
-dependency tree, we won't require `index.html`, which also means we don't need the `raw-loader`.
+휴, 문제가 해결되었군요.  production 빌드에서는 우리는 의존성 계층에 `index.html`을 필요로 하지 않기 때문에 `index.html`을 require하지 않을 것입니다. 이것은 또한 `raw-loader`를 필요로 하지 않는다는 것을 의미합니다. 
