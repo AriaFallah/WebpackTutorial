@@ -1,15 +1,14 @@
 # Example 5 - Adding More Plugins
 
-Now that we have the infrastructure for styling our website we need an actual page to style.
-We'll be doing this through the
-[html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin),
-which lets us generate an HTML page or use an existing one. We'll use an existing one `index.html`.
+이제 우리는 우리의 우리가 스타일할 실제 웹페이지에 스타일을 적용할 수 있을 기반을 가졌습니다. 
+우리는 이것을 [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin)을 통해서 할 것인데 이것은 HTML페이지를 생성하거나 이미 존재하는 페이지를 사용합니다. 우리는 이미 존재하는 `index.html`을 사용하고자 합니다. 
 
-First we install the plugin:
+먼저 플러그인을 설치해보도록 하겠습니다 : 
 
     npm install --save-dev html-webpack-plugin@2
 
-Then we can add it to our config
+
+그리고 우리는 우리의 설정파일에 추가해보도록 하겠습니다. 
 
 ```javascript
 // webpack.config.js
@@ -29,7 +28,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
@@ -43,12 +42,10 @@ module.exports = {
 }
 ```
 
-This time, when you run `webpack`, because we specified an `HtmlWebpackPlugin` with a template of
-`./src/index.html`, it will generate a file called `index.html` in our `dist` folder with the
-contents of `./src/index.html`
+여기서 우리는 `webpack`을 실행하면, 우리가 `HtmlWebpackPlugin`을 `./src/index.html`에 적용해뒀기 때문에, 이것은 `dist`폴더에 `./src/index.html`를 기반으로 하여서 `index.html` 을 생성할 것입니다. 
 
-There's no point in using `index.html` as a template if it's empty. Now would be a good time to
-actually populate it.
+(There's no point in using `index.html` as a template if it's empty.)
+이제 실제로 실제로 index.html을 만들어봅시다.
 
 ```html
 <html>
@@ -59,15 +56,13 @@ actually populate it.
   <h1>Very Website</h1>
   <section id="color"></section>
   <button id="button">Such Button</button>
-
 </body>
 </html>
 ```
 
-Note that we aren't putting a `<script>` tag into our HTML for `bundle.js`. The plugin will actually
-automatically do that for you. If you do put in the script tag, you'll end up loading your same code twice.
+여기서 우리는 `bundle.js` 를 위한 `<script>`태그를 HTML 에 적지 않았다는 것을 알아둡시다. 이 플러그인은 실제로 당신을 위하여 이 일(번들을 넣어주는 일)을 해줍니다. 만약 당신이 script태그를 적는다면 당신은 같은 코드를 두번 불러오게 될 것입니다. 
 
-and while we're at it let's add some basic styling in `styles.css`
+그리고 기초 스타일을 `styles.css`에 적어두도록 하겠습니다. 
 
 ```css
 h1 {
@@ -91,21 +86,16 @@ button {
 }
 ```
 
-#### Side note
 
-I feel like I should mention that the `html-webpack-plugin` should
-be used sparingly. To me, webpack should generate HTML files if you just have a really simple
-one to bootstrap a SPA. So while it was useful for the learning experience, which required only
-one HTML file, I wouldn't recommend it to generate 12 HTML files. This doesn't mean you can't use
-html files with something like angular directives, which require HTML template files. In that case
-you could do something like:
+#### 기타 노트
+저는 `html-webpack-plugin`가 꽤 덜 사용되어져야 한다고 말하고 싶습니다. 저에게는 웹팩이 정말 간단하게 SPA를 만들려고 부트스트랩할 것을 가지고 있을 때나 HTML파일들을 만들었습니다. 하나의 HTML파일을을 만들어내는 경험으로는 유용하지만 12개의 HTML파일들을 새성하는 것을 추천하지는 않습니다. 이것은 당신이 angular디렉티브나같은 것들을 사용할 수 없다는 뜻이 아닙니다. 이러한 경우(여러개의  HTML파일 생성) 당신은 다음과 같이 할 수 있을 것입니다 : 
 
 ```javascript
 // ...directive stuff
 template: require('./templates/button.html') // using raw loader
 ```
 
-Instead, it means that you should not be doing something like this:
+대신에 , 당신은 이렇게 할 수도 있을 것입니다 : 
 
 ```javascript
 new HtmlWebpackPlugin
@@ -118,4 +108,4 @@ new HtmlWebpackPlugin({
 })
 ```
 
-Anyone with other experience feel free to correct me if I'm wrong.
+내가 틀렸다면 누구든지 자신의 경험을 얘기해주고 저를 교정해주세요~

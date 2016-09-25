@@ -1,9 +1,9 @@
-Earlier in the tutorial I mentioned [loaders](#loaders). These will help us require non-js files in
-our code. In this case, the only loader we will need is the css loader. First we need to install the loader:
+이 튜토리얼의 앞에서 [로더들](#loaders)을 얘기했듯이, 이것들은 우리에게 js파일이 아닌것을 우리의 코드에 require하게 해줍니다. 이러한 경우 우리는 style loader 와 css loader를 필요로 합니다. 먼저 이 로더들을 설치하도록 하겠습니다:
 
     npm install --save-dev style-loader css-loader
 
-Now that it's installed we can tweak our config to include the css loader:
+이제 이것들은 설치되었고 설정을 좀 더 바꿔서 css loader 를 추가해줘보도록 하겠습니다. : 
+
 
 ```javascript
 // webpack.config.js
@@ -22,7 +22,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurrenceOrderPlugin()
   ],
   module: {
     loaders: [{
@@ -33,18 +33,16 @@ module.exports = {
 }
 ```
 
-Going over the new properties one by one:
+새로운 속성들을 하나하나 알아보도록 하겠습니다 : 
 
-* [module](http://webpack.github.io/docs/configuration.html#module) - Options affecting your files
-  * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - An array of loaders that we specify for our application
-    * test - A regular expression to match the loader with a file
-    * loaders - Which loaders to use for files that match the test
+* [모듈](http://webpack.github.io/docs/configuration.html#module) - 당신의 파일들에 영향을 주는 옵션들 입니다. 
+  * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - 어플리케이션을 위해 적어줄 로더들의 배열입니다. 
+    * test - 로더가 적용될 파일을 매칭하기 위한 정규식입니다. 
+    * loaders - test에서 매칭된 파일에 어떤 로더를 사용할지 결정합니다. 
 
-This time when you run `webpack`, if we `require` a file that ends in `.css`, then we will apply
-the `style` and `css` loaders to it, which adds the CSS to the bundle.
+여기서 우리가 `webpack`을 실행할 때, 만약 당신이  `.css`로 끝나는 파일들을 `require` 했다면 우리는 이것들에  `style`과 `css` 로더를 적용하고 번들에 해당 css를 추가합니다.
 
-If we didn't have the loaders,
-then we would get an error like this:
+만약 우리가 로더들을 가지고 있지 않았다면, 우리는 다음과 같은 에러를 얻을 것입니다 : 
 
 ```
 ERROR in ./test.css
@@ -53,13 +51,13 @@ Line 1: Unexpected token {
 You may need an appropriate loader to handle this file type.
 ```
 
-**Optional**
+**Optional(옵션)**
 
-If you want to use SCSS instead of CSS you would need to run:
+만약 당신이 CSS대신에 SCSS 를 사용하기를 원핟다면 다음과 같이 실행하세요 : 
 
     npm install --save-dev sass-loader node-sass webpack
 
-and instead your loader would be written as
+그리고 로더 부분을 다음과 같이 적으세요.. 
 
 ```javascript
 {
@@ -68,6 +66,6 @@ and instead your loader would be written as
 }
 ```
 
-The process is similar for LESS.
+LESS도 비슷합니다. 
 
-An important aspect to recognize is that there is an *order* to which these loaders need to be specified. In the above example, the `sass` loader is first applied to your `.scss` files, then the `css` loader, and finally the `style` loader. As you can see, the pattern is that these loaders are applied from right to left.
+로더를 인식하는 점에서 중요한 점은 이러한 로더들이 적혀지는 *순서*입니다. 위의 예제에서 `sass`로더가 제일 처음 당신의 `.scss` 파일들에 적용이 되고 그리고 `css`로더가 적용이 되며 마지막으로 `style`로더가 적용이 되게 됩니다. 당신이 볼 수 있듯이, 패턴이 적용되는 순서는 오른쪽에서 왼쪽입니다. 
