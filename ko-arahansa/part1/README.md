@@ -103,8 +103,6 @@ If you want to use a config file with webpack with a custom name:
 
 번들링  [예제 1](https://github.com/AriaFallah/WebpackTutorial/tree/master/ko-arahansa/part1/example1)
 
-![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
-
 웹팩은 공식적으로 모듈 번들러로 얘기됩니다.만약 당신이 좀 더 모듈과 모듈번들링에 대해서 깊이 있는 정보를 원한다면 여기 두개의 무척 좋은 글을 읽어보세요 
 [here](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
 and [here](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2).
