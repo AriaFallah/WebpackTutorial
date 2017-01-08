@@ -222,19 +222,19 @@ module.exports = {
 
 我們一個一個複習這些屬性：
 
-* [entry](https://webpack.github.io/docs/configuration.html#entry) - 這是你的 bundle 的進入點，這是我們在討論 [bundling](#bundling) 的部分。`entry` 是一個陣列，根據你的需求，webpack 允許可以有多個進入點，來產生多個 bundle 檔案。
+* [entry](https://webpack.github.io/docs/configuration.html#entry) - 這是你的 bundle 的進入點，我們曾在前面 [bundling](#bundling) 的部分討論過它。`entry` 是一個陣列，根據你的需求，webpack 允許可以有多個進入點，來產生多個 bundle 檔案。
 
-* [output](https://webpack.github.io/docs/configuration.html#output) - 由 webpack 規定的形式輸出。
-  * [path](https://webpack.github.io/docs/configuration.html#output-path) - bundle 檔案位置。
+* [output](https://webpack.github.io/docs/configuration.html#output) - 宣告 webpack 輸出的形式。
+  * [path](https://webpack.github.io/docs/configuration.html#output-path) - 存放 bundle 檔案的位置。
   * [filename](https://webpack.github.io/docs/configuration.html#output-filename) - bundle 檔案名稱。
 
-當你執行 `webpack`，會在你的 dist 資料夾建立一個叫做 `bundle.js` 的檔案。
+根據上面的設定，當你執行 `webpack`，會在你的 dist 資料夾建立一個叫做 `bundle.js` 的檔案。
 
 ### 介紹 Plugins
 
 [範例三](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example3)
 
-想像一下，你使用 webpack 將你的檔案 bundle 在一起，然後你發現到 bundle 後的結果是 900KB。這裡有個問題，但是你可以透過 minify 你的 bundle 檔案來做改善。如果需要做到這一點，你需要使用一個我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
+想像一下，你使用 webpack 將你的檔案 bundle 在一起，然後你發現到 bundle 後的結果是 900KB。這是個問題，但是你可以透過 minify 你的 bundle 檔案來做改善。要做到這一點，你需要使用一個我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
 
 此外，你需要在本機安裝 webpack 才能實際的去使用這個 plugin。
 
@@ -265,14 +265,14 @@ module.exports = {
 ```
 我們一個一個複習這些屬性：
 
-* plugins - 一個可以儲存你的 plugin 的陣列。
-  * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify 你的程式碼，並顯示警告訊息。
+* plugins - 一個含有你的 plugins 的陣列。
+  * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify 你的程式碼，並不顯示警告訊息。
 
-這個時候，當我們執行 `webpack`，`UglifyJsPlugin` 通過像是移除所有空白的處理，可以將你的檔案減少至 200KB。
+如此一來，當我們執行 `webpack`，`UglifyJsPlugin` 透過像是移除所有空白等處理，可以將你的檔案減少至 200KB。
 
 你也可以加入 [OccurrenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)。
 
-> 透過發生次數分配 module 和 chunk 的 id。一些常用的 Id 取得較低（短）的 id。這使得 id 可以預測，減少檔案的大小和建議。
+> 根據調用次數指定 module 和 chunk 的 id。越常用的 id 較小（短）。這使得 id 可以預測，可以減少檔案的大小，並是推薦的方法。
 
 老實說，我不太確定底層的機制是如何工作的，但在根據目前 [webpack2 beta 的預設情況下](https://gist.github.com/sokra/27b24881210b56bbaff7)，所以我將它包含在內。
 
@@ -298,7 +298,7 @@ module.exports = {
 }
 ```
 
-所以現在我們寫了一個設定檔讓我們可以 minify 和 bundle 我們的 JavaScript。這個 bundle 檔案可以被複製並貼到其他的專案目錄中，放入 `<script>` 就可以使用。如果*只有 JavaScript*，而且你只在乎關於 webpack 基本的使用，你可以直接跳到[結論](#conclusion)。
+所以現在我們寫了一個設定檔讓我們可以 minify 和 bundle 我們的 JavaScript。這個 bundle 檔案可以被複製並貼到其他的專案目錄中，放入 `<script>` 就可以使用。如果你只需要瞭解怎麼用 webpack 處理 *只有 JavaScript* 的基本情況，你可以直接跳到[結論](#conclusion)。
 
 ## 一個更完整的範例
 
@@ -362,14 +362,14 @@ module.exports = {
 }
 ```
 
-我們一個一個複習這些屬性：
+我們一個一個查看這些新屬性：
 
 * [module](http://webpack.github.io/docs/configuration.html#module) - 設定你的檔案選項。
   * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - 我們為應用程式所指定的一個 loader 陣列。
-    * test - 一個正規表達式來匹配 loader 的檔案。
-    * loaders - loader 用於這些匹配 test （正規表達式）的檔案。
+    * test - 一個正規表達式，用來找出要套用 loader 的檔案。
+    * loaders - 指定哪些 loader 是用於匹配前述 test （正規表達式）的檔案。
 
-這個時候你執行 `webpack`，如果你 `require` 的檔案結尾是 `.css`，然會我們會使用 `style` 和 `css` loader，將 CSS 加入到 bundle。
+這個時候你執行 `webpack`，如果你 `require` 的檔案結尾是 `.css`，我們會使用 `style` 和 `css` loader，將 CSS 加入到 bundle。
 
 如果我們沒有 loaders，我們會得到像是這樣的錯誤：
 
@@ -403,9 +403,9 @@ You may need an appropriate loader to handle this file type.
 
 [範例五](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example5)
 
-現在我們的網站有一些基礎了，但我們還需要實際的網站樣式。
+現在我們的網站已經有了樣式的基本架構，我們還需要一個實際的頁面來套用這些樣式。
 
-我們通過 [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin) 來做，它讓我們可以產生一個 HTML 頁面使用現有的。我們將使用一個目前現有的 `index.html`。
+我們透過 [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin) 來做，它讓我們可以產生一個 HTML 頁面，或是使用現有的頁面。我們將使用一個目前現有的 `index.html`。
 
 首先我們需要安裝 plugin：
 
@@ -445,9 +445,9 @@ module.exports = {
 }
 ```
 
-這個時候當你執行 `webpack`，因為我們指定一個 `HtmlWebpackPlugin` 和 `./src/index.html` 的 template，它會產生一個檔案叫做 `index.html` 在我們的 `dist` 資料夾，而網頁的內容是 `./src/index.html`。
+這個時候當你執行 `webpack`，因為我們指定了一個搭配 `./src/index.html` template 的 `HtmlWebpackPlugin` ，它會產生一個檔案叫做 `index.html` 在我們的 `dist` 資料夾，而網頁的內容是 `./src/index.html`。
 
-如果 `index.html` 作為 template 是空的也沒用，現在是個好時機我們可以填入一些元素進去。
+`index.html` 作為 template 如果是空的就沒意義了，現在是個好時機我們可以填入一些元素進去。
 
 ```html
 <html>
@@ -492,14 +492,14 @@ button {
 
 [範例六](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example6)
 
-現在我們想要實際在瀏覽器看到我們的網站，需要一個 web 伺服器來服務我們的程式碼。webpack 自帶了方便的 `webpack-dev-server`，你需要在本機和全域安裝。
+現在我們想要實際在瀏覽器看到我們的網站，這就需要一個 web 伺服器來跑我們的程式碼。webpack 自帶了方便的 `webpack-dev-server`，你需要在本機和全域安裝。
 
     npm install -g webpack-dev-server
     npm install --save-dev webpack-dev-server
 
 dev server 可以在瀏覽器看到你的網站外觀以及可以更快速的開發，是一個相當有用的資源。預設情況下你可以拜訪 `http://localhost:8080`。不幸的是，像是 hot reloading 的功能並不是內建的，還需要一些其他的設定。
 
-這是 webpack 設定檔一個很棒的分離點，意思是說你可以將他分成用於「development」以及「production」。因為我們必須在這個教學課程中保持簡單的方式，所不會有很大的改變，但是會介紹 webpack 很棒的可設置性。我們稱他們為 `webpack.config.dev.js` 和 `webpack.config.prod.js`。
+這裡是 webpack 設定檔一個很棒的分離點，你可以將它分成用於「development」以及用於「production」。因為我們在這個教學課程中將盡量保持簡單，所以兩個設定之間不會有非常大的不同，不過這是 webpack 極度可設置性的一個入門。我們將兩個設定檔命名為 `webpack.config.dev.js` 和 `webpack.config.prod.js`。
 
 ```javascript
 // webpack.config.dev.js
@@ -538,9 +538,9 @@ module.exports = {
 ```
 
 
-**修改**
+**改變**
 
-1. dev 設定檔省略了優化，當你不斷的 rebuild 時，他們是不必要的。所以不需要 `webpack.optimize` plugins。
+1. dev 設定檔省略了優化，因為當你不斷的 rebuild 時，它們是不必要的。所以拿掉了 `webpack.optimize` plugins。
 
 2. dev 設定檔需要對 dev server 做必要的設定，你可以到[這裡](https://webpack.github.io/docs/webpack-dev-server.html)了解更多。
 
