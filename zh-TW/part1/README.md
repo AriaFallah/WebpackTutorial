@@ -88,7 +88,7 @@
 
     webpack
 
-如果你想要在 webpack 每次 build 的時候查看改變的檔案：
+如果你想要 webpack 在你每次變更儲存檔案後自動執行 build ：
 
     webpack --watch
 
