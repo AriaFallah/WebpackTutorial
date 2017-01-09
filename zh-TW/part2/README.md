@@ -32,7 +32,7 @@
 
 ## Babel
 
-如果你想要有更深入的說明，和更細微的設定 babel，請參考這個[手冊][1]。我在這裡了解了一些基本的設定。
+如果你想要有更深入的說明，和更細微的設定 babel，請參考這個[手冊][1]。我在這裡說明的是一些基本的設定。
 
 ### Babel 是做什麼用的？
 
@@ -70,23 +70,22 @@ var square = function square(n) {
 
 你只需要指定一個 `presets` 選項，下面是描述的摘錄：
 
-> JavaScript 也有一些提案需要 TC39（背後的 ECMAScript 標準為員會）的處理，才能將這些納入到標準中。
+> JavaScript 也有一些可能成為標準的提案，正在 TC39（ECMAScript 標準背後的委員會）的程序中。
 
 > 這個程序被分為 5 個 statge（0-4）。如果提案獲得更多的同意，通過各個 stage，就很容易被接受納入標準中，最後在 stage 4 中被接受納入標準。
 
 > 注意，這裡沒有 stage-4 的 preset，它只是作為的 `es2015` 的 preset。
 > 以上。
 
-總結以上，`presets` 是將 `plugin` bundle，然後將 feature 加入到你撰寫的程式碼。`es2015` 加入的 feature 肯定會在 ES6 的官方網站被釋出，presets 有 0-3 的 stage 提案，都是未來 JavaScript 的規範，只是現在還在草案階段。
-如果使用的 stage 越低，你使用的這些功能會有更高的風險被棄用。
+總結以上，`presets` 就是一些打包了 `plugins` 的 bundles，它們將一些功能加入到你在撰寫的程式碼。`es2015` 中的功能，肯定會出現在 ES6 的官方版本，而 stages 0-3 的 presets ，則是未來 JavaScript 規範的一些提案，現在還在草案階段。如果選擇的 stage 越低，你使用的 features 之後將不支援的風險越高。
 
-從我的經驗來說，我需要最低的是 `stage-2`，讓我可以使用叫做 [object spread](https://github.com/sebmarkbage/ecmascript-rest-spread)。你可以在[這裡](https://github.com/tc39/ecma262)看看其他的提案，然後決定你要使用哪個 stage。
+從我的經驗來說，我至少需要 `stage-2`，讓我可以使用一個叫作 [object spread](https://github.com/sebmarkbage/ecmascript-rest-spread) 的東西。你可以在[這裡](https://github.com/tc39/ecma262)看看其他的提案，然後決定你要使用哪個 stage。
 
 總之，如果要使用到這些 presets，我們需要安裝它們：
 
     npm install --save-dev babel-preset-es2015 babel-preset-stage-2
 
-而實際上這些你都需要。
+而實際上你全部需要做的事情就只有這個。
 
 ## Webpack
 
@@ -167,7 +166,7 @@ module.exports = {
 
 ### 一個新的 Loader
 
-如果要將我們的程式碼轉換成 ES5 需要透過執行新的 loader 叫做 `babel-loader`，它和 `babel-core` 有依賴關係。這個 loader 使用了我們的 `.babelrc` 設定檔來了解和轉換我們的程式碼。
+如果要將我們的程式碼轉換成 ES5，我們需要透過執行一個新的 loader 叫作 `babel-loader`，它和 `babel-core` 有依賴關係。這個 loader 使用了我們的 `.babelrc` 設定檔來了解和轉換我們的程式碼。
 
     npm install --save-dev babel-loader babel-core
 
@@ -189,17 +188,17 @@ module: {
 }
 ```
 
-一件**非常重要**的事情，請注意 `include` 屬性的用法。當我們執行 `webpack` 時，因為我們在 `test` 有設定 `/.js$/`，webpack 會在你的 dependency tree 每個單一的 `js` 檔案嘗試執行 babel loader。
+一件**非常重要**的事情，請注意 `include` 屬性的用法。當我們執行 `webpack` 時，因為我們在 `test` 有設定 `/.js$/`，webpack 會在你的 dependency tree 每一個 `js` 檔案嘗試執行 babel loader。
 
-你可以看出這個問題嗎？要是我 `require('bluebird')`，或是任何其他大型的 `npm` package？它會藉由 `babel-loader` 嘗試執行 **node_modules**，透過這樣的極端的方式，會延長你的 build 過程。
+你可以看出這有什麼問題嗎？要是我 `require('bluebird')`，或是任何其他大型的 `npm` package 會怎樣？它會藉由 `babel-loader` 嘗試執行整個 **node_modules**，這樣大量的執行會延長你的 build 過程。
 
-`include` 可以防止這個這個問題，loader 只適用在你所指定 `src` 目錄下的 `.js` 檔案。
+`include` 可以防止這個這個問題，loader 只會套用在你所指定 `src` 目錄下的 `.js` 檔案。
 
-另一個方式，你可以將 `include: path.join(__dirname, 'src')` 改變成 `exclude: /node_modules/`，除了 `node_modules` 目錄外其他都包括。更多資訊可以在[這裡](https://webpack.github.io/docs/configuration.html#module-loaders)找到。
+另一個方式是，你可以將 `include: path.join(__dirname, 'src')` 改變成 `exclude: /node_modules/`，這意思是除了 `node_modules` 目錄外其他都包括。更多資訊可以在[這裡](https://webpack.github.io/docs/configuration.html#module-loaders)找到。
 
 ## 我們完成了？
 
-老實說，我覺得這個教學過程有點太長了，看起來我似乎忘了加入 babel 實際上不是這麼的重要。我們現在可以使用 ES6 語法更新先前在 `index.js` 的程式碼：
+老實說，我以為這個教學會更長，但看起來我忘記了「加入 babel」這件事實際上非常簡單。現在我們可以使用 ES6 語法來更新先前 `index.js` 的程式碼了：
 
 ```javascript
 // index.js
@@ -235,17 +234,17 @@ import Please from 'pleasejs'
 
 ## 額外收穫
 
-由於實際上我並沒有這麼長的時間可以去涵蓋這兩個主題，但這些相當的重要和有用的。
+既然前面沒花太多時間，我將再討論兩個很重要且有用的主題。
 
-### Production 環境變數以及 Webpack 和 Babel
+### 在 Webpack 和 Babel 設定 production 環境變數
 
 #### Webpack
 
 如果我們不想要在 production 執行部分的程式碼，我們可以使用方便的 [DefinePlugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin)。
 
-這個 plugin 讓我們可以為我們整個 bundle 建立全域的常數，我們可以命名任何常數，像是：`DONT_USE_IN_PRODUCTION: true`，但是大多普遍的方式會是 `process.env.NODE_ENV: JSON.stringify('production')`，這會是更好的選擇。這是因為許多程式可以識別 `process.env.NODE_ENV`，並使用額外的功能和優化。
+這個 plugin 讓我們可以為我們整個 bundle 建立全域的常數，我們可以命名任何常數，像是：`DONT_USE_IN_PRODUCTION: true`，但是大多普遍的方式會是 `process.env.NODE_ENV: JSON.stringify('production')`，這會是更好的選擇。這是因為許多程式可以識別並根據 `process.env.NODE_ENV` 來使用額外的功能和優化你的程式碼。
 
-為什麼要 `JSON.stringify`？根據文件的解釋：
+為什麼要 `JSON.stringify`？因為根據文件的解釋：
 
 > 如果值是一個字串，它會被作為一個程式碼片段。
 
@@ -291,16 +290,16 @@ if (process.env.NODE_ENV !== 'production') {
 
 #### Babel
 
-定義我們的 production 變數 `process.env.NODE_ENV` 有其他額外的好處。
+將我們的 production 變數定義為 `process.env.NODE_ENV` 有其他額外的好處。
 
 [根據手冊][1]
 
-> 目前環境會使用 process.env.BABEL_ENV。當 BABEL_ENV 不可使用時，
-它會退回到 NODE_ENV，如果它是不可用的，預設將為「development」。
+> 「目前環境」是使用 process.env.BABEL_ENV。當找不到 BABEL_ENV 時，
+它會退回去找 NODE_ENV，如果也找不到 NODE_ENV，目前環境將設為預設值 "development"。
 
 這個意思說 babel 環境會 match 到我們的 webpack 環境。
 
-我們可以利用這一點，調整我們的 `.babelrc`，透過加入 `env` 讓我們有開發環境的設定：
+我們可以利用這一點，只要透過在我們的 `.babelrc` 加入 `env` 設定，就可以使用開發環境：
 
 ```javascript
 {
@@ -334,7 +333,7 @@ if (process.env.NODE_ENV !== 'production') {
 ```javascript
 // .eslintrc
 {
-  "extends": "airbnb/base" // 'airbnb/base' 因為 'airbnb' 假設使用 react
+  "extends": "airbnb/base" //使用 'airbnb/base' ，因為 'airbnb' 是假設使用 react
 }
 ```
 
@@ -404,11 +403,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 所以現在我們可以輕鬆的撰寫 ES6 程式碼，此外，也讓我們了解到如何撰寫設定檔 :tada:！
 
-然而，你可以從頭到尾撰寫它，但你不一定要怎麼做。為了方便，[我有建立一個 repository](https://github.com/AriaFallah/minimal-babel-starter)，基於這個教學，你可以將它 clone 回來作為開始。
+然而，你有能力從頭開始撰寫它，並不表示你一定要這麼做。為了方便，[我有建立一個 repository](https://github.com/AriaFallah/minimal-babel-starter) 讓你 clone 下來開始，這是根據這份教學建立的基本檔案。
 
 對未來的期望：
 
-* Part 3 將會加入 React 到圖片中
+* Part 3 將會加入 React
 * Part 4 將會涵蓋更多進階的 webpack 功能
 
 感謝你的閱讀！
