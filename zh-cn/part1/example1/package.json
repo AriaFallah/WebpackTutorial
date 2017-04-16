@@ -1,0 +1,21 @@
+{
+  "name": "example1",
+  "version": "1.0.0",
+  "description": "![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fetch": "^1.0.0",
+    "react": "^0.14.7"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.14"
+  }
+}
