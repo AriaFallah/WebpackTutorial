@@ -56,11 +56,11 @@ var square = function square(n) {
 
 ### 设定 Babel
 
-另一个工具、另一个设定档桉。这个时候我们有个档桉叫做：
+另一个工具、另一个设定文件。这个时候我们有个文件叫做：
 
     .babelrc
 
-感谢啊！`.babelrc` 档桉只有一行程式码而已。
+感谢啊！`.babelrc` 文件只有一行程式码而已。
 
 ```javascript
 {
@@ -188,11 +188,11 @@ module: {
 }
 ```
 
-一件**非常重要**的事情，请注意 `include` 属性的用法。当我们执行 `webpack` 时，因为我们在 `test` 有设定 `/.js$/`，webpack 会在你的 dependency tree 每一个 `js` 档桉尝试执行 babel loader。
+一件**非常重要**的事情，请注意 `include` 属性的用法。当我们执行 `webpack` 时，因为我们在 `test` 有设定 `/.js$/`，webpack 会在你的 dependency tree 每一个 `js` 文件尝试执行 babel loader。
 
 你可以看出这有什麽问题吗？要是我 `require('bluebird')`，或是任何其他大型的 `npm` package 会怎样？它会藉由 `babel-loader` 尝试执行整个 **node_modules**，这样大量的执行会延长你的 build 过程。
 
-`include` 可以防止这个这个问题，loader 只会套用在你所指定 `src` 目录下的 `.js` 档桉。
+`include` 可以防止这个这个问题，loader 只会套用在你所指定 `src` 目录下的 `.js` 文件。
 
 另一个方式是，你可以将 `include: path.join(__dirname, 'src')` 改变成 `exclude: /node_modules/`，这意思是除了 `node_modules` 目录外其他都包括。更多资讯可以在[这裡](https://webpack.github.io/docs/configuration.html#module-loaders)找到。
 
@@ -317,7 +317,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 ### 加入 Lint
 
-如果你看过任何关于 Webpack/React 专桉的 seed/starter，你可能看过一个档桉叫做 `.eslintrc`。如果你不是使用 IDE，而是使用像是 Atom、Sublime、Ecmas、Vim 等等，eslint 提供语法和风格的检查，指出你的错误。此外，即使你正在使用 IDE，它可以提供更多功能，并确保整个专桉程式码风格统一。
+如果你看过任何关于 Webpack/React 专桉的 seed/starter，你可能看过一个文件叫做 `.eslintrc`。如果你不是使用 IDE，而是使用像是 Atom、Sublime、Ecmas、Vim 等等，eslint 提供语法和风格的检查，指出你的错误。此外，即使你正在使用 IDE，它可以提供更多功能，并确保整个专桉程式码风格统一。
 
 请注意，如果你相要在编辑器内使用它，你需要安装一个套件，例如我使用 Atom [linter-eslint](https://github.com/AtomLinter/linter-eslint)。
 
@@ -384,7 +384,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 
-最后，在我们的 package.json 档桉中的 scripts 加入 lint 会是个好主意。
+最后，在我们的 package.json 文件中的 scripts 加入 lint 会是个好主意。
 
 ```javascript
 // package.json
@@ -403,7 +403,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 所以现在我们可以轻鬆的撰写 ES6 程式码，此外，也让我们了解到如何撰写设定档 :tada:！
 
-然而，你有能力从头开始撰写它，并不表示你一定要这麽做。为了方便，[我有建立一个 repository](https://github.com/AriaFallah/minimal-babel-starter) 让你 clone 下来开始，这是根据这份教学建立的基本档桉。
+然而，你有能力从头开始撰写它，并不表示你一定要这麽做。为了方便，[我有建立一个 repository](https://github.com/AriaFallah/minimal-babel-starter) 让你 clone 下来开始，这是根据这份教学建立的基本文件。
 
 对未来的期望：
 
