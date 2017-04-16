@@ -56,7 +56,7 @@ module.exports = {
 
 * entry: 两个新的进入点将伺服器连结到浏览器，方便 HMR。
 * devServer
-  * contentBase: 服务的档桉来自哪裡。
+  * contentBase: 服务的文件来自哪裡。
   * hot: 启用 HMR。
 ---
 
@@ -133,4 +133,4 @@ npm run dev
 
 你现在可以透过 `npm run dev`，并导到 `http://localhost:8080` 看到你的网站。
 
-**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 档桉时，伺服器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload)。这裡涵盖了一些 webpack 设定档选项的有用资讯，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。
+**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 文件时，伺服器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload)。这裡涵盖了一些 webpack 设定档选项的有用资讯，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。

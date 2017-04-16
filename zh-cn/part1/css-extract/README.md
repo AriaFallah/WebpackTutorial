@@ -1,10 +1,10 @@
 # 番外 - 提取你的 CSS
 
-好了，你现在已经完成了，但是在 production 你不想要将你的 CSS 档桉放入到你的 JavaScript。为了这个目的，我们将会使用 [Extract Text Plugin](https://github.com/webpack/extract-text-webpack-plugin)。
+好了，你现在已经完成了，但是在 production 你不想要将你的 CSS 文件放入到你的 JavaScript。为了这个目的，我们将会使用 [Extract Text Plugin](https://github.com/webpack/extract-text-webpack-plugin)。
 
     npm install --save-dev extract-text-webpack-plugin
 
-我们需要改变我们的 webpack prod 设定档桉：
+我们需要改变我们的 webpack prod 设定文件：
 
 ```javascript
 var path = require('path')
@@ -40,11 +40,11 @@ module.exports = {
 }
 ```
 
-这些修改来自[官方 repository](https://github.com/webpack/extract-text-webpack-plugin) README 的描述。如果你想要知道它是怎麽运作的，可以到官方相关文件做更深入的了解。
+这些修改来自[官方 repository](https://github.com/webpack/extract-text-webpack-plugin) README 的描述。如果你想要知道它是怎么运作的，可以到官方相关文件做更深入的了解。
 
-> 它在进入点将每个 require("style.css") chunk 成独立的 css 输出档桉。所以你的样式不会在 JavaScript 内，但是它会被分离到一个 css bundle 档桉（styles.css）。如果你的 stylesheet 很大，在 JavaScript bundle 时，stylesheet bundle 会被平行的载入，可以加快载入的速度。
+> 它在进入点将每个 require("style.css") chunk 成独立的 css 输出文件。所以你的样式不会在 JavaScript 内，但是它会被分离到一个 css bundle 文件（styles.css）。如果你的 stylesheet 很大，在 JavaScript bundle 时，stylesheet bundle 会被平行的载入，可以加快载入的速度。
 
-如果现在你执行 `npm run build`，你的 CSS 会被独立成一个档桉，有趣的是，它已经被引入到你的 `index.html` 了。
+如果现在你执行 `npm run build`，你的 CSS 会被独立成一个文件，有趣的是，它已经被引入到你的 `index.html` 了。
 
 ```html
 <html>

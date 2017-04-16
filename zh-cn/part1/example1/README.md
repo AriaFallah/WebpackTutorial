@@ -5,8 +5,8 @@
 Webpack 简称为模组的整合工具。如果你想要深入的话，可以拜访「modules」和「module bundling definitely」这两篇优秀的解释文章：
 [JavaScript Modules: A Beginner’s Guide](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
 和 [JavaScript Modules Part 2: Module Bundling](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2)。
-我们要保持它的简单，webpack 运作的方式是透过指定一个单一档桉作为你的进入点。
-这个档桉会是 tree 的 root。然后你每次 `require` 一个档桉从其他档桉并把它加入到 tree。当你执行 `webpack`，所有的档桉和 module 都会被 bundle 成一个档桉。
+我们要保持它的简单，webpack 运作的方式是透过指定一个单一文件作为你的进入点。
+这个文件会是 tree 的 root。然后你每次 `require` 一个文件从其他文件并把它加入到 tree。当你执行 `webpack`，所有的文件和 module 都会被 bundle 成一个文件。
 
 这裡是一个简单的范例：
 
@@ -23,7 +23,7 @@ MyDirectory
 |- extraFile.js
 ```
 
-这些可能是你档桉的内容：
+这些可能是你文件的内容：
 
 ```javascript
 // index.js
@@ -59,13 +59,13 @@ body {
 // contents of APIStuff.js + fetch
 ```
 
-被 bundle 的这些档桉是你明确所 require 进来的档桉。
+被 bundle 的这些文件是你明确所 require 进来的文件。
 
 ### Loaders
 
-你可能会注意到，我在上方的范例做了一些奇怪的事情。我在 JavaScript 档桉中 `require` 一个 css 档桉。
+你可能会注意到，我在上方的范例做了一些奇怪的事情。我在 JavaScript 文件中 `require` 一个 css 文件。
 
-关于 webpack 真的很酷，有趣的事情是，你可以 `require` 其他不只是 JavaScript 的档桉。
+关于 webpack 真的很酷，有趣的事情是，你可以 `require` 其他不只是 JavaScript 的文件。
 
 在 webpack 这些东西我们称为 loader。使用这些 loader，你可以 `require` 任何 `.css` 和 `.png` 到 `.html` 档。
 

@@ -42,7 +42,7 @@ module.exports = {
 }
 ```
 
-这个时候当你执行 `webpack`，因为我们指定一个 `HtmlWebpackPlugin` 和 `./src/index.html` 的 template，它会产生一个档桉叫做 `index.html` 在我们的 `dist` 资料夹，而网页的内容是 `./src/index.html`。
+这个时候当你执行 `webpack`，因为我们指定一个 `HtmlWebpackPlugin` 和 `./src/index.html` 的 template，它会产生一个文件叫做 `index.html` 在我们的 `dist` 资料夹，而网页的内容是 `./src/index.html`。
 
 如果 `index.html` 作为 template 是空的也没用，现在是个好时机我们可以填入一些元素进去。
 
@@ -88,7 +88,7 @@ button {
 
 #### 备注
 
-我觉得我应该提到 `html-webpack-plugin` 需要谨慎使用。对我来说，如果你真的只是简单的启用一个 SPA，webpack 应该只产生 HTML 档桉。这裡只需要一个 HTML 档桉，我不会推荐它来产生 12 个 HTML 档桉，当作一个学习经验。这意思不是说你不能使用 html 档桉之类的，像是 angular 指令，只需要 HTML template 档桉。在这个情况下你可以做类似像是：
+我觉得我应该提到 `html-webpack-plugin` 需要谨慎使用。对我来说，如果你真的只是简单的启用一个 SPA，webpack 应该只产生 HTML 文件。这裡只需要一个 HTML 文件，我不会推荐它来产生 12 个 HTML 文件，当作一个学习经验。这意思不是说你不能使用 html 文件之类的，像是 angular 指令，只需要 HTML template 文件。在这个情况下你可以做类似像是：
 
 ```javascript
 // ...directive stuff

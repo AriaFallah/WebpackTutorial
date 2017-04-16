@@ -28,10 +28,10 @@ module.exports = {
 
 我们一个一个複习这些属性：
 
-* [entry](https://webpack.github.io/docs/configuration.html#entry) - 这是你的 bundle 的进入点，这是我们在讨论 [bundling](#bundling) 的部分。`entry` 是一个阵列，根据你的需求，webpack 允许可以有多个进入点，来产生多个 bundle 档桉。
+* [entry](https://webpack.github.io/docs/configuration.html#entry) - 这是你的 bundle 的进入点，这是我们在讨论 [bundling](#bundling) 的部分。`entry` 是一个阵列，根据你的需求，webpack 允许可以有多个进入点，来产生多个 bundle 文件。
 
 * [output](https://webpack.github.io/docs/configuration.html#output) - 由 webpack 规定的形式输出。
-  * [path](https://webpack.github.io/docs/configuration.html#output-path) - bundle 档桉位置。
-  * [filename](https://webpack.github.io/docs/configuration.html#output-filename) - bundle 档桉名称。
+  * [path](https://webpack.github.io/docs/configuration.html#output-path) - bundle 文件位置。
+  * [filename](https://webpack.github.io/docs/configuration.html#output-filename) - bundle 文件名称。
 
-当你执行 `webpack`，会在你的 dist 资料夹建立一个叫做 `bundle.js` 的档桉。
+当你执行 `webpack`，会在你的 dist 资料夹建立一个叫做 `bundle.js` 的文件。

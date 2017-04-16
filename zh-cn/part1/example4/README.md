@@ -1,4 +1,4 @@
-在稍早前面的教学中我提到了 [loaders](#loaders)。这些程式码来帮助我们 require 非 JavaScript 的档桉。在这种情况下，我们将需要 `style-loader` 和 `css-loader`。首先我们需要安装这些 loader：
+在稍早前面的教学中我提到了 [loaders](#loaders)。这些程式码来帮助我们 require 非 JavaScript 的文件。在这种情况下，我们将需要 `style-loader` 和 `css-loader`。首先我们需要安装这些 loader：
 
     npm install --save-dev style-loader css-loader
 
@@ -34,12 +34,12 @@ module.exports = {
 
 我们一个一个複习这些属性：
 
-* [module](http://webpack.github.io/docs/configuration.html#module) - 设定你的档桉选项。
+* [module](http://webpack.github.io/docs/configuration.html#module) - 设定你的文件选项。
   * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - 我们为应用程式所指定的一个 loader 阵列。
-    * test - 一个正规表达式来匹配 loader 的档桉。
-    * loaders - loader 用于这些匹配 test （正规表达式）的档桉。
+    * test - 一个正规表达式来匹配 loader 的文件。
+    * loaders - loader 用于这些匹配 test （正规表达式）的文件。
 
-这个时候你执行 `webpack`，如果你 `require` 的档桉结尾是 `.css`，然会我们会使用 `style` 和 `css` loader，将 CSS 加入到 bundle。
+这个时候你执行 `webpack`，如果你 `require` 的文件结尾是 `.css`，然会我们会使用 `style` 和 `css` loader，将 CSS 加入到 bundle。
 
 如果我们没有 loaders，我们会得到像是这样的错误：
 
@@ -67,4 +67,4 @@ You may need an appropriate loader to handle this file type.
 
 处理 LESS 也类似于这个方式。
 
-要知道这些需要被指定的 loader 是有*顺序*的，这是一个很重要部分。在上面的范例，`sass` loader 是第一个应用在你的 `.scss` 档桉，然后是 `css` loader，最后是 `style` loader。你可以看到，这些 loader 的应用模式是由右到左。
+要知道这些需要被指定的 loader 是有*顺序*的，这是一个很重要部分。在上面的范例，`sass` loader 是第一个应用在你的 `.scss` 文件，然后是 `css` loader，最后是 `style` loader。你可以看到，这些 loader 的应用模式是由右到左。

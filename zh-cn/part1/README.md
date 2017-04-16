@@ -16,17 +16,17 @@
 
 ## 贡献
 
-我很乐意接受任何所有的贡献或是修正。如果你有任何问题，可以将这些问题发成 issue。如果我有错误的话，请将问题指出。最后，如果你觉得我漏了些什麽，或者可以将某些部分解释的更好，留下一个 issue 或者是发送 Pull Request。
+我很乐意接受任何所有的贡献或是修正。如果你有任何问题，可以将这些问题发成 issue。如果我有错误的话，请将问题指出。最后，如果你觉得我漏了些什么，或者可以将某些部分解释的更好，留下一个 issue 或者是发送 Pull Request。
 
 ## 目录
 
-* [为什麽要 Webpack？](#为什麽要-webpack)
+* [为什么要 Webpack？](#为什么要-webpack)
 * [基础](#基础)
   * [安装](#安装)
   * [Bundling](#bundling)
   * [Loaders](#loaders)
   * [Plugins](#plugins)
-* [你的 webpack 设定档桉](#你的-webpack-设定档桉)
+* [你的 webpack 设定文件](#你的-webpack-设定文件)
   * [一个简单的范例](#一个简单的范例)
   * [介绍 Plugins](#介绍-plugins)
 * [一个更完整的范例](#一个更完整的范例)
@@ -37,38 +37,38 @@
 * [结论](#结论)
 * [反思](#反思)
 
-## 为什麽要 Webpack？
+## 为什么要 Webpack？
 
-因为每个 react 或 redux 教学课程都假设你知道什麽是 webpack。:cry:
+因为每个 react 或 redux 教学课程都假设你知道什么是 webpack。:cry:
 
 以下这些是更现实的原因，你可能会需要使用 webpack。
 
 你可以：
-  * 将你的 js 档桉 Bundle 变成单一的档桉
+  * 将你的 js 文件 Bundle 变成单一的文件
   * 在你的前端程式码中使用 npm packages
   * 撰写 JavaScript ES6 或 ES7（需要透过 babel 来帮助）
   * Minify 或优化程式码
   * 将 LESS 或 SCSS 转换成 CSS
   * 使用 HMR（Hot Module Replacement）
-  * 包含任何类型的档桉到你的 JavaScript
+  * 包含任何类型的文件到你的 JavaScript
   * 更多进阶的东西，暂时不介绍
 
-##### 为什麽我需要这些功能？
+##### 为什么我需要这些功能？
 
-* Bundle JS 档桉 - 让你可以撰写模组化的 JavaScript，但是你不需要 include 每个 JavaScript `<script>` 的档桉（如果你需要多个 JavaScript 档桉可以透过设定来完成）。
+* Bundle JS 文件 - 让你可以撰写模组化的 JavaScript，但是你不需要 include 每个 JavaScript `<script>` 的文件（如果你需要多个 JavaScript 文件可以透过设定来完成）。
 
 * 在你的前端程式码中使用 npm packages - npm 在 internet 上是一个大型的 open source 生态系统。可以储存或发佈你的程式码，你可以到 npm 看一看，可能包含你想要的前端套件。
 
 * ES6 和 ES7 - 加入一些 JavaScript 的新功能，让撰写程式码可以更容易而且更强大，[请看这裡的介绍](https://github.com/DrkSephy/es6-cheatsheet)。
 
-* Minify 或优化程式码 - 减少你的档桉大小，好处包括像是更快的将页面载入。
+* Minify 或优化程式码 - 减少你的文件大小，好处包括像是更快的将页面载入。
 
 * 将 LESS 或 SCSS 转换成 CSS - 使用更好的方式来撰写 CSS，
 [如果你不熟悉的话，这裡有一些介绍](http://alistapart.com/article/why-sass)。
 
 * 使用 HMR - 增加开发速度。每当你储存程式码的时候，它可以注入到网页，而不需将网页刷新。如果当编辑你的程式码，你需要维护页面的状态，这是非常方便的。
 
-* 包含任何类型的档桉到你的 JavaScript - 减少对其他 build 工具的需要，让你可以透过程式的方式修改或使用这些档桉。
+* 包含任何类型的文件到你的 JavaScript - 减少对其他 build 工具的需要，让你可以透过程式的方式修改或使用这些文件。
 
 ## 基础
 
@@ -88,7 +88,7 @@
 
     webpack
 
-如果你想要 webpack 在你每次变更储存档桉后自动执行 build ：
+如果你想要 webpack 在你每次变更储存文件后自动执行 build ：
 
     webpack --watch
 
@@ -104,8 +104,8 @@
 
 Webpack 简称为模组整合工具。如果你想要深入的话，可以拜访 [JavaScript Modules: A Beginner’s Guide](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh) 和 [JavaScript Modules Part 2: Module Bundling](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2) 这两篇优秀的解释文章：
 
-我们要保持它的简单，webpack 运作的方式是透过指定一个单一档桉作为你的进入点。
-这个档桉会是 tree 的 root。然后你每次 `require` 一个档桉从其他档桉并把它加入到 tree。当你执行 `webpack`，所有的档桉和 module 都会被 bundle 成一个档桉。
+我们要保持它的简单，webpack 运作的方式是透过指定一个单一文件作为你的进入点。
+这个文件会是 tree 的 root。然后你每次 `require` 一个文件从其他文件并把它加入到 tree。当你执行 `webpack`，所有的文件和 module 都会被 bundle 成一个文件。
 
 这裡是一个简单的范例：
 
@@ -122,7 +122,7 @@ MyDirectory
 |- extraFile.js
 ```
 
-这些可能是你档桉的内容：
+这些可能是你文件的内容：
 
 ```javascript
 // index.js
@@ -158,13 +158,13 @@ body {
 // contents of APIStuff.js + fetch
 ```
 
-被 bundle 的这些档桉是你明确所 require 进来的档桉。
+被 bundle 的这些文件是你明确所 require 进来的文件。
 
 ### Loaders
 
-你可能会注意到，我在上方的范例做了一些奇怪的事情。我在 JavaScript 档桉中 `require` 一个 css 档桉。
+你可能会注意到，我在上方的范例做了一些奇怪的事情。我在 JavaScript 文件中 `require` 一个 css 文件。
 
-关于 webpack 真的很酷，有趣的事情是，你可以 `require` 其他不只是 JavaScript 的档桉。
+关于 webpack 真的很酷，有趣的事情是，你可以 `require` 其他不只是 JavaScript 的文件。
 
 在 webpack 这些东西我们称为 loader。使用这些 loader，你可以 `require` 任何 `.css` 和 `.png` 到 `.html` 档。
 
@@ -183,13 +183,13 @@ require('./styles.css')
 
 Plugin，顾名思义就是替 webpack 增加额外的功能。其中常使用到的一个 plugin 是 `UglifyJsPlugin`，它可以 minify 你的 JavaScript 程式码。我们之后会介绍如何使用。
 
-## 你的 webpack 设定档桉
+## 你的 webpack 设定文件
 
-Webpack 没办法直接使用，需要透过你的需求来做设定。为了做到这一点，你需要建立一个档桉叫做：
+Webpack 没办法直接使用，需要透过你的需求来做设定。为了做到这一点，你需要建立一个文件叫做：
 
     webpack.config.js
 
-预设情况下，webpack 会去识别这个档名。如果你选择使用不同的档名，你需要加入 `--config` 来指定你的档桉名称。
+预设情况下，webpack 会去识别这个档名。如果你选择使用不同的档名，你需要加入 `--config` 来指定你的文件名称。
 
 ### 一个简单的范例
 [范例二](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example2)
@@ -212,7 +212,7 @@ MyDirectory
 var path = require('path')
 
 module.exports = {
-  entry: ['./src/index'], // 在 index 档桉后的 .js 副档名是可选的
+  entry: ['./src/index'], // 在 index 文件后的 .js 副档名是可选的
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -222,19 +222,19 @@ module.exports = {
 
 我们一个一个複习这些属性：
 
-* [entry](https://webpack.github.io/docs/configuration.html#entry) - 这是你的 bundle 的进入点，我们曾在前面 [bundling](#bundling) 的部分讨论过它。`entry` 是一个阵列，根据你的需求，webpack 允许可以有多个进入点，来产生多个 bundle 档桉。
+* [entry](https://webpack.github.io/docs/configuration.html#entry) - 这是你的 bundle 的进入点，我们曾在前面 [bundling](#bundling) 的部分讨论过它。`entry` 是一个阵列，根据你的需求，webpack 允许可以有多个进入点，来产生多个 bundle 文件。
 
 * [output](https://webpack.github.io/docs/configuration.html#output) - 宣告 webpack 输出的形式。
-  * [path](https://webpack.github.io/docs/configuration.html#output-path) - 存放 bundle 档桉的位置。
-  * [filename](https://webpack.github.io/docs/configuration.html#output-filename) - bundle 档桉名称。
+  * [path](https://webpack.github.io/docs/configuration.html#output-path) - 存放 bundle 文件的位置。
+  * [filename](https://webpack.github.io/docs/configuration.html#output-filename) - bundle 文件名称。
 
-根据上面的设定，当你执行 `webpack`，会在你的 dist 资料夹建立一个叫做 `bundle.js` 的档桉。
+根据上面的设定，当你执行 `webpack`，会在你的 dist 资料夹建立一个叫做 `bundle.js` 的文件。
 
 ### 介绍 Plugins
 
 [范例三](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example3)
 
-想像一下，你使用 webpack 将你的档桉 bundle 在一起，然后你发现到 bundle 后的结果是 900KB。这是个问题，但是你可以透过 minify 你的 bundle 档桉来做改善。要做到这一点，你需要使用一个我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
+想像一下，你使用 webpack 将你的文件 bundle 在一起，然后你发现到 bundle 后的结果是 900KB。这是个问题，但是你可以透过 minify 你的 bundle 文件来做改善。要做到这一点，你需要使用一个我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
 
 此外，你需要在本机安装 webpack 才能实际的去使用这个 plugin。
 
@@ -268,11 +268,11 @@ module.exports = {
 * plugins - 一个含有你的 plugins 的阵列。
   * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify 你的程式码，并不显示警告讯息。
 
-如此一来，当我们执行 `webpack`，`UglifyJsPlugin` 透过像是移除所有空白等处理，可以将你的档桉减少至 200KB。
+如此一来，当我们执行 `webpack`，`UglifyJsPlugin` 透过像是移除所有空白等处理，可以将你的文件减少至 200KB。
 
 你也可以加入 [OccurrenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)。
 
-> 根据调用次数指定 module 和 chunk 的 id。越常用的 id 较小（短）。这使得 id 可以预测，可以减少档桉的大小，并是推荐的方法。
+> 根据调用次数指定 module 和 chunk 的 id。越常用的 id 较小（短）。这使得 id 可以预测，可以减少文件的大小，并是推荐的方法。
 
 老实说，我不太确定底层的机制是如何工作的，但在根据目前 [webpack2 beta 的预设情况下](https://gist.github.com/sokra/27b24881210b56bbaff7)，所以我将它包含在内。
 
@@ -298,7 +298,7 @@ module.exports = {
 }
 ```
 
-所以现在我们写了一个设定档让我们可以 minify 和 bundle 我们的 JavaScript。这个 bundle 档桉可以被複製并贴到其他的专桉目录中，放入 `<script>` 就可以使用。如果你只需要瞭解怎麽用 webpack 处理 *只有 JavaScript* 的基本情况，你可以直接跳到[结论](#conclusion)。
+所以现在我们写了一个设定档让我们可以 minify 和 bundle 我们的 JavaScript。这个 bundle 文件可以被複製并贴到其他的专桉目录中，放入 `<script>` 就可以使用。如果你只需要瞭解怎么用 webpack 处理 *只有 JavaScript* 的基本情况，你可以直接跳到[结论](#conclusion)。
 
 ## 一个更完整的范例
 
@@ -320,15 +320,15 @@ MyDirectory
 #### 内容
 
 1. [介绍 Loaders](#介绍-loaders) - 我们将会加入 loader，这可以让我 bundle 加入的 CSS。
-2. [加入更多的 Plugins](#加入更多的-plugins) - 我们加入一个 plugin 来帮助我们建立和使用一个 HTML 档桉。
-3. [开发伺服器](#开发伺服器) - 我们会将 webpack 设定档桉分为 `development` 和 `production` 两种版本，然后使用 webpack-dev-server 来查看我们的网站并启用 HMR。
+2. [加入更多的 Plugins](#加入更多的-plugins) - 我们加入一个 plugin 来帮助我们建立和使用一个 HTML 文件。
+3. [开发伺服器](#开发伺服器) - 我们会将 webpack 设定文件分为 `development` 和 `production` 两种版本，然后使用 webpack-dev-server 来查看我们的网站并启用 HMR。
 4. [开始撰写程式](#开始撰写程式) - 我们来实际写一些 JavaScript。
 
 #### 介绍 Loaders
 
 [范例四](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example4)
 
-在稍早前面的教学课程中我提到了 [loaders](#loaders)。这些程式码来帮助我们 require 非 JavaScript 的档桉。在这种情况下，我们将需要 `style-loader` 和 `css-loader`。首先我们需要安装这些 loader：
+在稍早前面的教学课程中我提到了 [loaders](#loaders)。这些程式码来帮助我们 require 非 JavaScript 的文件。在这种情况下，我们将需要 `style-loader` 和 `css-loader`。首先我们需要安装这些 loader：
 
     npm install --save-dev style-loader css-loader
 
@@ -364,12 +364,12 @@ module.exports = {
 
 我们一个一个查看这些新属性：
 
-* [module](http://webpack.github.io/docs/configuration.html#module) - 设定你的档桉选项。
+* [module](http://webpack.github.io/docs/configuration.html#module) - 设定你的文件选项。
   * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - 我们为应用程式所指定的一个 loader 阵列。
-    * test - 一个正规表达式，用来找出要套用 loader 的档桉。
-    * loaders - 指定哪些 loader 是用于匹配前述 test （正规表达式）的档桉。
+    * test - 一个正规表达式，用来找出要套用 loader 的文件。
+    * loaders - 指定哪些 loader 是用于匹配前述 test （正规表达式）的文件。
 
-这个时候你执行 `webpack`，如果你 `require` 的档桉结尾是 `.css`，我们会使用 `style` 和 `css` loader，将 CSS 加入到 bundle。
+这个时候你执行 `webpack`，如果你 `require` 的文件结尾是 `.css`，我们会使用 `style` 和 `css` loader，将 CSS 加入到 bundle。
 
 如果我们没有 loaders，我们会得到像是这样的错误：
 
@@ -397,7 +397,7 @@ You may need an appropriate loader to handle this file type.
 
 处理 LESS 也类似于这个方式。
 
-要知道这些需要被指定的 loader 是有*顺序*的，这是一个很重要部分。在上面的范例，`sass` loader 是第一个应用在你的 `.scss` 档桉，然后是 `css` loader，最后是 `style` loader。你可以看到，这些 loader 的应用模式是由右到左。
+要知道这些需要被指定的 loader 是有*顺序*的，这是一个很重要部分。在上面的范例，`sass` loader 是第一个应用在你的 `.scss` 文件，然后是 `css` loader，最后是 `style` loader。你可以看到，这些 loader 的应用模式是由右到左。
 
 #### 加入更多的 Plugins
 
@@ -445,7 +445,7 @@ module.exports = {
 }
 ```
 
-这个时候当你执行 `webpack`，因为我们指定了一个搭配 `./src/index.html` template 的 `HtmlWebpackPlugin` ，它会产生一个档桉叫做 `index.html` 在我们的 `dist` 资料夹，而网页的内容是 `./src/index.html`。
+这个时候当你执行 `webpack`，因为我们指定了一个搭配 `./src/index.html` template 的 `HtmlWebpackPlugin` ，它会产生一个文件叫做 `index.html` 在我们的 `dist` 资料夹，而网页的内容是 `./src/index.html`。
 
 `index.html` 作为 template 如果是空的就没意义了，现在是个好时机我们可以填入一些元素进去。
 
@@ -548,7 +548,7 @@ module.exports = {
 
 * entry: 两个新的进入点将伺服器连结到浏览器，方便 HMR。
 * devServer
-  * contentBase: 服务的档桉来自哪裡。
+  * contentBase: 服务的文件来自哪裡。
   * hot: 启用 HMR。
 
 prod 设定档不需要改变太多：
@@ -624,7 +624,7 @@ npm run dev
 
 你现在可以透过 `npm run dev`，并导到 `http://localhost:8080` 看到你的网站。
 
-**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 档桉时，伺服器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/html-reload)。这裡涵盖了一些 webpack 设定档选项的有用资讯，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。
+**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 文件时，伺服器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/html-reload)。这裡涵盖了一些 webpack 设定档选项的有用资讯，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。
 
 #### 开始撰写程式
 
@@ -632,7 +632,7 @@ npm run dev
 
 大多数的人似乎会慌乱的原因是因为：webpack 事实上需要通过这些取得的进入点来撰写 JavaScript；然而我们现在已经到达了这个教学课程最高潮的部分。
 
-如果你还没准备好：执行 `npm run dev`，以及导到 `http://localhost:8080`。设定 dev server 是不是可以 hot reload。在你每次储存你专桉所编辑的任何一个档桉部份时，浏览器将会重新载入来显示你的修改。
+如果你还没准备好：执行 `npm run dev`，以及导到 `http://localhost:8080`。设定 dev server 是不是可以 hot reload。在你每次储存你专桉所编辑的任何一个文件部份时，浏览器将会重新载入来显示你的修改。
 
 我们也需要 npm package，为了来示范如何在前端使用它们。
 
@@ -672,7 +672,7 @@ if (module.hot) {
 
 然后我们就完成了！
 
-**备注：** 你可能已经注意到在你的 css 被使用之前有些 delay，或许事实上你讨厌将你的 css 放入到 JavaScript 档桉中。我留了另一个范例：[css-extract](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/css-extract)，描述如何将你的 CSS 放在不同的档桉。
+**备注：** 你可能已经注意到在你的 css 被使用之前有些 delay，或许事实上你讨厌将你的 css 放入到 JavaScript 文件中。我留了另一个范例：[css-extract](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/css-extract)，描述如何将你的 CSS 放在不同的文件。
 
 ## 结论
 
@@ -691,4 +691,4 @@ if (module.hot) {
 
 恭喜！你已经让你个按钮去改变你的 div 的颜色！webpack 是不是很棒？
 
-没错是的！但是，如果你所做的事情只是让按钮去改变 div 的颜色，它可能不值得你去写像是这样的设定。如果你想这麽做的话，你可能会感到...疲累。:anguished:
+没错是的！但是，如果你所做的事情只是让按钮去改变 div 的颜色，它可能不值得你去写像是这样的设定。如果你想这么做的话，你可能会感到...疲累。:anguished:
