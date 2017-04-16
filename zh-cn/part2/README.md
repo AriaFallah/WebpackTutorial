@@ -13,12 +13,12 @@
 
 ## 贡献
 
-我很乐意接受任何所有的贡献或是修正。如果你有任何问题，可以将这些问题发成 issue。如果我有错误的话，请将问题指出。最后，如果你觉得我漏了些什麽，或者可以将某些部分解释的更好，留下一个 issue 或者是发送 Pull Request。
+我很乐意接受任何所有的贡献或是修正。如果你有任何问题，可以将这些问题发成 issue。如果我有错误的话，请将问题指出。最后，如果你觉得我漏了些什么，或者可以将某些部分解释的更好，留下一个 issue 或者是发送 Pull Request。
 
 ## 目录
 
 * [Babel](#babel)
-  * [Babel 是做什麽用的？](#babel-是做什麽用的)
+  * [Babel 是做什么用的？](#babel-是做什么用的)
   * [设定 Babel](#设定-babel)
 * [Webpack](#webpack)
   * [一个新的 Loader](#一个新的-loader)
@@ -34,7 +34,7 @@
 
 如果你想要有更深入的说明，和更细微的设定 babel，请参考这个[手册][1]。我在这裡说明的是一些基本的设定。
 
-### Babel 是做什麽用的？
+### Babel 是做什么用的？
 
 简单来说，babel 让你可以更完整的使用 JavaScript 的 ES6 feature，因为目前大部分的浏览器和环境都不支援，所以将它转换成 ES5，让它可以更广泛的被支援。
 
@@ -190,7 +190,7 @@ module: {
 
 一件**非常重要**的事情，请注意 `include` 属性的用法。当我们执行 `webpack` 时，因为我们在 `test` 有设定 `/.js$/`，webpack 会在你的 dependency tree 每一个 `js` 文件尝试执行 babel loader。
 
-你可以看出这有什麽问题吗？要是我 `require('bluebird')`，或是任何其他大型的 `npm` package 会怎样？它会藉由 `babel-loader` 尝试执行整个 **node_modules**，这样大量的执行会延长你的 build 过程。
+你可以看出这有什么问题吗？要是我 `require('bluebird')`，或是任何其他大型的 `npm` package 会怎样？它会藉由 `babel-loader` 尝试执行整个 **node_modules**，这样大量的执行会延长你的 build 过程。
 
 `include` 可以防止这个这个问题，loader 只会套用在你所指定 `src` 目录下的 `.js` 文件。
 
@@ -244,7 +244,7 @@ import Please from 'pleasejs'
 
 这个 plugin 让我们可以为我们整个 bundle 建立全域的常数，我们可以命名任何常数，像是：`DONT_USE_IN_PRODUCTION: true`，但是大多普遍的方式会是 `process.env.NODE_ENV: JSON.stringify('production')`，这会是更好的选择。这是因为许多程式可以识别并根据 `process.env.NODE_ENV` 来使用额外的功能和优化你的程式码。
 
-为什麽要 `JSON.stringify`？因为根据文件的解释：
+为什么要 `JSON.stringify`？因为根据文件的解释：
 
 > 如果值是一个字串，它会被作为一个程式码片段。
 
@@ -403,7 +403,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 所以现在我们可以轻鬆的撰写 ES6 程式码，此外，也让我们了解到如何撰写设定档 :tada:！
 
-然而，你有能力从头开始撰写它，并不表示你一定要这麽做。为了方便，[我有建立一个 repository](https://github.com/AriaFallah/minimal-babel-starter) 让你 clone 下来开始，这是根据这份教学建立的基本文件。
+然而，你有能力从头开始撰写它，并不表示你一定要这么做。为了方便，[我有建立一个 repository](https://github.com/AriaFallah/minimal-babel-starter) 让你 clone 下来开始，这是根据这份教学建立的基本文件。
 
 对未来的期望：
 
