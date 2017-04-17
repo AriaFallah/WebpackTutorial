@@ -1,6 +1,6 @@
 # 范例三 - 介绍 Plugins
 
-想像一下，你使用 webpack 将你的文件 bundle 在一起，然后你发现到 bundle 后的结果是 900KB。这裡有个问题，但是你可以透过 minify 你的 bundle 文件来做改善。如果需要做到这一点，你需要使用一个我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
+想像一下，你使用 webpack 将你的文件 bundle 在一起，然后你发现到 bundle 后的结果是 900KB。这里有个问题，但是你可以通过 minify 你的 bundle 文件来做改善。如果需要做到这一点，你需要使用一个我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
 
 此外，你需要在本机安装 webpack 才能实际的去使用这个 plugin。
 
@@ -38,7 +38,7 @@ module.exports = {
 
 你也可以加入 [OccurenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)。
 
-> 透过发生次数分配 module 和 chunk 的 id。一些常用的 Id 取得较低（短）的 id。这使得 id 可以预测，减少文件的大小和建议。
+> 通过发生次数分配 module 和 chunk 的 id。一些常用的 Id 取得较低（短）的 id。这使得 id 可以预测，减少文件的大小和建议。
 
 老实说，我不太确定底层的机制是如何工作的，但在目前包含 [webpack2 beta 的预设情况下](https://gist.github.com/sokra/27b24881210b56bbaff7)，所以我将它包含在内。
 

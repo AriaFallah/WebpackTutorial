@@ -4,7 +4,7 @@
 
     npm install --save-dev extract-text-webpack-plugin
 
-我们需要改变我们的 webpack prod 设定文件：
+我们需要改变我们的 webpack prod 配置文件：
 
 ```javascript
 var path = require('path')

@@ -2,7 +2,7 @@
 
     npm install --save-dev style-loader css-loader
 
-现在安装完后，我们可以调整我们的 webpack 设定来引入 `css-loader`：
+现在安装完后，我们可以调整我们的 webpack 配置来引入 `css-loader`：
 
 ```javascript
 // webpack.config.js
@@ -34,7 +34,7 @@ module.exports = {
 
 我们一个一个复习这些属性：
 
-* [module](http://webpack.github.io/docs/configuration.html#module) - 设定你的文件选项。
+* [module](http://webpack.github.io/docs/configuration.html#module) - 配置你的文件选项。
   * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - 我们为应用程序所指定的一个 loader 阵列。
     * test - 一个正规表达式来匹配 loader 的文件。
     * loaders - loader 用于这些匹配 test （正规表达式）的文件。

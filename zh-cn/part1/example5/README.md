@@ -88,7 +88,7 @@ button {
 
 #### 备注
 
-我觉得我应该提到 `html-webpack-plugin` 需要谨慎使用。对我来说，如果你真的只是简单的启用一个 SPA，webpack 应该只产生 HTML 文件。这裡只需要一个 HTML 文件，我不会推荐它来产生 12 个 HTML 文件，当作一个学习经验。这意思不是说你不能使用 html 文件之类的，像是 angular 指令，只需要 HTML template 文件。在这个情况下你可以做类似像是：
+我觉得我应该提到 `html-webpack-plugin` 需要谨慎使用。对我来说，如果你真的只是简单的启用一个 SPA，webpack 应该只产生 HTML 文件。这里只需要一个 HTML 文件，我不会推荐它来产生 12 个 HTML 文件，当作一个学习经验。这意思不是说你不能使用 html 文件之类的，像是 angular 指令，只需要 HTML template 文件。在这个情况下你可以做类似像是：
 
 ```javascript
 // ...directive stuff

@@ -26,13 +26,13 @@
   * [Bundling](#bundling)
   * [Loaders](#loaders)
   * [Plugins](#plugins)
-* [你的 webpack 设定文件](#你的-webpack-设定文件)
+* [你的 webpack 配置文件](#你的-webpack-配置文件)
   * [一个简单的范例](#一个简单的范例)
   * [介绍 Plugins](#介绍-plugins)
 * [一个更完整的范例](#一个更完整的范例)
   * [介绍 Loaders](#介绍-loaders)
   * [加入更多的 Plugins](#加入更多的-plugins)
-  * [开发伺服器](#开发伺服器)
+  * [开发服务器](#开发服务器)
   * [开始撰写程序](#开始撰写程序)
 * [结论](#结论)
 * [反思](#反思)
@@ -46,7 +46,7 @@
 你可以：
   * 将你的 js 文件 Bundle 变成单一的文件
   * 在你的前端代码中使用 npm packages
-  * 撰写 JavaScript ES6 或 ES7（需要透过 babel 来帮助）
+  * 撰写 JavaScript ES6 或 ES7（需要通过 babel 来帮助）
   * Minify 或优化代码
   * 将 LESS 或 SCSS 转换成 CSS
   * 使用 HMR（Hot Module Replacement）
@@ -55,20 +55,20 @@
 
 ##### 为什么我需要这些功能？
 
-* Bundle JS 文件 - 让你可以撰写模组化的 JavaScript，但是你不需要 include 每个 JavaScript `<script>` 的文件（如果你需要多个 JavaScript 文件可以透过设定来完成）。
+* Bundle JS 文件 - 让你可以撰写模组化的 JavaScript，但是你不需要 include 每个 JavaScript `<script>` 的文件（如果你需要多个 JavaScript 文件可以通过配置来完成）。
 
 * 在你的前端代码中使用 npm packages - npm 在 internet 上是一个大型的 open source 生态系统。可以储存或发佈你的代码，你可以到 npm 看一看，可能包含你想要的前端套件。
 
-* ES6 和 ES7 - 加入一些 JavaScript 的新功能，让撰写代码可以更容易而且更强大，[请看这裡的介绍](https://github.com/DrkSephy/es6-cheatsheet)。
+* ES6 和 ES7 - 加入一些 JavaScript 的新功能，让撰写代码可以更容易而且更强大，[请看这里的介绍](https://github.com/DrkSephy/es6-cheatsheet)。
 
 * Minify 或优化代码 - 减少你的文件大小，好处包括像是更快的将页面载入。
 
 * 将 LESS 或 SCSS 转换成 CSS - 使用更好的方式来撰写 CSS，
-[如果你不熟悉的话，这裡有一些介绍](http://alistapart.com/article/why-sass)。
+[如果你不熟悉的话，这里有一些介绍](http://alistapart.com/article/why-sass)。
 
 * 使用 HMR - 增加开发速度。每当你储存代码的时候，它可以注入到网页，而不需将网页刷新。如果当编辑你的代码，你需要维护页面的状态，这是非常方便的。
 
-* 包含任何类型的文件到你的 JavaScript - 减少对其他 build 工具的需要，让你可以透过程序的方式修改或使用这些文件。
+* 包含任何类型的文件到你的 JavaScript - 减少对其他 build 工具的需要，让你可以通过程序的方式修改或使用这些文件。
 
 ## 基础
 
@@ -104,10 +104,10 @@
 
 Webpack 简称为模组整合工具。如果你想要深入的话，可以拜访 [JavaScript Modules: A Beginner’s Guide](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh) 和 [JavaScript Modules Part 2: Module Bundling](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2) 这两篇优秀的解释文章：
 
-我们要保持它的简单，webpack 运作的方式是透过指定一个单一文件作为你的进入点。
+我们要保持它的简单，webpack 运作的方式是通过指定一个单一文件作为你的进入点。
 这个文件会是 tree 的 root。然后你每次 `require` 一个文件从其他文件并把它加入到 tree。当你执行 `webpack`，所有的文件和 module 都会被 bundle 成一个文件。
 
-这裡是一个简单的范例：
+这里是一个简单的范例：
 
 ![Dependency Tree](http://i.imgur.com/dSghwwL.png)
 
@@ -177,15 +177,15 @@ require('./styles.css')
 
 如果在我的 webpack 配置中，inclue [style-loader](https://github.com/webpack/style-loader) 和 [css-loader](https://github.com/webpack/css-loader)，这是可行的，还可以实际应用 CSS 到我的网页。
 
-你可以在 webpack 使用多个 loader，这裡只是一个单一的例子。
+你可以在 webpack 使用多个 loader，这里只是一个单一的例子。
 
 ### Plugins
 
 Plugin，顾名思义就是替 webpack 增加额外的功能。其中常使用到的一个 plugin 是 `UglifyJsPlugin`，它可以 minify 你的 JavaScript 代码。我们之后会介绍如何使用。
 
-## 你的 webpack 设定文件
+## 你的 webpack 配置文件
 
-Webpack 没办法直接使用，需要透过你的需求来做设定。为了做到这一点，你需要建立一个文件叫做：
+Webpack 没办法直接使用，需要通过你的需求来做配置。为了做到这一点，你需要建立一个文件叫做：
 
     webpack.config.js
 
@@ -205,7 +205,7 @@ MyDirectory
 
 ```
 
-然后这是一个非常简易的 webpack 设定：
+然后这是一个非常简易的 webpack 配置：
 
 ```javascript
 // webpack.config.js
@@ -228,13 +228,13 @@ module.exports = {
   * [path](https://webpack.github.io/docs/configuration.html#output-path) - 存放 bundle 文件的位置。
   * [filename](https://webpack.github.io/docs/configuration.html#output-filename) - bundle 文件名称。
 
-根据上面的设定，当你执行 `webpack`，会在你的 dist 资料夹建立一个叫做 `bundle.js` 的文件。
+根据上面的配置，当你执行 `webpack`，会在你的 dist 资料夹建立一个叫做 `bundle.js` 的文件。
 
 ### 介绍 Plugins
 
 [范例三](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example3)
 
-想像一下，你使用 webpack 将你的文件 bundle 在一起，然后你发现到 bundle 后的结果是 900KB。这是个问题，但是你可以透过 minify 你的 bundle 文件来做改善。要做到这一点，你需要使用一个我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
+想像一下，你使用 webpack 将你的文件 bundle 在一起，然后你发现到 bundle 后的结果是 900KB。这是个问题，但是你可以通过 minify 你的 bundle 文件来做改善。要做到这一点，你需要使用一个我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
 
 此外，你需要在本机安装 webpack 才能实际的去使用这个 plugin。
 
@@ -268,7 +268,7 @@ module.exports = {
 * plugins - 一个含有你的 plugins 的阵列。
   * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify 你的代码，并不显示警告讯息。
 
-如此一来，当我们执行 `webpack`，`UglifyJsPlugin` 透过像是移除所有空白等处理，可以将你的文件减少至 200KB。
+如此一来，当我们执行 `webpack`，`UglifyJsPlugin` 通过像是移除所有空白等处理，可以将你的文件减少至 200KB。
 
 你也可以加入 [OccurrenceOrderPlugin](https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin)。
 
@@ -302,7 +302,7 @@ module.exports = {
 
 ## 一个更完整的范例
 
-此外，比起单单使用 JavaScript，使用 webpack 可以做的更多，你可以避免复制、贴上并透过 webpack 管理你的整个专桉。
+此外，比起单单使用 JavaScript，使用 webpack 可以做的更多，你可以避免复制、贴上并通过 webpack 管理你的整个专桉。
 
 在下面的部份中，我们要使用 webpack 建立一个非常简单的网站。如果你想要跟着这个范例，建立一个像下方的目录结构：
 
@@ -321,7 +321,7 @@ MyDirectory
 
 1. [介绍 Loaders](#介绍-loaders) - 我们将会加入 loader，这可以让我 bundle 加入的 CSS。
 2. [加入更多的 Plugins](#加入更多的-plugins) - 我们加入一个 plugin 来帮助我们建立和使用一个 HTML 文件。
-3. [开发伺服器](#开发伺服器) - 我们会将 webpack 设定文件分为 `development` 和 `production` 两种版本，然后使用 webpack-dev-server 来查看我们的网站并启用 HMR。
+3. [开发服务器](#开发服务器) - 我们会将 webpack 配置文件分为 `development` 和 `production` 两种版本，然后使用 webpack-dev-server 来查看我们的网站并启用 HMR。
 4. [开始撰写程序](#开始撰写程序) - 我们来实际写一些 JavaScript。
 
 #### 介绍 Loaders
@@ -332,7 +332,7 @@ MyDirectory
 
     npm install --save-dev style-loader css-loader
 
-现在安装完后，我们可以调整我们的 webpack 设定来引入 `css-loader`：
+现在安装完后，我们可以调整我们的 webpack 配置来引入 `css-loader`：
 
 ```javascript
 // webpack.config.js
@@ -364,7 +364,7 @@ module.exports = {
 
 我们一个一个查看这些新属性：
 
-* [module](http://webpack.github.io/docs/configuration.html#module) - 设定你的文件选项。
+* [module](http://webpack.github.io/docs/configuration.html#module) - 配置你的文件选项。
   * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - 我们为应用程序所指定的一个 loader 阵列。
     * test - 一个正规表达式，用来找出要套用 loader 的文件。
     * loaders - 指定哪些 loader 是用于匹配前述 test （正规表达式）的文件。
@@ -405,7 +405,7 @@ You may need an appropriate loader to handle this file type.
 
 现在我们的网站已经有了样式的基本架构，我们还需要一个实际的页面来套用这些样式。
 
-我们透过 [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin) 来做，它让我们可以产生一个 HTML 页面，或是使用现有的页面。我们将使用一个目前现有的 `index.html`。
+我们通过 [html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin) 来做，它让我们可以产生一个 HTML 页面，或是使用现有的页面。我们将使用一个目前现有的 `index.html`。
 
 首先我们需要安装 plugin：
 
@@ -488,18 +488,18 @@ button {
 }
 ```
 
-#### 开发伺服器
+#### 开发服务器
 
 [范例六](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example6)
 
-现在我们想要实际在浏览器看到我们的网站，这就需要一个 web 伺服器来跑我们的代码。webpack 自带了方便的 `webpack-dev-server`，你需要在本机和全域安装。
+现在我们想要实际在浏览器看到我们的网站，这就需要一个 web 服务器来跑我们的代码。webpack 自带了方便的 `webpack-dev-server`，你需要在本机和全域安装。
 
     npm install -g webpack-dev-server
     npm install --save-dev webpack-dev-server
 
-dev server 可以在浏览器看到你的网站外观以及可以更快速的开发，是一个相当有用的资源。预设情况下你可以拜访 `http://localhost:8080`。不幸的是，像是 hot reloading 的功能并不是内建的，还需要一些其他的设定。
+dev server 可以在浏览器看到你的网站外观以及可以更快速的开发，是一个相当有用的资源。预设情况下你可以拜访 `http://localhost:8080`。不幸的是，像是 hot reloading 的功能并不是内建的，还需要一些其他的配置。
 
-这裡是 webpack 配置一个很棒的分离点，你可以将它分成用于「development」以及用于「production」。因为我们在这个教学课程中将尽量保持简单，所以两个设定之间不会有非常大的不同，不过这是 webpack 极度可设置性的一个入门。我们将两个配置命名为 `webpack.config.dev.js` 和 `webpack.config.prod.js`。
+这里是 webpack 配置一个很棒的分离点，你可以将它分成用于「development」以及用于「production」。因为我们在这个教学课程中将尽量保持简单，所以两个配置之间不会有非常大的不同，不过这是 webpack 极度可设置性的一个入门。我们将两个配置命名为 `webpack.config.dev.js` 和 `webpack.config.prod.js`。
 
 ```javascript
 // webpack.config.dev.js
@@ -542,11 +542,11 @@ module.exports = {
 
 1. dev 配置省略了优化，因为当你不断的 rebuild 时，它们是不必要的。所以拿掉了 `webpack.optimize` plugins。
 
-2. dev 配置需要对 dev server 做必要的设定，你可以到[这裡](https://webpack.github.io/docs/webpack-dev-server.html)了解更多。
+2. dev 配置需要对 dev server 做必要的配置，你可以到[这里](https://webpack.github.io/docs/webpack-dev-server.html)了解更多。
 
 总结：
 
-* entry: 两个新的进入点将伺服器连结到浏览器，方便 HMR。
+* entry: 两个新的进入点将服务器连结到浏览器，方便 HMR。
 * devServer
   * contentBase: 服务的文件来自哪裡。
   * hot: 启用 HMR。
@@ -599,7 +599,7 @@ module.exports = {
     webpack --config webpack.config.prod.js
 
 
-如果想要让这些指令使用的更容易，我们可以到 `package.json` 来设定简单的 script。
+如果想要让这些指令使用的更容易，我们可以到 `package.json` 来配置简单的 script。
 
 我们加入 `scripts` 属性到配置：
 
@@ -622,9 +622,9 @@ npm run build
 npm run dev
 ```
 
-你现在可以透过 `npm run dev`，并导到 `http://localhost:8080` 看到你的网站。
+你现在可以通过 `npm run dev`，并导到 `http://localhost:8080` 看到你的网站。
 
-**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 文件时，伺服器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/html-reload)。这裡涵盖了一些 webpack 配置选项的有用资讯，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。
+**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 文件时，服务器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/html-reload)。这里涵盖了一些 webpack 配置选项的有用资讯，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。
 
 #### 开始撰写程序
 
@@ -632,7 +632,7 @@ npm run dev
 
 大多数的人似乎会慌乱的原因是因为：webpack 事实上需要通过这些取得的进入点来撰写 JavaScript；然而我们现在已经到达了这个教学课程最高潮的部分。
 
-如果你还没准备好：执行 `npm run dev`，以及导到 `http://localhost:8080`。设定 dev server 是不是可以 hot reload。在你每次储存你专桉所编辑的任何一个文件部份时，浏览器将会重新载入来显示你的修改。
+如果你还没准备好：执行 `npm run dev`，以及导到 `http://localhost:8080`。配置 dev server 是不是可以 hot reload。在你每次储存你专桉所编辑的任何一个文件部份时，浏览器将会重新载入来显示你的修改。
 
 我们也需要 npm package，为了来示范如何在前端使用它们。
 
@@ -682,7 +682,7 @@ if (module.hot) {
 
 现在考虑到：
 
-* Part 2 将解决使用 Webpack 透过 Babel 将 ES6 转换到 ES5。
+* Part 2 将解决使用 Webpack 通过 Babel 将 ES6 转换到 ES5。
 * Part 3 将解决使用 Webpack 和 React + Babel。
 
 因为这是这常见的例子。
@@ -691,4 +691,4 @@ if (module.hot) {
 
 恭喜！你已经让你个按钮去改变你的 div 的颜色！webpack 是不是很棒？
 
-没错是的！但是，如果你所做的事情只是让按钮去改变 div 的颜色，它可能不值得你去写像是这样的设定。如果你想这么做的话，你可能会感到...疲累。:anguished:
+没错是的！但是，如果你所做的事情只是让按钮去改变 div 的颜色，它可能不值得你去写像是这样的配置。如果你想这么做的话，你可能会感到...疲累。:anguished:

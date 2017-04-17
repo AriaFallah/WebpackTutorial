@@ -11,7 +11,7 @@ MyDirectory
 
 ```
 
-然后这是一个非常简易的 webpack 设定：
+然后这是一个非常简易的 webpack 配置：
 
 ```javascript
 // webpack.config.js

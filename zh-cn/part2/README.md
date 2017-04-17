@@ -2,7 +2,7 @@
 
 现在我们已经学习了基础的 webpack 使用方式，为了撰写 ES6，我们要学会利用 babel 6，因为 ES6 是 JavaScript 新的规范。
 
-如果你曾经撰写过 ES6，应该就不想再回去写 ES5 了。如果你还没有机会撰写 ES6，很大的原因可能是因为*不了解*开发环境该使用哪些设定选项，因为那些设定很令人沮丧。
+如果你曾经撰写过 ES6，应该就不想再回去写 ES5 了。如果你还没有机会撰写 ES6，很大的原因可能是因为*不了解*开发环境该使用哪些配置选项，因为那些配置很令人沮丧。
 
 我希望这个教学课程可以让这些过程可以变得更容易。
 
@@ -19,7 +19,7 @@
 
 * [Babel](#babel)
   * [Babel 是做什么用的？](#babel-是做什么用的)
-  * [设定 Babel](#设定-babel)
+  * [配置 Babel](#配置-babel)
 * [Webpack](#webpack)
   * [一个新的 Loader](#一个新的-loader)
 * [我们完成了？](#我们完成了)
@@ -32,7 +32,7 @@
 
 ## Babel
 
-如果你想要有更深入的说明，和更细微的设定 babel，请参考这个[手册][1]。我在这裡说明的是一些基本的设定。
+如果你想要有更深入的说明，和更细微的配置 babel，请参考这个[手册][1]。我在这里说明的是一些基本的配置。
 
 ### Babel 是做什么用的？
 
@@ -54,9 +54,9 @@ var square = function square(n) {
 
 让你可以执行在任何支援 JavaScript 的地方。
 
-### 设定 Babel
+### 配置 Babel
 
-另一个工具、另一个设定文件。这个时候我们有个文件叫做：
+另一个工具、另一个配置文件。这个时候我们有个文件叫做：
 
     .babelrc
 
@@ -74,12 +74,12 @@ var square = function square(n) {
 
 > 这个程序被分为 5 个 statge（0-4）。如果提桉获得更多的同意，通过各个 stage，就很容易被接受纳入标准中，最后在 stage 4 中被接受纳入标准。
 
-> 注意，这裡没有 stage-4 的 preset，它只是作为的 `es2015` 的 preset。
+> 注意，这里没有 stage-4 的 preset，它只是作为的 `es2015` 的 preset。
 > 以上。
 
 总结以上，`presets` 就是一些打包了 `plugins` 的 bundles，它们将一些功能加入到你在撰写的代码。`es2015` 中的功能，肯定会出现在 ES6 的官方版本，而 stages 0-3 的 presets ，则是未来 JavaScript 规范的一些提桉，现在还在草桉阶段。如果选择的 stage 越低，你使用的 features 之后将不支援的风险越高。
 
-从我的经验来说，我至少需要 `stage-2`，让我可以使用一个叫作 [object spread](https://github.com/sebmarkbage/ecmascript-rest-spread) 的东西。你可以在[这裡](https://github.com/tc39/ecma262)看看其他的提桉，然后决定你要使用哪个 stage。
+从我的经验来说，我至少需要 `stage-2`，让我可以使用一个叫作 [object spread](https://github.com/sebmarkbage/ecmascript-rest-spread) 的东西。你可以在[这里](https://github.com/tc39/ecma262)看看其他的提桉，然后决定你要使用哪个 stage。
 
 总之，如果要使用到这些 presets，我们需要安装它们：
 
@@ -166,7 +166,7 @@ module.exports = {
 
 ### 一个新的 Loader
 
-如果要将我们的代码转换成 ES5，我们需要透过执行一个新的 loader 叫作 `babel-loader`，它和 `babel-core` 有依赖关係。这个 loader 使用了我们的 `.babelrc` 配置来了解和转换我们的代码。
+如果要将我们的代码转换成 ES5，我们需要通过执行一个新的 loader 叫作 `babel-loader`，它和 `babel-core` 有依赖关係。这个 loader 使用了我们的 `.babelrc` 配置来了解和转换我们的代码。
 
     npm install --save-dev babel-loader babel-core
 
@@ -188,13 +188,13 @@ module: {
 }
 ```
 
-一件**非常重要**的事情，请注意 `include` 属性的用法。当我们执行 `webpack` 时，因为我们在 `test` 有设定 `/.js$/`，webpack 会在你的 dependency tree 每一个 `js` 文件尝试执行 babel loader。
+一件**非常重要**的事情，请注意 `include` 属性的用法。当我们执行 `webpack` 时，因为我们在 `test` 有配置 `/.js$/`，webpack 会在你的 dependency tree 每一个 `js` 文件尝试执行 babel loader。
 
 你可以看出这有什么问题吗？要是我 `require('bluebird')`，或是任何其他大型的 `npm` package 会怎样？它会藉由 `babel-loader` 尝试执行整个 **node_modules**，这样大量的执行会延长你的 build 过程。
 
 `include` 可以防止这个这个问题，loader 只会套用在你所指定 `src` 目录下的 `.js` 文件。
 
-另一个方式是，你可以将 `include: path.join(__dirname, 'src')` 改变成 `exclude: /node_modules/`，这意思是除了 `node_modules` 目录外其他都包括。更多资讯可以在[这裡](https://webpack.github.io/docs/configuration.html#module-loaders)找到。
+另一个方式是，你可以将 `include: path.join(__dirname, 'src')` 改变成 `exclude: /node_modules/`，这意思是除了 `node_modules` 目录外其他都包括。更多资讯可以在[这里](https://webpack.github.io/docs/configuration.html#module-loaders)找到。
 
 ## 我们完成了？
 
@@ -236,7 +236,7 @@ import Please from 'pleasejs'
 
 既然前面没花太多时间，我将再讨论两个很重要且有用的主题。
 
-### 在 Webpack 和 Babel 设定 production 环境变数
+### 在 Webpack 和 Babel 配置 production 环境变数
 
 #### Webpack
 
@@ -299,13 +299,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 这个意思说 babel 环境会 match 到我们的 webpack 环境。
 
-我们可以利用这一点，只要透过在我们的 `.babelrc` 加入 `env` 设定，就可以使用开发环境：
+我们可以利用这一点，只要通过在我们的 `.babelrc` 加入 `env` 配置，就可以使用开发环境：
 
 ```javascript
 {
   "presets": ["es2015", "stage-2"],
   "env": {
-    // 只发生在 NODE_ENV 没有被定义或是被设定为 'development'
+    // 只发生在 NODE_ENV 没有被定义或是被配置为 'development'
     "development": {
       // 当 NODE_ENV 是 production 忽略！
   }
@@ -321,7 +321,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 请注意，如果你相要在编辑器内使用它，你需要安装一个套件，例如我使用 Atom [linter-eslint](https://github.com/AtomLinter/linter-eslint)。
 
-如果要减少我们手动撰写设定，我们可以充分的利用继承，使用他人的配置。我喜欢使用基于 [airbnb 的风格指南](https://github.com/airbnb/javascript)配置。
+如果要减少我们手动撰写配置，我们可以充分的利用继承，使用他人的配置。我喜欢使用基于 [airbnb 的风格指南](https://github.com/airbnb/javascript)配置。
 
 开始之前，我们须安装 eslint 和 airbnb 的配置：
 
@@ -337,7 +337,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 
-然而，因为 linting 是非常**固执**的，我喜欢将它调整一些。如果你想要知道这些规则的含意，或是根据你的喜好调整他们，可以查看[这裡](http://eslint.org/docs/rules/)：
+然而，因为 linting 是非常**固执**的，我喜欢将它调整一些。如果你想要知道这些规则的含意，或是根据你的喜好调整他们，可以查看[这里](http://eslint.org/docs/rules/)：
 
 ```javascript
 // .eslintrc
