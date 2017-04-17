@@ -98,7 +98,7 @@
 
 ### Bundling
 
-[范例一](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example1)
+[范例一](./part1/example1)
 
 ![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
 
@@ -192,7 +192,7 @@ Webpack 没办法直接使用，需要通过你的需求来做配置。为了做
 预设情况下，webpack 会去识别这个档名。如果你选择使用不同的档名，你需要加入 `--config` 来指定你的文件名称。
 
 ### 一个简单的范例
-[范例二](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example2)
+[范例二](./part1/example2)
 
 你的目录结构像是这样：
 
@@ -232,7 +232,7 @@ module.exports = {
 
 ### 介绍 Plugins
 
-[范例三](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example3)
+[范例三](./part1/example3)
 
 想像一下，你使用 webpack 将你的文件 bundle 在一起，然后你发现到 bundle 后的结果是 900KB。这是个问题，但是你可以通过 minify 你的 bundle 文件来做改善。要做到这一点，你需要使用一个我在前面稍早提到的 [UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) plugin。
 
@@ -326,7 +326,7 @@ MyDirectory
 
 #### 介绍 Loaders
 
-[范例四](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example4)
+[范例四](./part1/example4)
 
 在稍早前面的教学课程中我提到了 [loaders](#loaders)。这些代码来帮助我们 require 非 JavaScript 的文件。在这种情况下，我们将需要 `style-loader` 和 `css-loader`。首先我们需要安装这些 loader：
 
@@ -401,7 +401,7 @@ You may need an appropriate loader to handle this file type.
 
 #### 加入更多的 Plugins
 
-[范例五](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example5)
+[范例五](./part1/example5)
 
 现在我们的网站已经有了样式的基本架构，我们还需要一个实际的页面来套用这些样式。
 
@@ -490,7 +490,7 @@ button {
 
 #### 开发服务器
 
-[范例六](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example6)
+[范例六](./part1/example6)
 
 现在我们想要实际在浏览器看到我们的网站，这就需要一个 web 服务器来跑我们的代码。webpack 自带了方便的 `webpack-dev-server`，你需要在本机和全域安装。
 
@@ -624,11 +624,11 @@ npm run dev
 
 你现在可以通过 `npm run dev`，并导到 `http://localhost:8080` 看到你的网站。
 
-**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 文件时，服务器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/html-reload)。这里涵盖了一些 webpack 配置选项的有用信息，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。
+**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 文件时，服务器不能 hot reload。解决这个问题的方法在 [html-reload](./part1/html-reload)。这里涵盖了一些 webpack 配置选项的有用信息，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。
 
 #### 开始撰写程序
 
-[范例七](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example7)
+[范例七](./part1/example7)
 
 大多数的人似乎会慌乱的原因是因为：webpack 事实上需要通过这些取得的进入点来撰写 JavaScript；然而我们现在已经到达了这个教学课程最高潮的部分。
 
@@ -672,7 +672,7 @@ if (module.hot) {
 
 然后我们就完成了！
 
-**备注：** 你可能已经注意到在你的 css 被使用之前有些 delay，或许事实上你讨厌将你的 css 放入到 JavaScript 文件中。我留了另一个范例：[css-extract](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/css-extract)，描述如何将你的 CSS 放在不同的文件。
+**备注：** 你可能已经注意到在你的 css 被使用之前有些 delay，或许事实上你讨厌将你的 css 放入到 JavaScript 文件中。我留了另一个范例：[css-extract](./part1/css-extract)，描述如何将你的 CSS 放在不同的文件。
 
 ## 结论
 
