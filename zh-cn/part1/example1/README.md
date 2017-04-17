@@ -2,7 +2,7 @@
 
 ![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
 
-Webpack 简称为模组的整合工具。如果你想要深入的话，可以拜访「modules」和「module bundling definitely」这两篇优秀的解释文章：
+Webpack 简称为模块的整合工具。如果你想要深入的话，可以拜访「modules」和「module bundling definitely」这两篇优秀的解释文章：
 [JavaScript Modules: A Beginner’s Guide](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh)
 和 [JavaScript Modules Part 2: Module Bundling](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2)。
 我们要保持它的简单，webpack 运作的方式是通过指定一个单一文件作为你的进入点。

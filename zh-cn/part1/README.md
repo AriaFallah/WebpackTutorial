@@ -55,7 +55,7 @@
 
 ##### 为什么我需要这些功能？
 
-* Bundle JS 文件 - 让你可以撰写模组化的 JavaScript，但是你不需要 include 每个 JavaScript `<script>` 的文件（如果你需要多个 JavaScript 文件可以通过配置来完成）。
+* Bundle JS 文件 - 让你可以撰写模块化的 JavaScript，但是你不需要 include 每个 JavaScript `<script>` 的文件（如果你需要多个 JavaScript 文件可以通过配置来完成）。
 
 * 在你的前端代码中使用 npm packages - npm 在 internet 上是一个大型的 open source 生态系统。可以储存或发佈你的代码，你可以到 npm 看一看，可能包含你想要的前端套件。
 
@@ -102,7 +102,7 @@
 
 ![Official Dependency Tree](http://i.imgur.com/YU4xBPQ.png)
 
-Webpack 简称为模组整合工具。如果你想要深入的话，可以拜访 [JavaScript Modules: A Beginner’s Guide](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh) 和 [JavaScript Modules Part 2: Module Bundling](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2) 这两篇优秀的解释文章：
+Webpack 简称为模块整合工具。如果你想要深入的话，可以拜访 [JavaScript Modules: A Beginner’s Guide](https://medium.freecodecamp.com/javascript-modules-a-beginner-s-guide-783f7d7a5fcc#.jw1txw6uh) 和 [JavaScript Modules Part 2: Module Bundling](https://medium.com/@preethikasireddy/javascript-modules-part-2-module-bundling-5020383cf306#.lfnspler2) 这两篇优秀的解释文章：
 
 我们要保持它的简单，webpack 运作的方式是通过指定一个单一文件作为你的进入点。
 这个文件会是 tree 的 root。然后你每次 `require` 一个文件从其他文件并把它加入到 tree。当你执行 `webpack`，所有的文件和 module 都会被 bundle 成一个文件。
@@ -624,7 +624,7 @@ npm run dev
 
 你现在可以通过 `npm run dev`，并导到 `http://localhost:8080` 看到你的网站。
 
-**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 文件时，服务器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/html-reload)。这里涵盖了一些 webpack 配置选项的有用资讯，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。
+**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 文件时，服务器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/html-reload)。这里涵盖了一些 webpack 配置选项的有用信息，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。
 
 #### 开始撰写程序
 
@@ -678,7 +678,7 @@ if (module.hot) {
 
 我希望这些是有帮助的。
 
-首先 Webpack 最重要的它是一个模组整合工具。它是一个高度模组化的工具，事实上，它并不是被限于在 ES6 和 React。
+首先 Webpack 最重要的它是一个模块整合工具。它是一个高度模块化的工具，事实上，它并不是被限于在 ES6 和 React。
 
 现在考虑到：
 

@@ -133,4 +133,4 @@ npm run dev
 
 你现在可以通过 `npm run dev`，并导到 `http://localhost:8080` 看到你的网站。
 
-**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 文件时，服务器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload)。这里涵盖了一些 webpack 配置选项的有用资讯，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。
+**备注：** 当我正在测试这个部份时，我了解到，当我修改 `index.html` 文件时，服务器不能 hot reload。解决这个问题的方法在 [html-reload](https://github.com/AriaFallah/WebpackTutorial/tree/master/part1/html-reload)。这里涵盖了一些 webpack 配置选项的有用信息，我推荐你可以看一下，但是我把它分开了，因为我觉得会因为这个不太重要的原因，这会延长这个教学课程。

@@ -194,7 +194,7 @@ module: {
 
 `include` 可以防止这个这个问题，loader 只会套用在你所指定 `src` 目录下的 `.js` 文件。
 
-另一个方式是，你可以将 `include: path.join(__dirname, 'src')` 改变成 `exclude: /node_modules/`，这意思是除了 `node_modules` 目录外其他都包括。更多资讯可以在[这里](https://webpack.github.io/docs/configuration.html#module-loaders)找到。
+另一个方式是，你可以将 `include: path.join(__dirname, 'src')` 改变成 `exclude: /node_modules/`，这意思是除了 `node_modules` 目录外其他都包括。更多信息可以在[这里](https://webpack.github.io/docs/configuration.html#module-loaders)找到。
 
 ## 我们完成了？
 
