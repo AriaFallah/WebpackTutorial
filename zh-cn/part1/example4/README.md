@@ -1,4 +1,4 @@
-在稍早前面的教学中我提到了 [loaders](#loaders)。这些程式码来帮助我们 require 非 JavaScript 的文件。在这种情况下，我们将需要 `style-loader` 和 `css-loader`。首先我们需要安装这些 loader：
+在稍早前面的教学中我提到了 [loaders](#loaders)。这些代码来帮助我们 require 非 JavaScript 的文件。在这种情况下，我们将需要 `style-loader` 和 `css-loader`。首先我们需要安装这些 loader：
 
     npm install --save-dev style-loader css-loader
 
@@ -32,10 +32,10 @@ module.exports = {
 }
 ```
 
-我们一个一个複习这些属性：
+我们一个一个复习这些属性：
 
 * [module](http://webpack.github.io/docs/configuration.html#module) - 设定你的文件选项。
-  * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - 我们为应用程式所指定的一个 loader 阵列。
+  * [loaders](http://webpack.github.io/docs/configuration.html#module-loaders) - 我们为应用程序所指定的一个 loader 阵列。
     * test - 一个正规表达式来匹配 loader 的文件。
     * loaders - loader 用于这些匹配 test （正规表达式）的文件。
 

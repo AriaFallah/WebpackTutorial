@@ -5,7 +5,7 @@
 
 基本上要让 webpack 可以 hot reload 我们的 HTML，我们需要 require 我们其中文件之一，让它变成我们 dependency tree 的一部份。为了做到这一点，我们将会使用 `raw-loader` loader，它可以 pull 我们的 HTML 变成字串到我们的 JavaScript，但是另外我们真正需要做的是：加入 HTML 到 dependency tree。
 
-所以让我们加入这个 loader 到我们的 dev 设定档：
+所以让我们加入这个 loader 到我们的 dev 配置：
 
 首先我们需要安装：
 
@@ -65,9 +65,9 @@ require('./index.html')
 
 这个 plugin 让我们建立一个全域的常数到我们整个 bundle，我们可以命名任何常数，像是：`DONT_USE_IN_PRODUCTION: true`，但实际上，更普遍的做法会像是 `process.env.NODE_ENV: JSON.stringify('production')`。为什么要 `JSON.stringify`？根据文件的解释：
 
-> 如果值是一个字串，它会被作为一个程式码片段。
+> 如果值是一个字串，它会被作为一个代码片段。
 
-现在我们已经了解了，我们可以加入这个 plugin 到我们的 production 设定档：
+现在我们已经了解了，我们可以加入这个 plugin 到我们的 production 配置：
 
 ```javascript
 // webpack.config.prod.js

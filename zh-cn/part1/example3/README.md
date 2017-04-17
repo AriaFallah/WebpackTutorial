@@ -6,7 +6,7 @@
 
     npm install --save-dev webpack
 
-现在你可以 require webpack 并 minify 你的程式码。
+现在你可以 require webpack 并 minify 你的代码。
 
 ```javascript
 // webpack.config.js
@@ -29,10 +29,10 @@ module.exports = {
   ]
 }
 ```
-我们一个一个複习这些属性：
+我们一个一个复习这些属性：
 
 * plugins - 一个可以储存你的 plugin 的阵列。
-  * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify 你的程式码，并显示警告讯息。
+  * [webpack.optimize.UglifyJsPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) - Minify 你的代码，并显示警告讯息。
 
 这个时候，当我们执行 `webpack`，`UglifyJsPlugin` 通过像是移除所有空白的处理，可以将你的文件减少至 200KB。
 
@@ -64,4 +64,4 @@ module.exports = {
 }
 ```
 
-所以现在我们写了一个设定档让我们可以 minify 和 bundle 我们的 JavaScript。这个 bundle 文件可以被複製并贴到其他的专桉目录中，放入 `<script>` 就可以使用。如果*只有 JavaScript*，而且你只在乎关于 webpack 基本的使用，你可以直接跳到[结论](#conclusion)。
+所以现在我们写了一个配置让我们可以 minify 和 bundle 我们的 JavaScript。这个 bundle 文件可以被复制并贴到其他的专桉目录中，放入 `<script>` 就可以使用。如果*只有 JavaScript*，而且你只在乎关于 webpack 基本的使用，你可以直接跳到[结论](#conclusion)。

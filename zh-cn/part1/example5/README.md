@@ -8,7 +8,7 @@
 
     npm install --save-dev html-webpack-plugin@2
 
-然后在我们的 webpack 设定档加入：
+然后在我们的 webpack 配置加入：
 
 ```javascript
 // webpack.config.js
@@ -60,7 +60,7 @@ module.exports = {
 </html>
 ```
 
-注意到我们没有放入一个 `bundle.js` 的 `<script>` 标籤到我们的 HTML。实际上 plugin 会自动的帮你处理。如果你放入 script，到头来你会载入两次相同的程式码。
+注意到我们没有放入一个 `bundle.js` 的 `<script>` 标籤到我们的 HTML。实际上 plugin 会自动的帮你处理。如果你放入 script，到头来你会载入两次相同的代码。
 
 而让我们加入一些基本的样式在 `styles.css`：
 

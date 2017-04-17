@@ -38,7 +38,7 @@
 
 简单来说，babel 让你可以更完整的使用 JavaScript 的 ES6 feature，因为目前大部分的浏览器和环境都不支援，所以将它转换成 ES5，让它可以更广泛的被支援。
 
-这个 ES6 的程式码，目前*只*有最新的浏览器才支援。
+这个 ES6 的代码，目前*只*有最新的浏览器才支援。
 
 ```javascript
 const square = n => n * n;
@@ -60,7 +60,7 @@ var square = function square(n) {
 
     .babelrc
 
-感谢啊！`.babelrc` 文件只有一行程式码而已。
+感谢啊！`.babelrc` 文件只有一行代码而已。
 
 ```javascript
 {
@@ -77,7 +77,7 @@ var square = function square(n) {
 > 注意，这裡没有 stage-4 的 preset，它只是作为的 `es2015` 的 preset。
 > 以上。
 
-总结以上，`presets` 就是一些打包了 `plugins` 的 bundles，它们将一些功能加入到你在撰写的程式码。`es2015` 中的功能，肯定会出现在 ES6 的官方版本，而 stages 0-3 的 presets ，则是未来 JavaScript 规范的一些提桉，现在还在草桉阶段。如果选择的 stage 越低，你使用的 features 之后将不支援的风险越高。
+总结以上，`presets` 就是一些打包了 `plugins` 的 bundles，它们将一些功能加入到你在撰写的代码。`es2015` 中的功能，肯定会出现在 ES6 的官方版本，而 stages 0-3 的 presets ，则是未来 JavaScript 规范的一些提桉，现在还在草桉阶段。如果选择的 stage 越低，你使用的 features 之后将不支援的风险越高。
 
 从我的经验来说，我至少需要 `stage-2`，让我可以使用一个叫作 [object spread](https://github.com/sebmarkbage/ecmascript-rest-spread) 的东西。你可以在[这裡](https://github.com/tc39/ecma262)看看其他的提桉，然后决定你要使用哪个 stage。
 
@@ -89,9 +89,9 @@ var square = function square(n) {
 
 ## Webpack
 
-我们可以使用与 [part 1-范例七](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example7)相同的设定档，但是需要加入 ES6 所需要的功能。
+我们可以使用与 [part 1-范例七](https://github.com/neighborhood999/WebpackTutorial/tree/master/zh-TW/part1/example7)相同的配置，但是需要加入 ES6 所需要的功能。
 
-目前设定档：
+目前配置：
 
 ```javascript
 // webpack.config.dev.js
@@ -166,11 +166,11 @@ module.exports = {
 
 ### 一个新的 Loader
 
-如果要将我们的程式码转换成 ES5，我们需要透过执行一个新的 loader 叫作 `babel-loader`，它和 `babel-core` 有依赖关係。这个 loader 使用了我们的 `.babelrc` 设定档来了解和转换我们的程式码。
+如果要将我们的代码转换成 ES5，我们需要透过执行一个新的 loader 叫作 `babel-loader`，它和 `babel-core` 有依赖关係。这个 loader 使用了我们的 `.babelrc` 配置来了解和转换我们的代码。
 
     npm install --save-dev babel-loader babel-core
 
-我们在 dev 和 prod 这两个设定档中加入：
+我们在 dev 和 prod 这两个配置中加入：
 
 ```javascript
 // 为了节省篇幅我只显示「loaders」的部分。
@@ -198,7 +198,7 @@ module: {
 
 ## 我们完成了？
 
-老实说，我以为这个教学会更长，但看起来我忘记了「加入 babel」这件事实际上非常简单。现在我们可以使用 ES6 语法来更新先前 `index.js` 的程式码了：
+老实说，我以为这个教学会更长，但看起来我忘记了「加入 babel」这件事实际上非常简单。现在我们可以使用 ES6 语法来更新先前 `index.js` 的代码了：
 
 ```javascript
 // index.js
@@ -240,13 +240,13 @@ import Please from 'pleasejs'
 
 #### Webpack
 
-如果我们不想要在 production 执行部分的程式码，我们可以使用方便的 [DefinePlugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin)。
+如果我们不想要在 production 执行部分的代码，我们可以使用方便的 [DefinePlugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin)。
 
-这个 plugin 让我们可以为我们整个 bundle 建立全域的常数，我们可以命名任何常数，像是：`DONT_USE_IN_PRODUCTION: true`，但是大多普遍的方式会是 `process.env.NODE_ENV: JSON.stringify('production')`，这会是更好的选择。这是因为许多程式可以识别并根据 `process.env.NODE_ENV` 来使用额外的功能和优化你的程式码。
+这个 plugin 让我们可以为我们整个 bundle 建立全域的常数，我们可以命名任何常数，像是：`DONT_USE_IN_PRODUCTION: true`，但是大多普遍的方式会是 `process.env.NODE_ENV: JSON.stringify('production')`，这会是更好的选择。这是因为许多程序可以识别并根据 `process.env.NODE_ENV` 来使用额外的功能和优化你的代码。
 
 为什么要 `JSON.stringify`？因为根据文件的解释：
 
-> 如果值是一个字串，它会被作为一个程式码片段。
+> 如果值是一个字串，它会被作为一个代码片段。
 
 这意思说一个 `'production'` 只会是一个错误。如果你认为 `JSON.stringify` 很奇怪，一个有效替代方式是 `'"production"'`。
 
@@ -269,7 +269,7 @@ plugins: [
 ]
 ```
 
-现在，假如我们不想要在 production 上执行一些程式码，我们可以放入一个 if 条件式：
+现在，假如我们不想要在 production 上执行一些代码，我们可以放入一个 if 条件式：
 
 ```javascript
 if (process.env.NODE_ENV !== 'production') {
@@ -317,18 +317,18 @@ if (process.env.NODE_ENV !== 'production') {
 
 ### 加入 Lint
 
-如果你看过任何关于 Webpack/React 专桉的 seed/starter，你可能看过一个文件叫做 `.eslintrc`。如果你不是使用 IDE，而是使用像是 Atom、Sublime、Ecmas、Vim 等等，eslint 提供语法和风格的检查，指出你的错误。此外，即使你正在使用 IDE，它可以提供更多功能，并确保整个专桉程式码风格统一。
+如果你看过任何关于 Webpack/React 专桉的 seed/starter，你可能看过一个文件叫做 `.eslintrc`。如果你不是使用 IDE，而是使用像是 Atom、Sublime、Ecmas、Vim 等等，eslint 提供语法和风格的检查，指出你的错误。此外，即使你正在使用 IDE，它可以提供更多功能，并确保整个专桉代码风格统一。
 
 请注意，如果你相要在编辑器内使用它，你需要安装一个套件，例如我使用 Atom [linter-eslint](https://github.com/AtomLinter/linter-eslint)。
 
-如果要减少我们手动撰写设定，我们可以充分的利用继承，使用他人的设定档。我喜欢使用基于 [airbnb 的风格指南](https://github.com/airbnb/javascript)设定档。
+如果要减少我们手动撰写设定，我们可以充分的利用继承，使用他人的配置。我喜欢使用基于 [airbnb 的风格指南](https://github.com/airbnb/javascript)配置。
 
-开始之前，我们须安装 eslint 和 airbnb 的设定档：
+开始之前，我们须安装 eslint 和 airbnb 的配置：
 
     npm install -g eslint
     npm install --save-dev eslint eslint-config-airbnb
 
-我们的设定档看起来像：
+我们的配置看起来像：
 
 ```javascript
 // .eslintrc
@@ -358,7 +358,7 @@ if (process.env.NODE_ENV !== 'production') {
 
     npm install --save-dev babel-eslint eslint-plugin-babel
 
-调整我们的设定档，再一次的加入 [babel 指定规则](https://github.com/babel/eslint-plugin-babel)：
+调整我们的配置，再一次的加入 [babel 指定规则](https://github.com/babel/eslint-plugin-babel)：
 
 ```javascript
 // .eslintrc
@@ -395,13 +395,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 
-当你执行 `npm run lint` 来确保你的程式码没有违反你指定的规则。
+当你执行 `npm run lint` 来确保你的代码没有违反你指定的规则。
 
 ## 结论
 
 我已经把所有这一切的最终结果放入到[范例一](https://github.com/neighborhood999/WebpackTutorial/tree/master/part2/example1)。如果你仍然有不理解的地方，可以在 issue 提出你的问题。
 
-所以现在我们可以轻鬆的撰写 ES6 程式码，此外，也让我们了解到如何撰写设定档 :tada:！
+所以现在我们可以轻鬆的撰写 ES6 代码，此外，也让我们了解到如何撰写配置 :tada:！
 
 然而，你有能力从头开始撰写它，并不表示你一定要这么做。为了方便，[我有建立一个 repository](https://github.com/AriaFallah/minimal-babel-starter) 让你 clone 下来开始，这是根据这份教学建立的基本文件。
 

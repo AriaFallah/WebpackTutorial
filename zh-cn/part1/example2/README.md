@@ -26,7 +26,7 @@ module.exports = {
 }
 ```
 
-我们一个一个複习这些属性：
+我们一个一个复习这些属性：
 
 * [entry](https://webpack.github.io/docs/configuration.html#entry) - 这是你的 bundle 的进入点，这是我们在讨论 [bundling](#bundling) 的部分。`entry` 是一个阵列，根据你的需求，webpack 允许可以有多个进入点，来产生多个 bundle 文件。
 

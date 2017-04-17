@@ -76,6 +76,6 @@ body {
 require('./styles.css')
 ```
 
-如果在我的 webpack 设定档中，inclue [style-loader](https://github.com/webpack/style-loader) 和 [css-loader](https://github.com/webpack/css-loader)，这是可行的，还可以实际应用 CSS 到我的网页。
+如果在我的 webpack 配置中，inclue [style-loader](https://github.com/webpack/style-loader) 和 [css-loader](https://github.com/webpack/css-loader)，这是可行的，还可以实际应用 CSS 到我的网页。
 
 你可以在 webpack 使用多个 loader，这裡只是一个单一的例子。

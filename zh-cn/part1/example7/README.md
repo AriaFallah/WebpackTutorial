@@ -1,4 +1,4 @@
-# 范例七 - 开始撰写程式
+# 范例七 - 开始撰写程序
 
 大多数的人会慌乱的原因似乎是因为：webpack 事实上需要通过这些取得的进入点来撰写 JavaScript；然而我们现在已经到达了这个教学课程最高潮的部分。
 
@@ -30,7 +30,7 @@ function changeColor() {
 button.addEventListener('click', changeColor)
 ```
 
-有趣的是，[为了让 Hot Module Replacement 可以执行](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html#what-is-needed-to-use-it)，你需要加入下面的程式码：
+有趣的是，[为了让 Hot Module Replacement 可以执行](https://webpack.github.io/docs/hot-module-replacement-with-webpack.html#what-is-needed-to-use-it)，你需要加入下面的代码：
 
 ```javascript
 if (module.hot) {
