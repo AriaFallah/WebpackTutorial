@@ -1,6 +1,6 @@
 # 番外 - 让你的 HTML 可以 hot reload
 
-所以，当我测试的时候我才知道 `index.html` 不会被 hot reload！在之后搜寻的结果，我最后找到了[有帮助的答桉](http://stackoverflow.com/questions/33183931/how-to-watch-index-html-using-webpack-dev-server-and-html-webpack-plugin)，
+所以，当我测试的时候我才知道 `index.html` 不会被 hot reload！在之后搜寻的结果，我最后找到了[有帮助的答案](http://stackoverflow.com/questions/33183931/how-to-watch-index-html-using-webpack-dev-server-and-html-webpack-plugin)，
 这需要一个 [loader](https://github.com/webpack/raw-loader) 来让我们 hacky，也需要另一个 [plugin](https://github.com/webpack/docs/wiki/list-of-plugins#defineplugin) 来防止这个 hacky 到 production。
 
 基本上要让 webpack 可以 hot reload 我们的 HTML，我们需要 require 我们其中文件之一，让它变成我们 dependency tree 的一部份。为了做到这一点，我们将会使用 `raw-loader` loader，它可以 pull 我们的 HTML 变成字串到我们的 JavaScript，但是另外我们真正需要做的是：加入 HTML 到 dependency tree。

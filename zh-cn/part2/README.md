@@ -24,7 +24,7 @@
   * [一个新的 Loader](#一个新的-loader)
 * [我们完成了？](#我们完成了)
   * [Require ES6 的 Module](#require-es6-的-module)
-* [额外收穫](#额外收穫)
+* [额外收获](#额外收获)
   * [Production 环境变数以及 Webpack 和 Babel](#production-环境变数以及-webpack-和-babel)
   * [加入 Lint](#加入-lint)
 * [结论](#结论)
@@ -36,9 +36,9 @@
 
 ### Babel 是做什么用的？
 
-简单来说，babel 让你可以更完整的使用 JavaScript 的 ES6 feature，因为目前大部分的浏览器和环境都不支援，所以将它转换成 ES5，让它可以更广泛的被支援。
+简单来说，babel 让你可以更完整的使用 JavaScript 的 ES6 feature，因为目前大部分的浏览器和环境都不支持，所以将它转换成 ES5，让它可以更广泛的被支持。
 
-这个 ES6 的代码，目前*只*有最新的浏览器才支援。
+这个 ES6 的代码，目前*只*有最新的浏览器才支持。
 
 ```javascript
 const square = n => n * n;
@@ -52,7 +52,7 @@ var square = function square(n) {
 };
 ```
 
-让你可以执行在任何支援 JavaScript 的地方。
+让你可以执行在任何支持 JavaScript 的地方。
 
 ### 配置 Babel
 
@@ -70,16 +70,16 @@ var square = function square(n) {
 
 你只需要指定一个 `presets` 选项，下面是描述的摘录：
 
-> JavaScript 也有一些可能成为标准的提桉，正在 TC39（ECMAScript 标准背后的委员会）的程序中。
+> JavaScript 也有一些可能成为标准的提案，正在 TC39（ECMAScript 标准背后的委员会）的程序中。
 
-> 这个程序被分为 5 个 statge（0-4）。如果提桉获得更多的同意，通过各个 stage，就很容易被接受纳入标准中，最后在 stage 4 中被接受纳入标准。
+> 这个程序被分为 5 个 statge（0-4）。如果提案获得更多的同意，通过各个 stage，就很容易被接受纳入标准中，最后在 stage 4 中被接受纳入标准。
 
 > 注意，这里没有 stage-4 的 preset，它只是作为的 `es2015` 的 preset。
 > 以上。
 
-总结以上，`presets` 就是一些打包了 `plugins` 的 bundles，它们将一些功能加入到你在撰写的代码。`es2015` 中的功能，肯定会出现在 ES6 的官方版本，而 stages 0-3 的 presets ，则是未来 JavaScript 规范的一些提桉，现在还在草桉阶段。如果选择的 stage 越低，你使用的 features 之后将不支援的风险越高。
+总结以上，`presets` 就是一些打包了 `plugins` 的 bundles，它们将一些功能加入到你在撰写的代码。`es2015` 中的功能，肯定会出现在 ES6 的官方版本，而 stages 0-3 的 presets ，则是未来 JavaScript 规范的一些提案，现在还在草案阶段。如果选择的 stage 越低，你使用的 features 之后将不支持的风险越高。
 
-从我的经验来说，我至少需要 `stage-2`，让我可以使用一个叫作 [object spread](https://github.com/sebmarkbage/ecmascript-rest-spread) 的东西。你可以在[这里](https://github.com/tc39/ecma262)看看其他的提桉，然后决定你要使用哪个 stage。
+从我的经验来说，我至少需要 `stage-2`，让我可以使用一个叫作 [object spread](https://github.com/sebmarkbage/ecmascript-rest-spread) 的东西。你可以在[这里](https://github.com/tc39/ecma262)看看其他的提案，然后决定你要使用哪个 stage。
 
 总之，如果要使用到这些 presets，我们需要安装它们：
 
@@ -232,7 +232,7 @@ const Please = require('pleasejs')
 import Please from 'pleasejs'
 ```
 
-## 额外收穫
+## 额外收获
 
 既然前面没花太多时间，我将再讨论两个很重要且有用的主题。
 
@@ -277,7 +277,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 
-在我们目前的专桉中，如果在 production 环境下，我们可以排除 hot reload：
+在我们目前的专案中，如果在 production 环境下，我们可以排除 hot reload：
 
 ```javascript
 // 在开发环境下接受 hot module reloading
@@ -317,7 +317,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 ### 加入 Lint
 
-如果你看过任何关于 Webpack/React 专桉的 seed/starter，你可能看过一个文件叫做 `.eslintrc`。如果你不是使用 IDE，而是使用像是 Atom、Sublime、Ecmas、Vim 等等，eslint 提供语法和风格的检查，指出你的错误。此外，即使你正在使用 IDE，它可以提供更多功能，并确保整个专桉代码风格统一。
+如果你看过任何关于 Webpack/React 专案的 seed/starter，你可能看过一个文件叫做 `.eslintrc`。如果你不是使用 IDE，而是使用像是 Atom、Sublime、Ecmas、Vim 等等，eslint 提供语法和风格的检查，指出你的错误。此外，即使你正在使用 IDE，它可以提供更多功能，并确保整个专案代码风格统一。
 
 请注意，如果你相要在编辑器内使用它，你需要安装一个套件，例如我使用 Atom [linter-eslint](https://github.com/AtomLinter/linter-eslint)。
 
@@ -354,7 +354,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 ```
 
-另外，eslint 内建不支援和分辨 babel 语法，所以我们需要安装两个套件：
+另外，eslint 内建不支持和分辨 babel 语法，所以我们需要安装两个套件：
 
     npm install --save-dev babel-eslint eslint-plugin-babel
 
