@@ -1,0 +1,20 @@
+h1 {
+  color: rgb(114, 191, 190);
+}
+
+#color {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  background-color: rgb(123, 109, 198);
+  color: rgb(255, 255, 255);
+  padding: 10px 5px;
+  border-radius: 4px;
+  border-bottom: 2px solid rgb(143, 132, 200);
+}
