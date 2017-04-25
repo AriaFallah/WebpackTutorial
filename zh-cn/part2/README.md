@@ -25,7 +25,7 @@
 * [我们完成了？](#我们完成了)
   * [Require ES6 的 Module](#require-es6-的-module)
 * [额外收获](#额外收获)
-  * [Production 环境变数以及 Webpack 和 Babel](#production-环境变数以及-webpack-和-babel)
+  * [Production 环境变量以及 Webpack 和 Babel](#production-环境变量以及-webpack-和-babel)
   * [加入 Lint](#加入-lint)
 * [结论](#结论)
 
@@ -236,7 +236,7 @@ import Please from 'pleasejs'
 
 既然前面没花太多时间，我将再讨论两个很重要且有用的主题。
 
-### 在 Webpack 和 Babel 配置 production 环境变数
+### 在 Webpack 和 Babel 配置 production 环境变量
 
 #### Webpack
 
@@ -290,7 +290,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 #### Babel
 
-将我们的 production 变数定义为 `process.env.NODE_ENV` 有其他额外的好处。
+将我们的 production 变量定义为 `process.env.NODE_ENV` 有其他额外的好处。
 
 [根据手册][1]
 
